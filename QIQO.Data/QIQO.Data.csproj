@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{97B4F719-9397-4BAC-9D6B-9D9F4D41CB6F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>QIQO.Data</RootNamespace>
+    <AssemblyName>QIQO.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\DataClassException.cs" />
+    <Compile Include="Common\IdentityDBContext.cs" />
+    <Compile Include="Common\MapException.cs" />
+    <Compile Include="Common\MainDBContext.cs" />
+    <Compile Include="DataRepositoryFactory.cs" />
+    <Compile Include="IdentityRepositoryBase.cs" />
+    <Compile Include="Interfaces\IAccountTypeRepository.cs" />
+    <Compile Include="Interfaces\IAddressPostalRepository.cs" />
+    <Compile Include="Interfaces\IAddressRepository.cs" />
+    <Compile Include="Interfaces\IAddressTypeRepository.cs" />
+    <Compile Include="Interfaces\IAttributeRepository.cs" />
+    <Compile Include="Interfaces\IAttributeTypeRepository.cs" />
+    <Compile Include="Interfaces\IAuditLogRepository.cs" />
+    <Compile Include="Interfaces\IChartOfAccountsRepository.cs" />
+    <Compile Include="Interfaces\ICommentRepository.cs" />
+    <Compile Include="Interfaces\ICommentTypeRepository.cs" />
+    <Compile Include="Interfaces\ICompanyRepository.cs" />
+    <Compile Include="Interfaces\IContactRepository.cs" />
+    <Compile Include="Interfaces\IContactTypeRepository.cs" />
+    <Compile Include="Interfaces\Identity\IRoleClaimRepository.cs" />
+    <Compile Include="Interfaces\Identity\IRoleRepository.cs" />
+    <Compile Include="Interfaces\Identity\IUserClaimRepository.cs" />
+    <Compile Include="Interfaces\Identity\IUserLoginRepository.cs" />
+    <Compile Include="Interfaces\Identity\IUserRepository.cs" />
+    <Compile Include="Interfaces\Identity\IUserRoleRepository.cs" />
+    <Compile Include="Interfaces\IEntityEntityRepository.cs" />
+    <Compile Include="Interfaces\IEntityPersonRepository.cs" />
+    <Compile Include="Interfaces\IEntityProductRepository.cs" />
+    <Compile Include="Interfaces\IEntityTypeRepository.cs" />
+    <Compile Include="Interfaces\IFeeScheduleRepository.cs" />
+    <Compile Include="Interfaces\IInvoiceItemRepository.cs" />
+    <Compile Include="Interfaces\IInvoiceRepository.cs" />
+    <Compile Include="Interfaces\IInvoiceStatusRepository.cs" />
+    <Compile Include="Interfaces\ILedgerRepository.cs" />
+    <Compile Include="Interfaces\ILedgerTxnRepository.cs" />
+    <Compile Include="Interfaces\IMappers.cs" />
+    <Compile Include="Interfaces\IOrderHeaderRepository.cs" />
+    <Compile Include="Interfaces\IOrderItemRepository.cs" />
+    <Compile Include="Interfaces\IOrderStatusRepository.cs" />
+    <Compile Include="Interfaces\IPersonRepository.cs" />
+    <Compile Include="Interfaces\IPersonTypeRepository.cs" />
+    <Compile Include="Interfaces\IProductRepository.cs" />
+    <Compile Include="Interfaces\IProductTypeRepository.cs" />
+    <Compile Include="Interfaces\IUserSessionRepository.cs" />
+    <Compile Include="Interfaces\IVendorRepository.cs" />
+    <Compile Include="Maps\AccountMap.cs" />
+    <Compile Include="Maps\AccountTypeMap.cs" />
+    <Compile Include="Maps\AddressMap.cs" />
+    <Compile Include="Maps\AddressPostalMap.cs" />
+    <Compile Include="Maps\AddressTypeMap.cs" />
+    <Compile Include="Maps\AttributeMap.cs" />
+    <Compile Include="Maps\AttributeTypeMap.cs" />
+    <Compile Include="Maps\AuditLogMap.cs" />
+    <Compile Include="Maps\ChartOfAccountsMap.cs" />
+    <Compile Include="Maps\CommentMap.cs" />
+    <Compile Include="Maps\CommentTypeMap.cs" />
+    <Compile Include="Maps\CompanyMap.cs" />
+    <Compile Include="Maps\ContactMap.cs" />
+    <Compile Include="Maps\ContactTypeMap.cs" />
+    <Compile Include="Maps\EntityEntityMap.cs" />
+    <Compile Include="Maps\EntityPersonMap.cs" />
+    <Compile Include="Maps\EntityProductMap.cs" />
+    <Compile Include="Maps\EntityTypeMap.cs" />
+    <Compile Include="Maps\FeeScheduleMap.cs" />
+    <Compile Include="Maps\Identity\RoleClaimMapper.cs" />
+    <Compile Include="Maps\Identity\RoleMapper.cs" />
+    <Compile Include="Maps\Identity\UserClaimMapper.cs" />
+    <Compile Include="Maps\Identity\UserLoginMapper.cs" />
+    <Compile Include="Maps\Identity\UserMapper.cs" />
+    <Compile Include="Maps\Identity\UserRoleMapper.cs" />
+    <Compile Include="Maps\InvoiceItemMap.cs" />
+    <Compile Include="Maps\InvoiceMap.cs" />
+    <Compile Include="Maps\InvoiceStatusMap.cs" />
+    <Compile Include="Maps\LedgerMap.cs" />
+    <Compile Include="Maps\LedgerTxnMap.cs" />
+    <Compile Include="Maps\MapperBase.cs" />
+    <Compile Include="Maps\Maps.cs" />
+    <Compile Include="Maps\OrderHeaderMap.cs" />
+    <Compile Include="Maps\OrderItemMap.cs" />
+    <Compile Include="Maps\OrderStatusMap.cs" />
+    <Compile Include="Maps\PersonMap.cs" />
+    <Compile Include="Maps\PersonTypeMap.cs" />
+    <Compile Include="Maps\ProductMap.cs" />
+    <Compile Include="Maps\ProductTypeMap.cs" />
+    <Compile Include="Maps\UserSessionMap.cs" />
+    <Compile Include="Maps\VendorMap.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AccountRepository.cs" />
+    <Compile Include="Interfaces\IAccountRepository.cs" />
+    <Compile Include="Repositories\AccountTypeRepository.cs" />
+    <Compile Include="Repositories\AddressPostalRepository.cs" />
+    <Compile Include="Repositories\AddressRepository.cs" />
+    <Compile Include="Repositories\AddressTypeRepository.cs" />
+    <Compile Include="Repositories\AttributeRepository.cs" />
+    <Compile Include="Repositories\AttributeTypeRepository.cs" />
+    <Compile Include="Repositories\AuditLogRepository.cs" />
+    <Compile Include="Repositories\ChartOfAccountsRepository.cs" />
+    <Compile Include="Repositories\CommentRepository.cs" />
+    <Compile Include="Repositories\CommentTypeRepository.cs" />
+    <Compile Include="Repositories\CompanyRepository.cs" />
+    <Compile Include="Repositories\ContactRepository.cs" />
+    <Compile Include="Repositories\ContactTypeRepository.cs" />
+    <Compile Include="Repositories\EntityEntityRepository.cs" />
+    <Compile Include="Repositories\EntityPersonRepository.cs" />
+    <Compile Include="Repositories\EntityProductRepository.cs" />
+    <Compile Include="Repositories\EntityTypeRepository.cs" />
+    <Compile Include="Repositories\FeeScheduleRepository.cs" />
+    <Compile Include="Repositories\Identity\RoleClaimRepository.cs" />
+    <Compile Include="Repositories\Identity\RoleRepository.cs" />
+    <Compile Include="Repositories\Identity\UserClaimRepository.cs" />
+    <Compile Include="Repositories\Identity\UserLoginRepository.cs" />
+    <Compile Include="Repositories\Identity\UserRepository.cs" />
+    <Compile Include="Repositories\Identity\UserRoleRepository.cs" />
+    <Compile Include="Repositories\InvoiceItemRepository.cs" />
+    <Compile Include="Repositories\InvoiceRepository.cs" />
+    <Compile Include="Repositories\InvoiceStatusRepository.cs" />
+    <Compile Include="Repositories\LedgerRepository.cs" />
+    <Compile Include="Repositories\LedgerTxnRepository.cs" />
+    <Compile Include="Repositories\OrderHeaderRepository.cs" />
+    <Compile Include="Repositories\OrderItemRepository.cs" />
+    <Compile Include="Repositories\OrderStatusRepository.cs" />
+    <Compile Include="Repositories\PersonRepository.cs" />
+    <Compile Include="Repositories\PersonTypeRepository.cs" />
+    <Compile Include="Repositories\ProductRepository.cs" />
+    <Compile Include="Repositories\ProductTypeRepository.cs" />
+    <Compile Include="Repositories\Repos.cs" />
+    <Compile Include="Repositories\UserSessionRepository.cs" />
+    <Compile Include="Repositories\VendorRepository.cs" />
+    <Compile Include="RepositoryBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\QIQO.Common.Contracts\QIQO.Common.Contracts.csproj">
+      <Project>{5c8f6031-84a4-4fbb-9561-8040b04e8534}</Project>
+      <Name>QIQO.Common.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QIQO.Common.Core\QIQO.Common.Core.csproj">
+      <Project>{11a47366-26f7-476b-8ec0-28c5a8f8279c}</Project>
+      <Name>QIQO.Common.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QIQO.Data.Entities\QIQO.Data.Entities.csproj">
+      <Project>{24d92d4a-987a-4bb0-b217-7ecfd8641aef}</Project>
+      <Name>QIQO.Data.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

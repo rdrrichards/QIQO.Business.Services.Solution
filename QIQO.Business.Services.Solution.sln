@@ -1,0 +1,177 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business", "Business", "{704A1CD8-DC4C-4150-933E-C53D1D025A0D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{8F4188EC-C45E-47E1-9368-C0EB71C23358}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{BB58F696-E4AB-4E04-91B5-04358298A7EA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hosting", "Hosting", "{22D7A34E-6CD8-4073-9E39-602A21F732C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QIQO.Data", "QIQO.Data\QIQO.Data.csproj", "{97B4F719-9397-4BAC-9D6B-9D9F4D41CB6F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QIQO.Business.Contracts", "QIQO.Business.Contracts\QIQO.Business.Contracts.csproj", "{B593B60A-09F7-44CA-B079-BF345E6172BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QIQO.ConsoleHost", "QIQO.ConsoleHost\QIQO.ConsoleHost.csproj", "{C9BFB2C2-7427-4CA1-84E4-47F56F8A96D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QIQO.Business.Services", "QIQO.Business.Services\QIQO.Business.Services.csproj", "{20BF290A-B815-4BDD-9BD4-7EA42AB3B0C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QIQO.Business.Entities", "QIQO.Common.Entities\QIQO.Business.Entities.csproj", "{BCFC4DCF-6590-404B-89E2-E7B21B09F10F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QIQO.WindowsServiceHost", "QIQO.WindowsServiceHost\QIQO.WindowsServiceHost.csproj", "{2D2F4EDA-11BE-468C-88A0-3CCD809420E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QIQO.Common.Contracts", "QIQO.Common.Contracts\QIQO.Common.Contracts.csproj", "{5C8F6031-84A4-4FBB-9561-8040B04E8534}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QIQO.Common.Core", "QIQO.Common.Core\QIQO.Common.Core.csproj", "{11A47366-26F7-476B-8EC0-28C5A8F8279C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QIQO.Business.Engines", "QIQO.Business.Engines\QIQO.Business.Engines.csproj", "{8E544EC3-98C3-4AD3-B1CB-3D404064CAF0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QIQO.Data.Entities", "QIQO.Data.Entities\QIQO.Data.Entities.csproj", "{24D92D4A-987A-4BB0-B217-7ECFD8641AEF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{9520EF54-4C20-4F98-9996-1635065DC5BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QIQO.Services.Test", "QIQO.Testing\QIQO.Services.Test.csproj", "{AE94409F-B5CD-41CD-B419-988864A3F3DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QIQO.Business.Bootstrapper", "QIQO.Business.Bootstrapper\QIQO.Business.Bootstrapper.csproj", "{754FC585-BAC3-41FF-A56C-6D646955014E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QIQO.CodeLogic.Test", "QIQO.CodeLogic.Test\QIQO.CodeLogic.Test.csproj", "{53EAEF43-7098-4A3C-867B-3122DC3CE8F4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{97B4F719-9397-4BAC-9D6B-9D9F4D41CB6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97B4F719-9397-4BAC-9D6B-9D9F4D41CB6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97B4F719-9397-4BAC-9D6B-9D9F4D41CB6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97B4F719-9397-4BAC-9D6B-9D9F4D41CB6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B593B60A-09F7-44CA-B079-BF345E6172BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B593B60A-09F7-44CA-B079-BF345E6172BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B593B60A-09F7-44CA-B079-BF345E6172BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B593B60A-09F7-44CA-B079-BF345E6172BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9BFB2C2-7427-4CA1-84E4-47F56F8A96D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9BFB2C2-7427-4CA1-84E4-47F56F8A96D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9BFB2C2-7427-4CA1-84E4-47F56F8A96D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9BFB2C2-7427-4CA1-84E4-47F56F8A96D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20BF290A-B815-4BDD-9BD4-7EA42AB3B0C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20BF290A-B815-4BDD-9BD4-7EA42AB3B0C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20BF290A-B815-4BDD-9BD4-7EA42AB3B0C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20BF290A-B815-4BDD-9BD4-7EA42AB3B0C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCFC4DCF-6590-404B-89E2-E7B21B09F10F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCFC4DCF-6590-404B-89E2-E7B21B09F10F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCFC4DCF-6590-404B-89E2-E7B21B09F10F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCFC4DCF-6590-404B-89E2-E7B21B09F10F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D2F4EDA-11BE-468C-88A0-3CCD809420E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D2F4EDA-11BE-468C-88A0-3CCD809420E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D2F4EDA-11BE-468C-88A0-3CCD809420E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D2F4EDA-11BE-468C-88A0-3CCD809420E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C8F6031-84A4-4FBB-9561-8040B04E8534}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C8F6031-84A4-4FBB-9561-8040B04E8534}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C8F6031-84A4-4FBB-9561-8040B04E8534}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C8F6031-84A4-4FBB-9561-8040B04E8534}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11A47366-26F7-476B-8EC0-28C5A8F8279C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11A47366-26F7-476B-8EC0-28C5A8F8279C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11A47366-26F7-476B-8EC0-28C5A8F8279C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11A47366-26F7-476B-8EC0-28C5A8F8279C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E544EC3-98C3-4AD3-B1CB-3D404064CAF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E544EC3-98C3-4AD3-B1CB-3D404064CAF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E544EC3-98C3-4AD3-B1CB-3D404064CAF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E544EC3-98C3-4AD3-B1CB-3D404064CAF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24D92D4A-987A-4BB0-B217-7ECFD8641AEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24D92D4A-987A-4BB0-B217-7ECFD8641AEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24D92D4A-987A-4BB0-B217-7ECFD8641AEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24D92D4A-987A-4BB0-B217-7ECFD8641AEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE94409F-B5CD-41CD-B419-988864A3F3DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE94409F-B5CD-41CD-B419-988864A3F3DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE94409F-B5CD-41CD-B419-988864A3F3DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE94409F-B5CD-41CD-B419-988864A3F3DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{754FC585-BAC3-41FF-A56C-6D646955014E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{754FC585-BAC3-41FF-A56C-6D646955014E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{754FC585-BAC3-41FF-A56C-6D646955014E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{754FC585-BAC3-41FF-A56C-6D646955014E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53EAEF43-7098-4A3C-867B-3122DC3CE8F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53EAEF43-7098-4A3C-867B-3122DC3CE8F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53EAEF43-7098-4A3C-867B-3122DC3CE8F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53EAEF43-7098-4A3C-867B-3122DC3CE8F4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{97B4F719-9397-4BAC-9D6B-9D9F4D41CB6F} = {BB58F696-E4AB-4E04-91B5-04358298A7EA}
+		{B593B60A-09F7-44CA-B079-BF345E6172BF} = {704A1CD8-DC4C-4150-933E-C53D1D025A0D}
+		{C9BFB2C2-7427-4CA1-84E4-47F56F8A96D1} = {22D7A34E-6CD8-4073-9E39-602A21F732C5}
+		{20BF290A-B815-4BDD-9BD4-7EA42AB3B0C8} = {704A1CD8-DC4C-4150-933E-C53D1D025A0D}
+		{BCFC4DCF-6590-404B-89E2-E7B21B09F10F} = {704A1CD8-DC4C-4150-933E-C53D1D025A0D}
+		{2D2F4EDA-11BE-468C-88A0-3CCD809420E6} = {22D7A34E-6CD8-4073-9E39-602A21F732C5}
+		{5C8F6031-84A4-4FBB-9561-8040B04E8534} = {8F4188EC-C45E-47E1-9368-C0EB71C23358}
+		{11A47366-26F7-476B-8EC0-28C5A8F8279C} = {8F4188EC-C45E-47E1-9368-C0EB71C23358}
+		{8E544EC3-98C3-4AD3-B1CB-3D404064CAF0} = {704A1CD8-DC4C-4150-933E-C53D1D025A0D}
+		{24D92D4A-987A-4BB0-B217-7ECFD8641AEF} = {BB58F696-E4AB-4E04-91B5-04358298A7EA}
+		{AE94409F-B5CD-41CD-B419-988864A3F3DB} = {9520EF54-4C20-4F98-9996-1635065DC5BE}
+		{754FC585-BAC3-41FF-A56C-6D646955014E} = {704A1CD8-DC4C-4150-933E-C53D1D025A0D}
+		{53EAEF43-7098-4A3C-867B-3122DC3CE8F4} = {9520EF54-4C20-4F98-9996-1635065DC5BE}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 14
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://rdrrl7:8080/tfs/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = QIQO.Business.Bootstrapper\\QIQO.Business.Bootstrapper.csproj
+		SccProjectTopLevelParentUniqueName1 = QIQO.Business.Services.Solution.sln
+		SccProjectName1 = QIQO.Business.Bootstrapper
+		SccLocalPath1 = QIQO.Business.Bootstrapper
+		SccProjectUniqueName2 = QIQO.Business.Contracts\\QIQO.Business.Contracts.csproj
+		SccProjectTopLevelParentUniqueName2 = QIQO.Business.Services.Solution.sln
+		SccProjectName2 = QIQO.Business.Contracts
+		SccLocalPath2 = QIQO.Business.Contracts
+		SccProjectUniqueName3 = QIQO.Business.Engines\\QIQO.Business.Engines.csproj
+		SccProjectTopLevelParentUniqueName3 = QIQO.Business.Services.Solution.sln
+		SccProjectName3 = QIQO.Business.Engines
+		SccLocalPath3 = QIQO.Business.Engines
+		SccProjectUniqueName4 = QIQO.Business.Services\\QIQO.Business.Services.csproj
+		SccProjectTopLevelParentUniqueName4 = QIQO.Business.Services.Solution.sln
+		SccProjectName4 = QIQO.Business.Services
+		SccLocalPath4 = QIQO.Business.Services
+		SccProjectUniqueName5 = QIQO.CodeLogic.Test\\QIQO.CodeLogic.Test.csproj
+		SccProjectTopLevelParentUniqueName5 = QIQO.Business.Services.Solution.sln
+		SccProjectName5 = QIQO.CodeLogic.Test
+		SccLocalPath5 = QIQO.CodeLogic.Test
+		SccProjectUniqueName6 = QIQO.Common.Contracts\\QIQO.Common.Contracts.csproj
+		SccProjectTopLevelParentUniqueName6 = QIQO.Business.Services.Solution.sln
+		SccProjectName6 = QIQO.Common.Contracts
+		SccLocalPath6 = QIQO.Common.Contracts
+		SccProjectUniqueName7 = QIQO.Common.Core\\QIQO.Common.Core.csproj
+		SccProjectTopLevelParentUniqueName7 = QIQO.Business.Services.Solution.sln
+		SccProjectName7 = QIQO.Common.Core
+		SccLocalPath7 = QIQO.Common.Core
+		SccProjectUniqueName8 = QIQO.Common.Entities\\QIQO.Business.Entities.csproj
+		SccProjectTopLevelParentUniqueName8 = QIQO.Business.Services.Solution.sln
+		SccProjectName8 = QIQO.Common.Entities
+		SccLocalPath8 = QIQO.Common.Entities
+		SccProjectUniqueName9 = QIQO.ConsoleHost\\QIQO.ConsoleHost.csproj
+		SccProjectTopLevelParentUniqueName9 = QIQO.Business.Services.Solution.sln
+		SccProjectName9 = QIQO.ConsoleHost
+		SccLocalPath9 = QIQO.ConsoleHost
+		SccProjectUniqueName10 = QIQO.Data.Entities\\QIQO.Data.Entities.csproj
+		SccProjectTopLevelParentUniqueName10 = QIQO.Business.Services.Solution.sln
+		SccProjectName10 = QIQO.Data.Entities
+		SccLocalPath10 = QIQO.Data.Entities
+		SccProjectUniqueName11 = QIQO.Data\\QIQO.Data.csproj
+		SccProjectTopLevelParentUniqueName11 = QIQO.Business.Services.Solution.sln
+		SccProjectName11 = QIQO.Data
+		SccLocalPath11 = QIQO.Data
+		SccProjectUniqueName12 = QIQO.Testing\\QIQO.Services.Test.csproj
+		SccProjectTopLevelParentUniqueName12 = QIQO.Business.Services.Solution.sln
+		SccProjectName12 = QIQO.Testing
+		SccLocalPath12 = QIQO.Testing
+		SccProjectUniqueName13 = QIQO.WindowsServiceHost\\QIQO.WindowsServiceHost.csproj
+		SccProjectTopLevelParentUniqueName13 = QIQO.Business.Services.Solution.sln
+		SccProjectName13 = QIQO.WindowsServiceHost
+		SccLocalPath13 = QIQO.WindowsServiceHost
+	EndGlobalSection
+EndGlobal

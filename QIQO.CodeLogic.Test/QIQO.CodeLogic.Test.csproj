@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{53EAEF43-7098-4A3C-867B-3122DC3CE8F4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>QIQO.CodeLogic.Test</RootNamespace>
+    <AssemblyName>QIQO.CodeLogic.Test</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+  <ItemGroup>
+    <Compile Include="BusinessEngineTests\AccountBusinessEngineTests.cs" />
+    <Compile Include="Engines\AccountBusinessEngineTests.cs" />
+    <Compile Include="Engines\CompanyBusinessEngineTests.cs" />
+    <Compile Include="Engines\OrderBusinessEngineTests.cs" />
+    <Compile Include="Engines\ProductBusinessEngineTests.cs" />
+    <Compile Include="ServiceTests\AccountServiceTests.cs" />
+    <Compile Include="ServiceTests\AddressServiceTests.cs" />
+    <Compile Include="ServiceTests\AuditServiceTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceTests\TypeServiceTests.cs" />
+    <Compile Include="ServiceTests\CompanyServiceTests.cs" />
+    <Compile Include="ServiceTests\EmployeeServiceTests.cs" />
+    <Compile Include="ServiceTests\EntityProductServiceTests.cs" />
+    <Compile Include="ServiceTests\FeeScheduleServiceTests.cs" />
+    <Compile Include="ServiceTests\InvoiceServiceTests.cs" />
+    <Compile Include="ServiceTests\LedgerServiceTests.cs" />
+    <Compile Include="ServiceTests\OrderServiceTests.cs" />
+    <Compile Include="ServiceTests\ProductServiceTests.cs" />
+    <Compile Include="ServiceTests\SessionServiceTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\QIQO.Business.Contracts\QIQO.Business.Contracts.csproj">
+      <Project>{b593b60a-09f7-44ca-b079-bf345e6172bf}</Project>
+      <Name>QIQO.Business.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QIQO.Business.Engines\QIQO.Business.Engines.csproj">
+      <Project>{8e544ec3-98c3-4ad3-b1cb-3d404064caf0}</Project>
+      <Name>QIQO.Business.Engines</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QIQO.Business.Services\QIQO.Business.Services.csproj">
+      <Project>{20bf290a-b815-4bdd-9bd4-7ea42ab3b0c8}</Project>
+      <Name>QIQO.Business.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QIQO.Common.Contracts\QIQO.Common.Contracts.csproj">
+      <Project>{5c8f6031-84a4-4fbb-9561-8040b04e8534}</Project>
+      <Name>QIQO.Common.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QIQO.Common.Core\QIQO.Common.Core.csproj">
+      <Project>{11a47366-26f7-476b-8ec0-28c5a8f8279c}</Project>
+      <Name>QIQO.Common.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QIQO.Common.Entities\QIQO.Business.Entities.csproj">
+      <Project>{bcfc4dcf-6590-404b-89e2-e7b21b09f10f}</Project>
+      <Name>QIQO.Business.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QIQO.Data.Entities\QIQO.Data.Entities.csproj">
+      <Project>{24d92d4a-987a-4bb0-b217-7ecfd8641aef}</Project>
+      <Name>QIQO.Data.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QIQO.Data\QIQO.Data.csproj">
+      <Project>{97b4f719-9397-4bac-9d6b-9d9f4d41cb6f}</Project>
+      <Name>QIQO.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

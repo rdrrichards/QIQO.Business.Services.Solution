@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="QIQO.Business.Entities.AccountType" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAIAgCAAAAAAAAAAIAAYAAAgAAAAAQAAAAAgAAAAAA=</HashCode>
+      <FileName>AccountType.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="QIQO.Business.Entities.AddressType" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAEAAAAIASIAAAgAAAAAQAAAAEAAAAAAA=</HashCode>
+      <FileName>AddressType.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="QIQO.Business.Entities.AttributeType" BaseTypeListCollapsed="true">
+    <Position X="4" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAIAgIAIAAAAAAAAIAgIAAAhAAAAAQAABAACAAAAAA=</HashCode>
+      <FileName>AttributeType.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="QIQO.Business.Entities.CommentType" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAABAAIAAIAAIgAAAAAQAAAAIAAAgAAA=</HashCode>
+      <FileName>CommentType.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="QIQO.Business.Entities.ContactType" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAKAABEAAAEAAAAAIAAIAAAgAABAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>ContactType.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="QIQO.Business.Entities.EntityType" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="3.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAIUAAAAAAAAAAAAIAAIAAAgAAABAQAAAAAAAAAAAA=</HashCode>
+      <FileName>EntityType.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="QIQO.Business.Entities.InvoiceItemStatus">
+    <Position X="4.5" Y="6.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAAAYBAIAAAggAAAAQAAAAAAAABAAA=</HashCode>
+      <FileName>InvoiceItemStatus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QIQO.Business.Entities.InvoiceStatus">
+    <Position X="6.5" Y="6.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgACAAAAAIAIIAIAgAAAAAQBAAAAAAAAAAA=</HashCode>
+      <FileName>InvoiceStatus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QIQO.Business.Entities.OrderStatus" BaseTypeListCollapsed="true">
+    <Position X="2.5" Y="6.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAIAAIAEAgIAAAAQAAAAABAAAAAA=</HashCode>
+      <FileName>OrderStatus.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="QIQO.Business.Entities.OrderItemStatus">
+    <Position X="0.5" Y="6.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIYACIAAAgAAACIQAAAAAAAAAAAA=</HashCode>
+      <FileName>OrderItemStatus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QIQO.Business.Entities.PersonType" BaseTypeListCollapsed="true">
+    <Position X="4" Y="3.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>CABIAAAAAAIACAAAAIAAIAAAgAAAAAQAAAAAAAIAAAA=</HashCode>
+      <FileName>PersonType.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="QIQO.Business.Entities.ProductType" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="3.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAgAAIQAIAQAgQAAAAQAAAAAAABAAAA=</HashCode>
+      <FileName>ProductType.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
