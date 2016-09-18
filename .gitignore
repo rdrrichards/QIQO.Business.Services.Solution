@@ -302,6 +302,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
-*.config
+#*.config
 TypeClasses.png
 QIQO.CodeLogic.Test/BusinessEngineTests/AccountBusinessEngineTests.cs
