@@ -30,7 +30,7 @@ namespace QIQO.Data.Repositories
         {
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_user_login_all");
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_user_login_all");
                 Log.Info("UserLoginRepository GetAll function call successful");
                 return MapRows(ds);
             }
@@ -38,10 +38,10 @@ namespace QIQO.Data.Repositories
 
         public IEnumerable<UserLoginData> GetAll(string user_id)
         {
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@UserId", user_id) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@UserId", user_id) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_user_login_get");
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_user_login_get");
                 Log.Info("UserLoginRepository GetAll by user function call successful");
                 return MapRows(ds);
             }
@@ -49,10 +49,10 @@ namespace QIQO.Data.Repositories
 
         public IEnumerable<UserLoginData> GetAll(Guid user_id)
         {
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@UserId", user_id) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@UserId", user_id) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_user_login_get");
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_user_login_get");
                 Log.Info("UserLoginRepository GetAll by user function call successful");
                 return MapRows(ds);
             }

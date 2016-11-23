@@ -30,7 +30,7 @@ namespace QIQO.Data.Repositories
         {
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_role_all");
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_role_all");
                 Log.Info("RoleRepository GetAll function call successful");
                 return MapRows(ds);
             }
@@ -38,10 +38,10 @@ namespace QIQO.Data.Repositories
 
         public override RoleData GetByID(Guid id)
         {
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@RoleId", id) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@RoleId", id) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_role_get_by_id", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_role_get_by_id", pcol);
                 Log.Info("RoleRepository (GetByID) Passed ExecuteProcedureAsDataSet (usp_role_get) function");
                 return MapRow(ds);
             }
@@ -49,10 +49,10 @@ namespace QIQO.Data.Repositories
 
         public override RoleData GetByName(string name)
         {
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@Name", name) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@Name", name) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_role_get_by_name", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_role_get_by_name", pcol);
                 Log.Info("RoleRepository (GetByName) Passed ExecuteProcedureAsDataSet (usp_role_get_by_name) function");
                 return MapRow(ds);
             }

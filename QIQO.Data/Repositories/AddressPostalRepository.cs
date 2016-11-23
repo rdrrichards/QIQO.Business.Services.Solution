@@ -24,7 +24,7 @@ namespace QIQO.Data.Repositories
             Log.Info("Accessing AddressPostalRepo GetAll function");
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_address_postal_all");
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_address_postal_all");
                 Log.Info("AddressPostalRepo ExecuteProcedureAsDataSet function call successful");
                 return MapRows(ds);
             }
@@ -33,10 +33,10 @@ namespace QIQO.Data.Repositories
         public IEnumerable<AddressPostalData> GetAllByCountry(string country)
         {
             Log.Info("Accessing AddressPostalRepo GetAll function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@country", country) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@country", country) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_address_postal_all_by_country", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_address_postal_all_by_country", pcol);
                 Log.Info("AddressPostalRepo Passed ExecuteProcedureAsDataSet (usp_address_postal_all_by_country) function");
                 return MapRows(ds);
             }
@@ -45,10 +45,10 @@ namespace QIQO.Data.Repositories
         public IEnumerable<AddressPostalData> GetStatesByCountry(string country)
         {
             Log.Info("Accessing AddressPostalRepo GetAll function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@country", country) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@country", country) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_address_postal_states_by_country", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_address_postal_states_by_country", pcol);
                 Log.Info("AddressPostalRepo Passed ExecuteProcedureAsDataSet (usp_address_postal_states_by_country) function");
                 return MapRows(ds);
             }
@@ -57,10 +57,10 @@ namespace QIQO.Data.Repositories
         public IEnumerable<AddressPostalData> GetCountiesByState(string state)
         {
             Log.Info("Accessing AddressPostalRepo GetAll function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@state_code", state) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@state_code", state) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_address_postal_counties_by_state", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_address_postal_counties_by_state", pcol);
                 Log.Info("AddressPostalRepo Passed ExecuteProcedureAsDataSet (usp_address_postal_counties_by_state) function");
                 return MapRows(ds);
             }
@@ -71,10 +71,10 @@ namespace QIQO.Data.Repositories
         public override AddressPostalData GetByCode(string address_postal_code, string entity_code)
         {
             Log.Info("Accessing AddressPostalRepo GetByCode function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@postal_code", address_postal_code) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@postal_code", address_postal_code) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_address_postal_get", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_address_postal_get", pcol);
                 Log.Info("AddressPostalRepo (GetByCode) Passed ExecuteProcedureAsDataSet (usp_address_postal_get_c) function");
                 return MapRow(ds);
             }

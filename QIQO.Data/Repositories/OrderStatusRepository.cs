@@ -23,7 +23,7 @@ namespace QIQO.Data.Repositories
             Log.Info("Accessing OrderStatusRepo GetAll function");
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_order_status_all");
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_order_status_all");
                 Log.Info("OrderStatusRepo ExecuteProcedureAsDataSet function call successful");
                 return MapRows(ds);
             }
@@ -32,10 +32,10 @@ namespace QIQO.Data.Repositories
         public override OrderStatusData GetByID(int order_status_key)
         {
             Log.Info("Accessing OrderStatusRepo GetByID function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@order_status_key", order_status_key) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@order_status_key", order_status_key) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_order_status_get", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_order_status_get", pcol);
                 Log.Info("OrderStatusRepo (GetByID) Passed ExecuteProcedureAsDataSet (usp_order_status_get) function");
                 return MapRow(ds);
             }
@@ -44,13 +44,13 @@ namespace QIQO.Data.Repositories
         public override OrderStatusData GetByCode(string order_status_code, string entity_code)
         {
             Log.Info("Accessing OrderStatusRepo GetByCode function");
-            List<SqlParameter> pcol = new List<SqlParameter>() {
+            var pcol = new List<SqlParameter>() {
                 new SqlParameter("@order_status_code", order_status_code),
                 new SqlParameter("@company_code", entity_code)
             };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_order_status_get_c", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_order_status_get_c", pcol);
                 Log.Info("OrderStatusRepo (GetByCode) Passed ExecuteProcedureAsDataSet (usp_order_status_get_c) function");
                 return MapRow(ds);
             }
@@ -86,7 +86,7 @@ namespace QIQO.Data.Repositories
         public override void DeleteByCode(string entity_code)
         {
             Log.Info("Accessing OrderStatusRepo DeleteByCode function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@order_status_code", entity_code) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@order_status_code", entity_code) };
             pcol.Add(Mapper.GetOutParam());
             using (entity_context)
             {

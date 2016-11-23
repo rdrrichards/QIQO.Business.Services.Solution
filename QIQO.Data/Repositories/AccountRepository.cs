@@ -24,7 +24,7 @@ namespace QIQO.Data.Repositories
             Log.Info("Accessing AccountRepo GetAll function");
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_account_all");
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_account_all");
                 Log.Info("AccountRepo ExecuteProcedureAsDataSet function call successful");
                 return MapRows(ds);
             }
@@ -35,8 +35,8 @@ namespace QIQO.Data.Repositories
             Log.Info("Accessing AccountRepo GetAll function");
             using (entity_context)
             {
-                List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@company_key", company.CompanyKey) };
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_account_all_by_company", pcol);
+                var pcol = new List<SqlParameter>() { new SqlParameter("@company_key", company.CompanyKey) };
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_account_all_by_company", pcol);
                 Log.Info("AccountRepo ExecuteProcedureAsDataSet function call successful");
                 return MapRows(ds);
             }
@@ -47,8 +47,8 @@ namespace QIQO.Data.Repositories
             Log.Info("Accessing AccountRepo GetAll function");
             using (entity_context)
             {
-                List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@person_key", employee.PersonKey) };
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_account_all_by_person", pcol);
+                var pcol = new List<SqlParameter>() { new SqlParameter("@person_key", employee.PersonKey) };
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_account_all_by_person", pcol);
                 Log.Info("AccountRepo ExecuteProcedureAsDataSet function call successful");
                 return MapRows(ds);
             }
@@ -59,11 +59,11 @@ namespace QIQO.Data.Repositories
             Log.Info("Accessing AccountRepo GetAll function");
             using (entity_context)
             {
-                List<SqlParameter> pcol = new List<SqlParameter>() {
+                var pcol = new List<SqlParameter>() {
                     new SqlParameter("@company_key", company_key),
                     new SqlParameter("@account_pattern", pattern)
                 };
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_account_find", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_account_find", pcol);
                 Log.Info("AccountRepo ExecuteProcedureAsDataSet function call successful");
                 return MapRows(ds);
             }
@@ -72,10 +72,10 @@ namespace QIQO.Data.Repositories
         public override AccountData GetByID(int account_key)
         {
             Log.Info("Accessing AccountRepo GetByID function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@account_key", account_key) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@account_key", account_key) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_account_get", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_account_get", pcol);
                 Log.Info("AccountRepo (GetByID) Passed ExecuteProcedureAsDataSet (usp_account_get) function");
                 return MapRow(ds);
             }
@@ -84,14 +84,14 @@ namespace QIQO.Data.Repositories
         public override AccountData GetByCode(string account_code, string entity_code)
         {
             Log.Info("Accessing AccountRepo GetByCode function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { 
+            var pcol = new List<SqlParameter>() { 
                 new SqlParameter("@account_code", account_code),
                 new SqlParameter("@company_code", entity_code)
             };
 
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_account_get_c", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_account_get_c", pcol);
                 Log.Info("AccountRepo (GetByCode) Passed ExecuteProcedureAsDataSet (usp_account_get_c) function");
                 return MapRow(ds);
             }
@@ -127,7 +127,7 @@ namespace QIQO.Data.Repositories
         public override void DeleteByCode(string entity_code)
         {
             Log.Info("Accessing AccountRepo DeleteByCode function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@account_code", entity_code) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@account_code", entity_code) };
             pcol.Add(Mapper.GetOutParam());
             using (entity_context)
             {
@@ -155,7 +155,7 @@ namespace QIQO.Data.Repositories
         public string GetNextNumber(AccountData account, int entity_desc)
         {
             Log.Info("Accessing AccountRepo GetNextNumber function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@entity_key", account.AccountKey) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@entity_key", account.AccountKey) };
             using (entity_context)
             {
                 if (entity_desc == 2)

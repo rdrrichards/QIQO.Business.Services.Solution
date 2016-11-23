@@ -23,7 +23,7 @@ namespace QIQO.Data.Repositories
             Log.Info("Accessing InvoiceItemRepo GetAll function");
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_invoice_item_all");
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_invoice_item_all");
                 Log.Info("InvoiceItemRepo ExecuteProcedureAsDataSet function call successful");
                 return MapRows(ds);
             }
@@ -32,10 +32,10 @@ namespace QIQO.Data.Repositories
         public IEnumerable<InvoiceItemData> GetAll(InvoiceData invoice)
         {
             Log.Info("Accessing InvoiceItemRepo GetAll by InvoiceData function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@invoice_key", invoice.InvoiceKey) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@invoice_key", invoice.InvoiceKey) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_invoice_item_all", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_invoice_item_all", pcol);
                 Log.Info("InvoiceItemRepo ExecuteProcedureAsDataSet function call successful");
                 return MapRows(ds);
             }
@@ -44,10 +44,10 @@ namespace QIQO.Data.Repositories
         public override InvoiceItemData GetByID(int invoice_item_key)
         {
             Log.Info("Accessing InvoiceItemRepo GetByID function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@invoice_item_key", invoice_item_key) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@invoice_item_key", invoice_item_key) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_invoice_item_get", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_invoice_item_get", pcol);
                 Log.Info("InvoiceItemRepo (GetByID) Passed ExecuteProcedureAsDataSet (usp_invoice_item_get) function");
                 return MapRow(ds);
             }
@@ -56,10 +56,10 @@ namespace QIQO.Data.Repositories
         public InvoiceItemData GetByOrderItemID(int order_item_key)
         {
             Log.Info("Accessing InvoiceItemRepo GetByID function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@order_item_key", order_item_key) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@order_item_key", order_item_key) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_invoice_item_get_by_order_item", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_invoice_item_get_by_order_item", pcol);
                 Log.Info("InvoiceItemRepo (GetByID) Passed ExecuteProcedureAsDataSet (usp_invoice_item_get_by_order_item) function");
                 return MapRow(ds);
             }
@@ -68,13 +68,13 @@ namespace QIQO.Data.Repositories
         public override InvoiceItemData GetByCode(string invoice_item_code, string entity_code)
         {
             Log.Info("Accessing InvoiceItemRepo GetByCode function");
-            List<SqlParameter> pcol = new List<SqlParameter>() {
+            var pcol = new List<SqlParameter>() {
                 new SqlParameter("@invoice_item_code", invoice_item_code),
                 new SqlParameter("@company_code", entity_code)
             };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_invoice_item_get_c", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_invoice_item_get_c", pcol);
                 Log.Info("InvoiceItemRepo (GetByCode) Passed ExecuteProcedureAsDataSet (usp_invoice_item_get_c) function");
                 return MapRow(ds);
             }
@@ -110,7 +110,7 @@ namespace QIQO.Data.Repositories
         public override void DeleteByCode(string entity_code)
         {
             Log.Info("Accessing InvoiceItemRepo DeleteByCode function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@invoice_item_code", entity_code) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@invoice_item_code", entity_code) };
             pcol.Add(Mapper.GetOutParam());
             using (entity_context)
             {

@@ -24,7 +24,7 @@ namespace QIQO.Data.Repositories
             Log.Info("Accessing PersonRepo GetAll function");
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_person_all");
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_person_all");
                 Log.Info("PersonRepo ExecuteProcedureAsDataSet function call successful");
                 return MapRows(ds);
             }
@@ -33,10 +33,10 @@ namespace QIQO.Data.Repositories
         public IEnumerable<PersonData> GetAll(CompanyData comp)
         {
             Log.Info("Accessing PersonRepo GetAll by Company function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@company_key", comp.CompanyKey) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@company_key", comp.CompanyKey) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_person_all_by_company", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_person_all_by_company", pcol);
                 Log.Info("PersonRepo Passed ExecuteProcedureAsDataSet (usp_person_all_by_company) function");
                 return MapRows(ds);
             }
@@ -45,10 +45,10 @@ namespace QIQO.Data.Repositories
         public IEnumerable<PersonData> GetAll(AccountData acct)
         {
             Log.Info("Accessing PersonRepo GetAll by Company function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@account_key", acct.AccountKey) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@account_key", acct.AccountKey) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_person_all_by_account", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_person_all_by_account", pcol);
                 Log.Info("PersonRepo Passed ExecuteProcedureAsDataSet (usp_person_all_by_account) function");
                 return MapRows(ds);
             }
@@ -57,11 +57,11 @@ namespace QIQO.Data.Repositories
         public override PersonData GetByCode(string account_code, string entity_code)
         {
             Log.Info("Accessing PersonRepo GetByCode function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@person_code", entity_code) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@person_code", entity_code) };
 
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_person_get_c", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_person_get_c", pcol);
                 Log.Info("PersonRepo (GetByCode) Passed ExecuteProcedureAsDataSet (usp_account_get_c) function");
                 return MapRow(ds);
             }
@@ -70,10 +70,10 @@ namespace QIQO.Data.Repositories
         public override PersonData GetByID(int entity_key)
         {
             Log.Info("Accessing PersonRepo GetByID function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@person_key", entity_key) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@person_key", entity_key) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_person_get", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_person_get", pcol);
                 Log.Info("PersonRepo (GetByID) Passed ExecuteProcedureAsDataSet (usp_person_get) function");
                 return MapRow(ds);
             }
@@ -109,7 +109,7 @@ namespace QIQO.Data.Repositories
         public override void DeleteByCode(string entity_code)
         {
             Log.Info("Accessing PersonRepo DeleteByCode function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@person_code", entity_code) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@person_code", entity_code) };
             pcol.Add(Mapper.GetOutParam());
             using (entity_context)
             {
@@ -129,10 +129,10 @@ namespace QIQO.Data.Repositories
         public PersonData GetByUserName(string user_name)
         {
             Log.Info("Accessing PersonRepo GetByUserName function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@user_name", user_name) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@user_name", user_name) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_person_by_creds", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_person_by_creds", pcol);
                 Log.Info("PersonRepo (GetByCode) Passed ExecuteProcedureAsDataSet (usp_person_by_creds) function");
                 return MapRow(ds);
             }
@@ -141,13 +141,13 @@ namespace QIQO.Data.Repositories
         public IEnumerable<PersonData> GetAllReps(CompanyData comp, int rep_type)
         {
             Log.Info("Accessing PersonRepo GetAllReps by Company function");
-            List<SqlParameter> pcol = new List<SqlParameter>() {
+            var pcol = new List<SqlParameter>() {
                 new SqlParameter("@company_key", comp.CompanyKey),
                 new SqlParameter("@rep_type", rep_type)
             };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_person_all_by_company_reponly", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_person_all_by_company_reponly", pcol);
                 Log.Info("PersonRepo Passed ExecuteProcedureAsDataSet (usp_person_all_by_company_reponly) function");
                 return MapRows(ds);
             }

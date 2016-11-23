@@ -23,7 +23,7 @@ namespace QIQO.Data.Repositories
             Log.Info("Accessing ProductRepo GetAll function");
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_product_all");
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_product_all");
                 Log.Info("ProductRepo ExecuteProcedureAsDataSet function call successful");
                 return MapRows(ds);
             }
@@ -32,10 +32,10 @@ namespace QIQO.Data.Repositories
         public IEnumerable<ProductData> GetAll(CompanyData company)
         {
             Log.Info("Accessing ProductRepo GetAll by CompanyData function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@company_key", company.CompanyKey) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@company_key", company.CompanyKey) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_product_all_by_company", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_product_all_by_company", pcol);
                 Log.Info("ProductRepo Passed ExecuteProcedureAsDataSet (usp_product_all_by_company) function");
                 return MapRows(ds);
             }
@@ -44,10 +44,10 @@ namespace QIQO.Data.Repositories
         public override ProductData GetByID(int product_key)
         {
             Log.Info("Accessing ProductRepo GetByID function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@product_key", product_key) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@product_key", product_key) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_product_get", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_product_get", pcol);
                 Log.Info("ProductRepo (GetByID) Passed ExecuteProcedureAsDataSet (usp_product_get) function");
                 return MapRow(ds);
             }
@@ -56,13 +56,13 @@ namespace QIQO.Data.Repositories
         public override ProductData GetByCode(string product_code, string entity_code)
         {
             Log.Info("Accessing ProductRepo GetByCode function");
-            List<SqlParameter> pcol = new List<SqlParameter>() {
+            var pcol = new List<SqlParameter>() {
                 new SqlParameter("@product_code", product_code),
                 new SqlParameter("@company_code", entity_code)
             };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_product_get_c", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_product_get_c", pcol);
                 Log.Info("ProductRepo (GetByCode) Passed ExecuteProcedureAsDataSet (usp_product_get_c) function");
                 return MapRow(ds);
             }
@@ -98,7 +98,7 @@ namespace QIQO.Data.Repositories
         public override void DeleteByCode(string entity_code)
         {
             Log.Info("Accessing ProductRepo DeleteByCode function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@product_code", entity_code) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@product_code", entity_code) };
             pcol.Add(Mapper.GetOutParam());
             using (entity_context)
             {

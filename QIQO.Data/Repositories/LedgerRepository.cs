@@ -32,10 +32,10 @@ namespace QIQO.Data.Repositories
         public IEnumerable<LedgerData> GetAll(int company_key)
         {
             Log.Info("Accessing LedgerRepo GetAll function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@company_key", company_key) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@company_key", company_key) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_ledger_all");
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_ledger_all");
                 Log.Info("LedgerRepo ExecuteProcedureAsDataSet function call successful");
                 return MapRows(ds);
             }
@@ -44,10 +44,10 @@ namespace QIQO.Data.Repositories
         public override LedgerData GetByID(int ledger_key)
         {
             Log.Info("Accessing LedgerRepo GetByID function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@ledger_key", ledger_key) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@ledger_key", ledger_key) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_ledger_get", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_ledger_get", pcol);
                 Log.Info("LedgerRepo (GetByID) Passed ExecuteProcedureAsDataSet (usp_ledger_get) function");
                 return MapRow(ds);
             }
@@ -56,13 +56,13 @@ namespace QIQO.Data.Repositories
         public override LedgerData GetByCode(string ledger_code, string entity_code)
         {
             Log.Info("Accessing LedgerRepo GetByCode function");
-            List<SqlParameter> pcol = new List<SqlParameter>() {
+            var pcol = new List<SqlParameter>() {
                 new SqlParameter("@ledger_code", ledger_code),
                 new SqlParameter("@company_code", entity_code)
             };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_ledger_get_c", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_ledger_get_c", pcol);
                 Log.Info("LedgerRepo (GetByCode) Passed ExecuteProcedureAsDataSet (usp_ledger_get_c) function");
                 return MapRow(ds);
             }
@@ -98,7 +98,7 @@ namespace QIQO.Data.Repositories
         public override void DeleteByCode(string entity_code)
         {
             Log.Info("Accessing LedgerRepo DeleteByCode function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@ledger_code", entity_code) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@ledger_code", entity_code) };
             pcol.Add(Mapper.GetOutParam());
             using (entity_context)
             {

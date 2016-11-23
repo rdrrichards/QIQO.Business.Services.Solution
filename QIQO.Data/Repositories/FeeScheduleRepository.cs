@@ -23,7 +23,7 @@ namespace QIQO.Data.Repositories
             Log.Info("Accessing FeeScheduleRepo GetAll function");
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_fee_schedule_all");
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_fee_schedule_all");
                 Log.Info("FeeScheduleRepo ExecuteProcedureAsDataSet function call successful");
 
                 List<FeeScheduleData> rows = new List<FeeScheduleData>();
@@ -34,10 +34,10 @@ namespace QIQO.Data.Repositories
         public IEnumerable<FeeScheduleData> GetAll(AccountData account)
         {
             Log.Info("Accessing FeeScheduleRepo GetAll by Account function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@account_key", account.AccountKey) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@account_key", account.AccountKey) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_fee_schedule_all_by_account", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_fee_schedule_all_by_account", pcol);
                 Log.Info("FeeScheduleRepo Passed ExecuteProcedureAsDataSet (usp_fee_schedule_all_by_account) function");
                 return MapRows(ds);
             }
@@ -46,10 +46,10 @@ namespace QIQO.Data.Repositories
         public IEnumerable<FeeScheduleData> GetAll(CompanyData company)
         {
             Log.Info("Accessing FeeScheduleRepo GetAll by Company function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@account_key", company.CompanyKey) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@account_key", company.CompanyKey) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_fee_schedule_all_by_company", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_fee_schedule_all_by_company", pcol);
                 Log.Info("FeeScheduleRepo Passed ExecuteProcedureAsDataSet (usp_fee_schedule_all_by_company) function");
                 return MapRows(ds);
             }
@@ -58,10 +58,10 @@ namespace QIQO.Data.Repositories
         public IEnumerable<FeeScheduleData> GetAll(ProductData product)
         {
             Log.Info("Accessing FeeScheduleRepo GetAll by Product function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@product_key", product.ProductKey) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@product_key", product.ProductKey) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_fee_schedule_all_by_product", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_fee_schedule_all_by_product", pcol);
                 Log.Info("FeeScheduleRepo Passed ExecuteProcedureAsDataSet (usp_fee_schedule_all_by_product) function");
                 return MapRows(ds);
             }
@@ -70,10 +70,10 @@ namespace QIQO.Data.Repositories
         public override FeeScheduleData GetByID(int fee_schedule_key)
         {
             Log.Info("Accessing FeeScheduleRepo GetByID function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@fee_schedule_key", fee_schedule_key) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@fee_schedule_key", fee_schedule_key) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_fee_schedule_get", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_fee_schedule_get", pcol);
                 Log.Info("FeeScheduleRepo (GetByID) Passed ExecuteProcedureAsDataSet (usp_fee_schedule_get) function");
                 return MapRow(ds);
             }
@@ -82,13 +82,13 @@ namespace QIQO.Data.Repositories
         public override FeeScheduleData GetByCode(string fee_schedule_code, string entity_code)
         {
             Log.Info("Accessing FeeScheduleRepo GetByCode function");
-            List<SqlParameter> pcol = new List<SqlParameter>() {
+            var pcol = new List<SqlParameter>() {
                 new SqlParameter("@fee_schedule_code", fee_schedule_code),
                 new SqlParameter("@company_code", entity_code)
             };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_fee_schedule_get_c", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_fee_schedule_get_c", pcol);
                 Log.Info("FeeScheduleRepo (GetByCode) Passed ExecuteProcedureAsDataSet (usp_fee_schedule_get_c) function");
                 return MapRow(ds);
             }
@@ -124,7 +124,7 @@ namespace QIQO.Data.Repositories
         public override void DeleteByCode(string entity_code)
         {
             Log.Info("Accessing FeeScheduleRepo DeleteByCode function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@fee_schedule_code", entity_code) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@fee_schedule_code", entity_code) };
             pcol.Add(Mapper.GetOutParam());
             using (entity_context)
             {

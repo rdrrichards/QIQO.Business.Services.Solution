@@ -23,7 +23,7 @@ namespace QIQO.Data.Repositories
             Log.Info("Accessing OrderHeaderRepo GetAll function");
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_order_header_all");
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_order_header_all");
                 Log.Info("OrderHeaderRepo ExecuteProcedureAsDataSet function call successful");
                 return MapRows(ds);
             }
@@ -32,10 +32,10 @@ namespace QIQO.Data.Repositories
         public IEnumerable<OrderHeaderData> GetAllOpen(CompanyData company)
         {
             Log.Info("Accessing OrderHeaderRepo GetAllOpen by CompanyData function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@company_key", company.CompanyKey) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@company_key", company.CompanyKey) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_order_header_open_by_company", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_order_header_open_by_company", pcol);
                 Log.Info("OrderHeaderRepo Passed ExecuteProcedureAsDataSet (usp_order_header_open_by_company) function");
                 return MapRows(ds);
             }
@@ -45,11 +45,11 @@ namespace QIQO.Data.Repositories
             Log.Info("Accessing OrderHeaderRepo GetAll function");
             using (entity_context)
             {
-                List<SqlParameter> pcol = new List<SqlParameter>() {
+                var pcol = new List<SqlParameter>() {
                     new SqlParameter("@company_key", company_key),
                     new SqlParameter("@test_pattern", pattern)
                 };
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_order_header_find", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_order_header_find", pcol);
                 Log.Info("OrderHeaderRepo ExecuteProcedureAsDataSet function call successful");
                 return MapRows(ds);
             }
@@ -58,10 +58,10 @@ namespace QIQO.Data.Repositories
         public IEnumerable<OrderHeaderData> GetAll(CompanyData company)
         {
             Log.Info("Accessing OrderHeaderRepo GetAll by CompanyData function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@company_key", company.CompanyKey) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@company_key", company.CompanyKey) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_order_header_all_by_company", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_order_header_all_by_company", pcol);
                 Log.Info("OrderHeaderRepo Passed ExecuteProcedureAsDataSet (usp_order_header_all_by_company) function");
                 return MapRows(ds);
             }
@@ -70,10 +70,10 @@ namespace QIQO.Data.Repositories
         public IEnumerable<OrderHeaderData> GetAllOpen(AccountData account)
         {
             Log.Info("Accessing OrderHeaderRepo GetAllOpen by AccountData function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@account_key", account.AccountKey) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@account_key", account.AccountKey) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_order_header_open_by_account", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_order_header_open_by_account", pcol);
                 Log.Info("OrderHeaderRepo Passed ExecuteProcedureAsDataSet (usp_order_header_open_by_account) function");
                 return MapRows(ds);
             }
@@ -82,10 +82,10 @@ namespace QIQO.Data.Repositories
         public IEnumerable<OrderHeaderData> GetAll(AccountData account)
         {
             Log.Info("Accessing OrderHeaderRepo GetAll by AccountData function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@account_key", account.AccountKey) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@account_key", account.AccountKey) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_order_header_all_by_account", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_order_header_all_by_account", pcol);
                 Log.Info("OrderHeaderRepo Passed ExecuteProcedureAsDataSet (usp_order_header_all_by_account) function");
                 return MapRows(ds);
             }
@@ -94,10 +94,10 @@ namespace QIQO.Data.Repositories
         public override OrderHeaderData GetByID(int order_header_key)
         {
             Log.Info("Accessing OrderHeaderRepo GetByID function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@order_key", order_header_key) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@order_key", order_header_key) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_order_header_get", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_order_header_get", pcol);
                 Log.Info("OrderHeaderRepo (GetByID) Passed ExecuteProcedureAsDataSet (usp_order_header_get) function");
                 return MapRow(ds);
             }
@@ -106,13 +106,13 @@ namespace QIQO.Data.Repositories
         public override OrderHeaderData GetByCode(string order_header_code, string entity_code)
         {
             Log.Info("Accessing OrderHeaderRepo GetByCode function");
-            List<SqlParameter> pcol = new List<SqlParameter>() {
+            var pcol = new List<SqlParameter>() {
                 new SqlParameter("@order_num", order_header_code),
                 new SqlParameter("@company_code", entity_code)
             };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_order_header_get_c", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_order_header_get_c", pcol);
                 Log.Info("OrderHeaderRepo (GetByCode) Passed ExecuteProcedureAsDataSet (usp_order_header_get_c) function");
                 return MapRow(ds);
             }
@@ -121,13 +121,13 @@ namespace QIQO.Data.Repositories
         public IEnumerable<OrderHeaderData> GetForInvoice(int company_key, int account_key)
         {
             Log.Info("Accessing OrderHeaderRepo GetByCode function");
-            List<SqlParameter> pcol = new List<SqlParameter>() {
+            var pcol = new List<SqlParameter>() {
                 new SqlParameter("@company_key", company_key),
                 new SqlParameter("@account_key", account_key)
             };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_order_header_get_for_invoice", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_order_header_get_for_invoice", pcol);
                 Log.Info("OrderHeaderRepo (GetByCode) Passed ExecuteProcedureAsDataSet (usp_order_header_get_for_invoice) function");
                 return MapRows(ds);
             }
@@ -163,7 +163,7 @@ namespace QIQO.Data.Repositories
         public override void DeleteByCode(string entity_code)
         {
             Log.Info("Accessing OrderHeaderRepo DeleteByCode function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@order_header_code", entity_code) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@order_header_code", entity_code) };
             pcol.Add(Mapper.GetOutParam());
             using (entity_context)
             {

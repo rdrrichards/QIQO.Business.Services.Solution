@@ -30,7 +30,7 @@ namespace QIQO.Data.Repositories
         {
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_user_role_all");
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_user_role_all");
                 Log.Info("UserLoginRepository GetAll function call successful");
                 return MapRows(ds);
             }
@@ -41,11 +41,11 @@ namespace QIQO.Data.Repositories
         //    Log.Info($"UserID (string): {user_id}");
         //    SqlParameter uid = new SqlParameter("@UserID", SqlDbType.UniqueIdentifier, 16);
         //    uid.Value = user_id;
-        //    List<SqlParameter> pcol = new List<SqlParameter>(); // { new SqlParameter("@UserId", SqlDbType.UniqueIdentifier, 16).Value = user_id };
+        //    var pcol = new List<SqlParameter>(); // { new SqlParameter("@UserId", SqlDbType.UniqueIdentifier, 16).Value = user_id };
         //    pcol.Add(uid);
         //    using (entity_context)
         //    {
-        //        DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_user_role_all_by_user", pcol);
+        //        var ds = entity_context.ExecuteProcedureAsDataSet("usp_user_role_all_by_user", pcol);
         //        Log.Info("UserLoginRepository GetAll by user function call successful");
         //        return MapRows(ds);
         //    }
@@ -54,10 +54,10 @@ namespace QIQO.Data.Repositories
         public IEnumerable<UserRoleData> GetAll(Guid user_id)
         {
             //Log.Info($"UserID (Guid): {user_id}");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@UserId", user_id) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@UserId", user_id) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_user_role_all_by_user", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_user_role_all_by_user", pcol);
                 Log.Info("UserLoginRepository GetAll by user function call successful");
                 return MapRows(ds);
             }

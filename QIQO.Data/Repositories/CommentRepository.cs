@@ -23,7 +23,7 @@ namespace QIQO.Data.Repositories
             Log.Info("Accessing CommentRepo GetAll function");
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_comment_all");
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_comment_all");
                 Log.Info("CommentRepo ExecuteProcedureAsDataSet function call successful");
                 return MapRows(ds);
             }
@@ -32,14 +32,14 @@ namespace QIQO.Data.Repositories
         public IEnumerable<CommentData> GetAll(int entity_key, int entity_type_key)
         {
             Log.Info("Accessing CommentRepo GetAll function");
-            List<SqlParameter> pcol = new List<SqlParameter>()
+            var pcol = new List<SqlParameter>()
             {
                 new SqlParameter("@entity_key", entity_key),
                 new SqlParameter("@entity_type_key", entity_type_key)
             };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_comment_all_by_entity", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_comment_all_by_entity", pcol);
                 Log.Info("CommentRepo ExecuteProcedureAsDataSet function call successful");
                 return MapRows(ds);
             }
@@ -48,11 +48,11 @@ namespace QIQO.Data.Repositories
         public override CommentData GetByID(int comment_key)
         {
             Log.Info("Accessing CommentRepo GetByID function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@comment_key", comment_key) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@comment_key", comment_key) };
 
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_comment_get", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_comment_get", pcol);
                 Log.Info("CommentRepo (GetByID) Passed ExecuteProcedureAsDataSet (usp_comment_get) function");
                 return MapRow(ds);
             }
@@ -61,7 +61,7 @@ namespace QIQO.Data.Repositories
         public override CommentData GetByCode(string comment_code, string entity_code)
         {
             Log.Info("Accessing CommentRepo GetByCode function");
-            List<SqlParameter> pcol = new List<SqlParameter>()
+            var pcol = new List<SqlParameter>()
             {
                 new SqlParameter("@comment_code", comment_code),
                 new SqlParameter("@company_code", entity_code)
@@ -69,7 +69,7 @@ namespace QIQO.Data.Repositories
 
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_comment_get_c", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_comment_get_c", pcol);
                 Log.Info("CommentRepo (GetByCode) Passed ExecuteProcedureAsDataSet (usp_comment_get_c) function");
                 return MapRow(ds);
             }
@@ -105,7 +105,7 @@ namespace QIQO.Data.Repositories
         public override void DeleteByCode(string entity_code)
         {
             Log.Info("Accessing CommentRepo DeleteByCode function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@comment_code", entity_code) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@comment_code", entity_code) };
             pcol.Add(Mapper.GetOutParam());
             using (entity_context)
             {

@@ -23,7 +23,7 @@ namespace QIQO.Data.Repositories
             Log.Info("Accessing PersonTypeRepo GetAll function");
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_person_type_all");
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_person_type_all");
                 Log.Info("PersonTypeRepo ExecuteProcedureAsDataSet function call successful");
                 return MapRows(ds);
             }
@@ -32,10 +32,10 @@ namespace QIQO.Data.Repositories
         public IEnumerable<PersonTypeData> GetAllByCategory(string category)
         {
             Log.Info("Accessing PersonTypeRepo GetAllByCategory function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@person_type_category", category) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@person_type_category", category) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_person_type_get_cat", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_person_type_get_cat", pcol);
                 Log.Info("PersonTypeRepo (GetByID) Passed ExecuteProcedureAsDataSet (usp_person_type_get_cat) function");
                 return MapRows(ds);
             }
@@ -44,10 +44,10 @@ namespace QIQO.Data.Repositories
         public override PersonTypeData GetByID(int person_type_key)
         {
             Log.Info("Accessing PersonTypeRepo GetByID function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@person_type_key", person_type_key) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@person_type_key", person_type_key) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_person_type_get", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_person_type_get", pcol);
                 Log.Info("PersonTypeRepo (GetByID) Passed ExecuteProcedureAsDataSet (usp_person_type_get) function");
                 return MapRow(ds);
             }
@@ -56,13 +56,13 @@ namespace QIQO.Data.Repositories
         public override PersonTypeData GetByCode(string person_type_code, string entity_code)
         {
             Log.Info("Accessing PersonTypeRepo GetByCode function");
-            List<SqlParameter> pcol = new List<SqlParameter>() {
+            var pcol = new List<SqlParameter>() {
                 new SqlParameter("@person_type_code", person_type_code),
                 new SqlParameter("@company_code", entity_code)
             };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_person_type_get_c", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_person_type_get_c", pcol);
                 Log.Info("PersonTypeRepo (GetByCode) Passed ExecuteProcedureAsDataSet (usp_person_type_get_c) function");
                 return MapRow(ds);
             }
@@ -98,7 +98,7 @@ namespace QIQO.Data.Repositories
         public override void DeleteByCode(string entity_code)
         {
             Log.Info("Accessing PersonTypeRepo DeleteByCode function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@person_type_code", entity_code) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@person_type_code", entity_code) };
             pcol.Add(Mapper.GetOutParam());
             using (entity_context)
             {

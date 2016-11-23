@@ -23,7 +23,7 @@ namespace QIQO.Data.Repositories
             Log.Info("Accessing AuditLogRepo GetAll function");
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_audit_log_all");
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_audit_log_all");
                 Log.Info("AuditLogRepo ExecuteProcedureAsDataSet function call successful");
                 return MapRows(ds);
             }
@@ -33,10 +33,10 @@ namespace QIQO.Data.Repositories
         {
             Log.Info("Accessing AuditLogRepo GetAll by BO function");
 
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@bus_obj", business_object) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@bus_obj", business_object) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_audit_log_all_bus_obj", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_audit_log_all_bus_obj", pcol);
                 Log.Info("AuditLogRepo (GetAll) Passed ExecuteProcedureAsDataSet (usp_audit_log_all_bus_obj) function");
                 return MapRows(ds);
             }
@@ -46,10 +46,10 @@ namespace QIQO.Data.Repositories
         {
             Log.Info("Accessing AuditLogRepo GetByID function");
 
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@audit_log_key", audit_log_key) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@audit_log_key", audit_log_key) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_audit_log_get", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_audit_log_get", pcol);
                 Log.Info("AuditLogRepo (GetByID) Passed ExecuteProcedureAsDataSet (usp_audit_log_get) function");
                 return MapRow(ds);
             }
@@ -58,13 +58,13 @@ namespace QIQO.Data.Repositories
         public override AuditLogData GetByCode(string audit_log_code, string entity_code)
         {
             Log.Info("Accessing AuditLogRepo GetByCode function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { 
+            var pcol = new List<SqlParameter>() { 
                 new SqlParameter("@audit_log_code", audit_log_code),
                 new SqlParameter("@company_code", entity_code)
             };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_audit_log_get_c", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_audit_log_get_c", pcol);
                 Log.Info("AuditLogRepo (GetByCode) Passed ExecuteProcedureAsDataSet (usp_audit_log_get_c) function");
                 return MapRow(ds);
             }

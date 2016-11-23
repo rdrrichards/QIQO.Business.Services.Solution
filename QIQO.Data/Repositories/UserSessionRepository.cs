@@ -23,7 +23,7 @@ namespace QIQO.Data.Repositories
             Log.Info("Accessing UserSessionRepo GetAll function");
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_user_session_all");
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_user_session_all");
                 Log.Info("UserSessionRepo ExecuteProcedureAsDataSet function call successful");
                 return MapRows(ds);
             }
@@ -32,10 +32,10 @@ namespace QIQO.Data.Repositories
         public override UserSessionData GetByID(int user_session_key)
         {
             Log.Info("Accessing UserSessionRepo GetByID function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@session_key", user_session_key) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@session_key", user_session_key) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_user_session_get_by_key", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_user_session_get_by_key", pcol);
                 Log.Info("UserSessionRepo (GetByID) Passed ExecuteProcedureAsDataSet (usp_user_session_get_by_key) function");
                 return MapRow(ds);
             }
@@ -44,10 +44,10 @@ namespace QIQO.Data.Repositories
         public override UserSessionData GetByCode(string user_session_code, string entity_code)
         {
             Log.Info("Accessing UserSessionRepo GetByCode function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@user_session_code", user_session_code) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@user_session_code", user_session_code) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_user_session_get_by_code", pcol);
+                var ds = entity_context.ExecuteProcedureAsDataSet("usp_user_session_get_by_code", pcol);
                 Log.Info("UserSessionRepo (GetByCode) Passed ExecuteProcedureAsDataSet (usp_user_session_get_by_code) function");
                 return MapRow(ds);
             }
@@ -83,7 +83,7 @@ namespace QIQO.Data.Repositories
         public override void DeleteByCode(string entity_code)
         {
             Log.Info("Accessing UserSessionRepo DeleteByCode function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@user_session_code", entity_code) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@user_session_code", entity_code) };
             pcol.Add(Mapper.GetOutParam());
             using (entity_context)
             {
