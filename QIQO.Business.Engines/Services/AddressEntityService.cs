@@ -9,7 +9,7 @@ namespace QIQO.Business.Engines
     {
         public Address Map(AddressData address_data)
         {
-            Address address = new Address()
+            return new Address()
             {
                 AddressKey = address_data.AddressKey,
                 AddressType = (QIQOAddressType)address_data.AddressTypeKey,
@@ -32,13 +32,11 @@ namespace QIQO.Business.Engines
                 UpdateUserID = address_data.AuditUpdateUserId,
                 UpdateDateTime = address_data.AuditUpdateDatetime
             };
-
-            return address;
         }
 
         public AddressData Map(Address address)
         {
-            AddressData address_data = new AddressData()
+            return new AddressData()
             {
                 AddressKey = address.AddressKey,
                 AddressTypeKey = (int)address.AddressType,
@@ -57,13 +55,11 @@ namespace QIQO.Business.Engines
                 AddressNotes = address.AddressNotes,
                 EntityTypeKey = (int)address.EntityType
             };
-
-            return address_data;
         }
 
         public AddressType Map(AddressTypeData address_type_data)
         {
-            AddressType AddressType = new AddressType()
+            return new AddressType()
             {
                 AddressTypeKey = address_type_data.AddressTypeKey,
                 AddressTypeCode = address_type_data.AddressTypeCode,
@@ -74,21 +70,17 @@ namespace QIQO.Business.Engines
                 UpdateUserID = address_type_data.AuditUpdateUserId,
                 UpdateDateTime = address_type_data.AuditUpdateDatetime
             };
-
-            return AddressType;
         }
 
         public AddressTypeData Map(AddressType address_type)
         {
-            AddressTypeData AddressType_data = new AddressTypeData()
+            return new AddressTypeData()
             {
                 AddressTypeKey = address_type.AddressTypeKey,
                 AddressTypeCode = address_type.AddressTypeCode,
                 AddressTypeName = address_type.AddressTypeName,
                 AddressTypeDesc = address_type.AddressTypeDesc
             };
-
-            return AddressType_data;
         }
     }
 }

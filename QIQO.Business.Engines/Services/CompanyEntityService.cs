@@ -8,7 +8,7 @@ namespace QIQO.Business.Engines
     {
         public Company Map(CompanyData comp_data)
         {
-            Company company = new Company()
+            return new Company()
             {
                 CompanyKey = comp_data.CompanyKey,
                 CompanyCode = comp_data.CompanyCode,
@@ -19,19 +19,17 @@ namespace QIQO.Business.Engines
                 UpdateUserID = comp_data.AuditUpdateUserId,
                 UpdateDateTime = comp_data.AuditUpdateDatetime
             };
-            return company;
         }
 
         public CompanyData Map(Company company)
         {
-            CompanyData comp_data = new CompanyData()
+            return new CompanyData()
             {
                 CompanyKey = company.CompanyKey,
                 CompanyCode = company.CompanyCode,
                 CompanyName = company.CompanyName,
                 CompanyDesc = company.CompanyDesc
             };
-            return comp_data;
         }
     }
 }

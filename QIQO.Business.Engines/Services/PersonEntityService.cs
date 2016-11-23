@@ -9,7 +9,7 @@ namespace QIQO.Business.Engines
     {
         public PersonData Map(Employee employee)
         {
-            PersonData person = new PersonData()
+            return new PersonData()
             {
                 PersonKey = employee.PersonKey,
                 PersonFirstName = employee.PersonFirstName,
@@ -18,7 +18,6 @@ namespace QIQO.Business.Engines
                 PersonCode = employee.PersonCode,
                 PersonDob = employee.PersonDOB
             };
-            return person;
         }
 
         public Employee Map(PersonData person_data)
@@ -27,7 +26,7 @@ namespace QIQO.Business.Engines
         }
         public PersonData Map(AccountPerson employee)
         {
-            PersonData person = new PersonData()
+            return new PersonData()
             {
                 PersonKey = employee.PersonKey,
                 PersonFirstName = employee.PersonFirstName,
@@ -36,7 +35,6 @@ namespace QIQO.Business.Engines
                 PersonCode = employee.PersonCode,
                 PersonDob = employee.PersonDOB
             };
-            return person;
         }
 
         public void InitPersonData(AccountPerson person, PersonData emp_data)
@@ -83,7 +81,7 @@ namespace QIQO.Business.Engines
 
         public Employee Map(EntityPersonData emp_data)
         {
-            Employee employee = new Employee()
+            return new Employee()
             {
                 PersonKey = emp_data.PersonKey,
                 Comment = emp_data.Comment,
@@ -97,7 +95,6 @@ namespace QIQO.Business.Engines
                 UpdateUserID = emp_data.AuditUpdateUserId,
                 UpdateDateTime = emp_data.AuditUpdateDatetime
             };
-            return employee;
         }
         public PersonType Map(PersonTypeData person_type_data)
         {

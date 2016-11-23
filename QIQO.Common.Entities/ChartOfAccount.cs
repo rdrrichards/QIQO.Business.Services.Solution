@@ -1,10 +1,11 @@
-﻿using System;
+﻿using QIQO.Common.Contracts;
+using System;
 using System.Runtime.Serialization;
 
 namespace QIQO.Business.Entities
 {
     [DataContract]
-    public class ChartOfAccount
+    public class ChartOfAccount: IModel
     {
         [DataMember]
         public int ChartOfAccountKey { get; set; }

@@ -89,6 +89,7 @@
     <Compile Include="EntityServices\IContactEntityService.cs" />
     <Compile Include="EntityServices\IEntityAttributeEntityService.cs" />
     <Compile Include="EntityServices\IEntityProductEntityService.cs" />
+    <Compile Include="EntityServices\IEntityServices.cs" />
     <Compile Include="EntityServices\IFeeScheduleEntityService.cs" />
     <Compile Include="EntityServices\IInvoiceEntityService.cs" />
     <Compile Include="EntityServices\IOrderEntityService.cs" />

@@ -110,6 +110,7 @@
     <Compile Include="Services\ContactEntityService.cs" />
     <Compile Include="Services\EntityAttributeEntityService.cs" />
     <Compile Include="Services\EntityProductEntityService.cs" />
+    <Compile Include="Services\EntityServices.cs" />
     <Compile Include="Services\FeeScheduleEntityService.cs" />
     <Compile Include="Services\InvoiceEntityService.cs" />
     <Compile Include="Services\OrderEntityService.cs" />

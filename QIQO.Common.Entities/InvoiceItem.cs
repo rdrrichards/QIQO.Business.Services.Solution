@@ -1,10 +1,11 @@
-﻿using System;
+﻿using QIQO.Common.Contracts;
+using System;
 using System.Runtime.Serialization;
 
 namespace QIQO.Business.Entities
 {
     [DataContract]
-    public class InvoiceItem
+    public class InvoiceItem: IModel
     {
         [DataMember]
         public int InvoiceItemKey { get; set; }

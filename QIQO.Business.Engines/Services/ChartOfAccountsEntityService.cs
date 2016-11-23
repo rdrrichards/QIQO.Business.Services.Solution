@@ -8,7 +8,7 @@ namespace QIQO.Business.Engines
     {
         public ChartOfAccount Map(ChartOfAccountsData chart_of_account_data)
         {
-            ChartOfAccount chart_of_account = new ChartOfAccount()
+            return new ChartOfAccount()
             {
                 ChartOfAccountKey = chart_of_account_data.CoaKey,
                 AccountNo = chart_of_account_data.AcctNo,
@@ -22,13 +22,11 @@ namespace QIQO.Business.Engines
                 UpdateUserID = chart_of_account_data.AuditUpdateUserId,
                 UpdateDateTime = chart_of_account_data.AuditUpdateDatetime
             };
-
-            return chart_of_account;
         }
 
         public ChartOfAccountsData Map(ChartOfAccount chart_of_account)
         {
-            ChartOfAccountsData chart_of_account_data = new ChartOfAccountsData()
+            return new ChartOfAccountsData()
             {
                 CoaKey = chart_of_account.ChartOfAccountKey,
                 AcctNo = chart_of_account.AccountNo,
@@ -38,8 +36,6 @@ namespace QIQO.Business.Engines
                 BankAcctFlg = chart_of_account.BankAccountFlag,
                 CompanyKey = chart_of_account.CompanyKey
             };
-
-            return chart_of_account_data;
         }
     }
 }

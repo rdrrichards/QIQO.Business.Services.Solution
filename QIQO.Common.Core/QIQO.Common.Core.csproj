@@ -74,8 +74,10 @@
     <Compile Include="Caching\ICache.cs" />
     <Compile Include="Exceptions\AuthorizationValidationException.cs" />
     <Compile Include="Exceptions\NotFoundException.cs" />
-    <Compile Include="Extenders\HostSecurityExtensions.cs" />
-    <Compile Include="Extenders\StringExtensions.cs" />
+    <Compile Include="Extentions\EntityServiceExtensions.cs" />
+    <Compile Include="Extentions\HostSecurityExtensions.cs" />
+    <Compile Include="Extentions\RepositoryExtentions.cs" />
+    <Compile Include="Extentions\StringExtensions.cs" />
     <Compile Include="Logging\Log.cs" />
     <Compile Include="Logging\Logger.cs" />
     <Compile Include="Logging\LogLevel.cs" />

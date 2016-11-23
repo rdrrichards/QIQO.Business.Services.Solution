@@ -1,10 +1,11 @@
+using QIQO.Common.Contracts;
 using System;
 using System.Runtime.Serialization;
 
 namespace QIQO.Business.Entities
 {
     [DataContract]
-    public class AccountPerson : PersonBase
+    public class AccountPerson : PersonBase, IModel
     {
         //[DataMember]
         //public Account Account { get; set; } = new Account();

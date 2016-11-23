@@ -1,9 +1,10 @@
-﻿using System;
+﻿using QIQO.Common.Contracts;
+using System;
 using System.Runtime.Serialization;
 
 namespace QIQO.Business.Entities
 {
-    public class Contact
+    public class Contact: IModel
     {
         [DataMember]
         public int ContactKey { get; set; }

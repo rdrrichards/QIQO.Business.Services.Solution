@@ -58,6 +58,7 @@
     <Compile Include="IIdentityRepository.cs" />
     <Compile Include="IMainDBContext.cs" />
     <Compile Include="IMapper.cs" />
+    <Compile Include="IModel.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="IStatus.cs" />
     <Compile Include="IStatusBusinessEngine.cs" />

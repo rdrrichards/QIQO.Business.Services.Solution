@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 namespace QIQO.Business.Entities
 {
     [DataContract]
-    public class AddressType : IType
+    public class AddressType : IType, IModel
     {
         [DataMember]
         public int AddressTypeKey { get; set; }

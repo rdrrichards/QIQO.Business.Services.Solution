@@ -1,9 +1,10 @@
-﻿using System;
+﻿using QIQO.Common.Contracts;
+using System;
 using System.Runtime.Serialization;
 
 namespace QIQO.Business.Entities
 {
-    public class Comment
+    public class Comment: IModel
     {
         [DataMember]
         public int CommentKey { get; set; }

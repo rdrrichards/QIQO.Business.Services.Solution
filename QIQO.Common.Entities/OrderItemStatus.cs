@@ -1,10 +1,11 @@
+using QIQO.Common.Contracts;
 using System;
 using System.Runtime.Serialization;
 
 namespace QIQO.Business.Entities
 {
     [DataContract]
-    public class OrderItemStatus
+    public class OrderItemStatus: IModel
     {
         [DataMember]
         public int OrderItemStatusKey { get; set; }

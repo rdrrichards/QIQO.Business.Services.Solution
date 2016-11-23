@@ -1,10 +1,11 @@
-﻿using System;
+﻿using QIQO.Common.Contracts;
+using System;
 using System.Runtime.Serialization;
 
 namespace QIQO.Business.Entities
 {
     [DataContract]
-    public class EntityAttribute
+    public class EntityAttribute: IModel
     {
         [DataMember]
         public int AttributeKey { get; set; }

@@ -39,7 +39,7 @@ namespace QIQO.Business.Engines
         }
         public ContactType Map(ContactTypeData contact_type_data)
         {
-            ContactType ContactType = new ContactType()
+            return new ContactType()
             {
                 ContactTypeKey = contact_type_data.ContactTypeKey,
                 ContactTypeCategory = contact_type_data.ContactTypeCategory,
@@ -51,13 +51,11 @@ namespace QIQO.Business.Engines
                 UpdateUserID = contact_type_data.AuditUpdateUserId,
                 UpdateDateTime = contact_type_data.AuditUpdateDatetime
             };
-
-            return ContactType;
         }
 
         public ContactTypeData Map(ContactType contact_type)
         {
-            ContactTypeData ContactType_data = new ContactTypeData()
+            return new ContactTypeData()
             {
                 ContactTypeKey = contact_type.ContactTypeKey,
                 ContactTypeCategory = contact_type.ContactTypeCategory,
@@ -65,8 +63,6 @@ namespace QIQO.Business.Engines
                 ContactTypeName = contact_type.ContactTypeName,
                 ContactTypeDesc = contact_type.ContactTypeDesc
             };
-
-            return ContactType_data;
         }
     }
 }

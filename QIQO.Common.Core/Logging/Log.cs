@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using log4net.Config;
 
 namespace QIQO.Common.Core.Logging

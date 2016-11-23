@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QIQO.Common.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
@@ -6,7 +7,7 @@ namespace QIQO.Business.Entities
 {
     [KnownType(typeof(Representative))]
     [DataContract]
-    public class Employee : PersonBase
+    public class Employee : PersonBase, IModel
     {
         [DataMember]
         public int ParentEmployeeKey { get; set; }
