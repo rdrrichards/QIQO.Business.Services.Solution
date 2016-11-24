@@ -10,10 +10,12 @@ namespace QIQO.Business.Engines
     public class AddressPostalBusinessEngine : EngineBase, IAddressPostalBusinessEngine
     {
         private readonly IAddressPostalRepository _address_postal_repo;
-        public AddressPostalBusinessEngine(IDataRepositoryFactory data_repo_fact, IBusinessEngineFactory bus_eng_fact)
-            : base(data_repo_fact, bus_eng_fact, null)
+        private readonly IAddressPostalEntityService _addr_postal_es;
+        public AddressPostalBusinessEngine(IDataRepositoryFactory data_repo_fact, IBusinessEngineFactory bus_eng_fact, IEntityServiceFactory ent_serv_fact)
+            : base(data_repo_fact, bus_eng_fact, ent_serv_fact)
         {
             _address_postal_repo = _data_repository_factory.GetDataRepository<IAddressPostalRepository>();
+            _addr_postal_es = _entity_service_factory.GetEntityService<IAddressPostalEntityService>();
         }
 
         public List<AddressPostal> GetStateListByCountry(string country)
@@ -25,7 +27,7 @@ namespace QIQO.Business.Engines
 
                 foreach (AddressPostalData post in postal_data)
                 {
-                    AddressPostal address_post = Map(post);
+                    AddressPostal address_post = _addr_postal_es.Map(post);
                     address_postals.Add(address_post);
                 }
                 return address_postals;
@@ -37,24 +39,9 @@ namespace QIQO.Business.Engines
             return ExecuteFaultHandledOperation(() =>
             {
                 var postal_data = _address_postal_repo.GetByCode(postal_code, postal_code);
-                var address_post = Map(postal_data);
+                var address_post = _addr_postal_es.Map(postal_data);
                 return address_post;
             });
-        }
-
-        private AddressPostal Map(AddressPostalData post_data)
-        {
-            AddressPostal postal = new AddressPostal()
-            {
-                CountryName = post_data.Country,
-                PostalCode = post_data.PostalCode,
-                StateCode = post_data.StateCode,
-                StateFullName = post_data.StateFullName,
-                CityName = post_data.CityName,
-                CountyName = post_data.CountyName,
-                TimeZone = post_data.TimeZone
-            };
-            return postal;
         }
     }
 }

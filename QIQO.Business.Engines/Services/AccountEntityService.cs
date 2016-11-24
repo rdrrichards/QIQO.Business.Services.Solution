@@ -4,7 +4,7 @@ using QIQO.Data.Entities;
 
 namespace QIQO.Business.Engines
 {
-    public class AccountEntityService : IAccountEntityService //, IEntityService<Account, AccountData>
+    public class AccountEntityService : IAccountEntityService
     {
         public Account Map(AccountData account_data)
         {
@@ -15,14 +15,14 @@ namespace QIQO.Business.Engines
                 AccountType = (QIQOAccountType)account_data.AccountTypeKey,
                 AccountCode = account_data.AccountCode,
                 AccountName = account_data.AccountName,
-                AccountDBA = account_data.AccountDba,
                 AccountDesc = account_data.AccountDesc,
+                AccountDBA = account_data.AccountDba,
                 AccountStartDate = account_data.AccountStartDate,
                 AccountEndDate = account_data.AccountEndDate,
                 AddedUserID = account_data.AuditAddUserId,
                 AddedDateTime = account_data.AuditAddDatetime,
                 UpdateUserID = account_data.AuditUpdateUserId,
-                UpdateDateTime = account_data.AuditUpdateDatetime
+                UpdateDateTime = account_data.AuditUpdateDatetime,
             };
         }
 
@@ -35,36 +35,10 @@ namespace QIQO.Business.Engines
                 AccountTypeKey = (int)account.AccountType,
                 AccountCode = account.AccountCode,
                 AccountName = account.AccountName,
-                AccountDba = account.AccountDBA,
                 AccountDesc = account.AccountDesc,
+                AccountDba = account.AccountDBA,
                 AccountStartDate = account.AccountStartDate,
                 AccountEndDate = account.AccountEndDate
-            };
-        }
-
-        public AccountType Map(AccountTypeData account_type_data)
-        {
-            return new AccountType()
-            {
-                AccountTypeKey = account_type_data.AccountTypeKey,
-                AccountTypeCode = account_type_data.AccountTypeCode,
-                AccountTypeName = account_type_data.AccountTypeName,
-                AccountTypeDesc = account_type_data.AccountTypeDesc,
-                AddedUserID = account_type_data.AuditAddUserId,
-                AddedDateTime = account_type_data.AuditAddDatetime,
-                UpdateUserID = account_type_data.AuditUpdateUserId,
-                UpdateDateTime = account_type_data.AuditUpdateDatetime
-            };
-        }
-
-        public AccountTypeData Map(AccountType account_type)
-        {
-            return new AccountTypeData()
-            {
-                AccountTypeKey = account_type.AccountTypeKey,
-                AccountTypeCode = account_type.AccountTypeCode,
-                AccountTypeName = account_type.AccountTypeName,
-                AccountTypeDesc = account_type.AccountTypeDesc
             };
         }
 

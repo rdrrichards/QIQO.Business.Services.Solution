@@ -7,7 +7,7 @@ namespace QIQO.Business.Entities
 {
     [KnownType(typeof(Representative))]
     [DataContract]
-    public class Employee : PersonBase, IModel
+    public class Employee : PersonBase
     {
         [DataMember]
         public int ParentEmployeeKey { get; set; }

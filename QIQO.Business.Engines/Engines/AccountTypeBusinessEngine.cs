@@ -15,14 +15,14 @@ namespace QIQO.Business.Engines
     {
         private readonly ICache _cache;
         private readonly IAccountTypeRepository _repo_acct_type;
-        private readonly IAccountEntityService _acct_es;
+        private readonly IAccountTypeEntityService _acct_es;
 
         public AccountTypeBusinessEngine(IDataRepositoryFactory data_repo_fact, ICache cache, IEntityServiceFactory ent_serv_fact)
             : base(data_repo_fact, null, ent_serv_fact)
         {
             _cache = cache;
             _repo_acct_type = _data_repository_factory.GetDataRepository<IAccountTypeRepository>();
-            _acct_es = _entity_service_factory.GetEntityService<IAccountEntityService>();
+            _acct_es = _entity_service_factory.GetEntityService<IAccountTypeEntityService>();
         }
 
 

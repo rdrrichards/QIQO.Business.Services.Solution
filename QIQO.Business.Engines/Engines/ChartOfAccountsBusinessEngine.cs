@@ -14,12 +14,12 @@ namespace QIQO.Business.Engines
     public class ChartOfAccountBusinessEngine : EngineBase, IChartOfAccountBusinessEngine
     {
         private readonly IChartOfAccountsRepository _chart_of_accounts_repo;
-        private readonly IChartOfAccountsEntityService _chart_of_accounts_es;
+        private readonly IChartOfAccountEntityService _chart_of_accounts_es;
         public ChartOfAccountBusinessEngine(IDataRepositoryFactory data_repo_fact, IBusinessEngineFactory bus_eng_fact, IEntityServiceFactory ent_serv_fact)
             : base(data_repo_fact, bus_eng_fact, ent_serv_fact)
         {
             _chart_of_accounts_repo = _data_repository_factory.GetDataRepository<IChartOfAccountsRepository>();
-            _chart_of_accounts_es = _entity_service_factory.GetEntityService<IChartOfAccountsEntityService>();
+            _chart_of_accounts_es = _entity_service_factory.GetEntityService<IChartOfAccountEntityService>();
         }
 
         public bool ChartOfAccountDelete(ChartOfAccount chart_of_account)

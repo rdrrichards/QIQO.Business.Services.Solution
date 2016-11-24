@@ -4,9 +4,5 @@ using QIQO.Data.Entities;
 
 namespace QIQO.Business.Contracts
 {
-    public interface IEntityProductEntityService : IEntityService
-    {
-        EntityProductData Map(EntityProduct entity_product);
-        EntityProduct Map(EntityProductData entity_product_data, ProductData product_data);
-    }
+    //public interface IEntityProductEntityService : IEntityService<EntityProduct, EntityProductData> { }
 }

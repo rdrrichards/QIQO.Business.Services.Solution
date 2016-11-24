@@ -2,6 +2,7 @@
 using System;
 using QIQO.Business.Entities;
 using QIQO.Data.Entities;
+using QIQO.Common.Contracts;
 
 namespace QIQO.Business.Engines
 {
@@ -122,6 +123,16 @@ namespace QIQO.Business.Engines
                 PersonTypeName = person_type.PersonTypeName,
                 PersonTypeDesc = person_type.PersonTypeDesc
             };
+        }
+
+        PersonBase IEntityService<PersonBase, PersonData>.Map(PersonData ent)
+        {
+            throw new NotImplementedException();
+        }
+
+        public PersonData Map(PersonBase ent)
+        {
+            throw new NotImplementedException();
         }
     }
 }

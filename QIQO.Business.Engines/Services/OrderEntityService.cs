@@ -51,7 +51,9 @@ namespace QIQO.Business.Engines
                 SalesRepKey = order.SalesRep.EntityPersonKey
             };
         }
-
+    }
+    public class OrderItemEntityService : IOrderItemEntityService
+    {
         public OrderItem Map(OrderItemData order_item_data)
         {
             return new OrderItem()
@@ -96,7 +98,9 @@ namespace QIQO.Business.Engines
                 OrderItemSalesRepKey = order_item.SalesRep.EntityPersonKey
             };
         }
-
+    }
+    public class OrderItemStatusEntityService : IOrderItemStatusEntityService
+    {
         public OrderItemStatus Map(OrderStatusData order_status_data)
         {
             return new OrderItemStatus()
@@ -124,8 +128,10 @@ namespace QIQO.Business.Engines
                 OrderStatusDesc = order_status.OrderItemStatusDesc
             };
         }
-
-        public OrderStatus Map2(OrderStatusData order_status_data)
+    }
+    public class OrderStatusEntityService : IOrderStatusEntityService
+    {
+        public OrderStatus Map(OrderStatusData order_status_data)
         {
             return new OrderStatus()
             {

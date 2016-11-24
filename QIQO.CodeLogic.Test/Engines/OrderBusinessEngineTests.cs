@@ -23,6 +23,7 @@ namespace QIQO.Business.Engines.Tests
             Mock<IOrderHeaderRepository> order_repo = new Mock<IOrderHeaderRepository>();
             Mock<IOrderItemRepository> order_item_repo = new Mock<IOrderItemRepository>();
             Mock<IOrderEntityService> order_es = new Mock<IOrderEntityService>();
+            Mock<IOrderItemEntityService> order_item_es = new Mock<IOrderItemEntityService>();
 
             Mock<IOrderBusinessEngine> order_be = new Mock<IOrderBusinessEngine>();
             Mock<IDataRepositoryFactory> repo_factory = new Mock<IDataRepositoryFactory>();
@@ -32,7 +33,7 @@ namespace QIQO.Business.Engines.Tests
             order_repo.Setup(mock => mock.Save(It.IsAny<OrderHeaderData>())).Returns(1);
             order_be.Setup(mock => mock.OrderSave(It.IsAny<Order>())).Returns(1);
             order_es.Setup(mock => mock.Map(It.IsAny<Order>())).Returns(test_order_data);
-            order_es.Setup(mock => mock.Map(It.IsAny<OrderItem>())).Returns(test_order_item_data);
+            order_item_es.Setup(mock => mock.Map(It.IsAny<OrderItem>())).Returns(test_order_item_data);
             repo_factory.Setup(mock => mock.GetDataRepository<IOrderHeaderRepository>()).Returns(order_repo.Object);
             repo_factory.Setup(mock => mock.GetDataRepository<IOrderItemRepository>()).Returns(order_item_repo.Object);
             be_factory.Setup(mock => mock.GetBusinessEngine<IOrderBusinessEngine>()).Returns(order_be.Object);

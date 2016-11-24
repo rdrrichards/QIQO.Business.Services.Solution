@@ -15,14 +15,14 @@ namespace QIQO.Business.Engines
     {
         private readonly ICache _cache;
         private readonly IAddressTypeRepository _repo_addr_type;
-        private readonly IAddressEntityService _addr_es;
+        private readonly IAddressTypeEntityService _addr_es;
 
         public AddressTypeBusinessEngine(IDataRepositoryFactory data_repo_fact, ICache cache, IEntityServiceFactory ent_serv_fact)
             : base(data_repo_fact, null, ent_serv_fact)
         {
             _cache = cache;
             _repo_addr_type = _data_repository_factory.GetDataRepository<IAddressTypeRepository>();
-            _addr_es = _entity_service_factory.GetEntityService<IAddressEntityService>();
+            _addr_es = _entity_service_factory.GetEntityService<IAddressTypeEntityService>();
         }
 
         public AddressType GetTypeByKey(int type)

@@ -4,9 +4,5 @@ using QIQO.Data.Entities;
 
 namespace QIQO.Business.Contracts
 {
-    public interface IEntityAttributeEntityService : IEntityService
-    {
-        EntityAttribute Map(AttributeData entity_attrib_data);
-        AttributeData Map(EntityAttribute entity_attrib);
-    }
+    //public interface IEntityAttributeEntityService : IEntityService<EntityAttribute, AttributeData> { }
 }

@@ -14,21 +14,21 @@ namespace QIQO.Business.Engines
     {
         private ICache _cache;
         private readonly IOrderStatusRepository _order_status_repo;
-        private readonly IOrderEntityService _order_es;
+        private readonly IOrderStatusEntityService _order_status_es;
 
         public OrderStatusBusinessEngine(IDataRepositoryFactory data_repo_fact, ICache cache, IEntityServiceFactory ent_serv_fact)
             : base(data_repo_fact, null, ent_serv_fact)
         {
             _cache = cache;
             _order_status_repo = _data_repository_factory.GetDataRepository<IOrderStatusRepository>();
-            _order_es = _entity_service_factory.GetEntityService<IOrderEntityService>();
+            _order_status_es = _entity_service_factory.GetEntityService<IOrderStatusEntityService>();
         }
 
         public bool DeleteStatus(OrderStatus status)
         {
             return ExecuteFaultHandledOperation(() =>
             {
-                var order_status_data = _order_es.Map(status);
+                var order_status_data = _order_status_es.Map(status);
                 _order_status_repo.Delete(order_status_data);
                 return true;
             });
@@ -58,7 +58,7 @@ namespace QIQO.Business.Engines
 
                     foreach (OrderStatusData status_data in statuses_data)
                     {
-                        order_statuses.Add(_order_es.Map2(status_data));
+                        order_statuses.Add(_order_status_es.Map(status_data));
                     }
                     
                     _cache.Set(CacheKeys.OrderStatuses, order_statuses);
@@ -72,7 +72,7 @@ namespace QIQO.Business.Engines
         {
             return ExecuteFaultHandledOperation(() =>
             {
-                int order_status_key = _order_status_repo.Save(_order_es.Map(status));
+                int order_status_key = _order_status_repo.Save(_order_status_es.Map(status));
                 return order_status_key;
             });
         }

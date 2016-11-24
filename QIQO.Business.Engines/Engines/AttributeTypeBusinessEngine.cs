@@ -15,12 +15,14 @@ namespace QIQO.Business.Engines
     {
         private readonly ICache _cache;
         private readonly IAttributeTypeRepository _repo_attr_type;
+        private readonly IAttributeTypeEntityService _attr_type_es;
 
         public AttributeTypeBusinessEngine(IDataRepositoryFactory data_repo_fact, ICache cache, IEntityServiceFactory ent_serv_fact)
             : base(data_repo_fact, null, ent_serv_fact)
         {
             _cache = cache;
             _repo_attr_type = _data_repository_factory.GetDataRepository<IAttributeTypeRepository>();
+            _attr_type_es = _entity_service_factory.GetEntityService<IAttributeTypeEntityService>();
         }
 
         public AttributeType GetTypeByKey(int type)
@@ -49,7 +51,7 @@ namespace QIQO.Business.Engines
 
                     foreach (AttributeTypeData account_type in attrib_type_data)
                     {
-                        attribute_types.Add(Map(account_type));
+                        attribute_types.Add(_attr_type_es.Map(account_type));
                     }
                     
                     _cache.Set(CacheKeys.AttributeTypes, attribute_types);
@@ -77,7 +79,7 @@ namespace QIQO.Business.Engines
 
             return ExecuteFaultHandledOperation(() =>
             {
-                AttributeTypeData attribute_type_data = Map(type);
+                AttributeTypeData attribute_type_data = _attr_type_es.Map(type);
 
                 return _repo_attr_type.Insert(attribute_type_data);
             });
@@ -90,47 +92,11 @@ namespace QIQO.Business.Engines
 
             return ExecuteFaultHandledOperation(() =>
             {
-                AttributeTypeData attribute_type_data = Map(type);
+                AttributeTypeData attribute_type_data = _attr_type_es.Map(type);
 
                 _repo_attr_type.Delete(attribute_type_data);
                 return true;
             });
-        }
-
-        private AttributeType Map(AttributeTypeData attribute_type_data)
-        {
-            AttributeType AttributeType = new AttributeType()
-            {
-                AttributeTypeKey = attribute_type_data.AttributeTypeKey,
-                AttributeTypeCategory = attribute_type_data.AttributeTypeCategory,
-                AttributeTypeCode = attribute_type_data.AttributeTypeCode,
-                AttributeTypeName = attribute_type_data.AttributeTypeName,
-                AttributeTypeDesc = attribute_type_data.AttributeTypeDesc,
-                AttributeDataTypeKey = (QIQOAttributeDataType)attribute_type_data.AttributeDataTypeKey,
-                AttributeDefaultFormat = attribute_type_data.AttributeDefaultFormat,
-                AddedUserID = attribute_type_data.AuditAddUserId,
-                AddedDateTime = attribute_type_data.AuditAddDatetime,
-                UpdateUserID = attribute_type_data.AuditUpdateUserId,
-                UpdateDateTime = attribute_type_data.AuditUpdateDatetime
-            };
-
-            return AttributeType;
-        }
-
-        private AttributeTypeData Map(AttributeType attribute_type)
-        {
-            AttributeTypeData AttributeType_data = new AttributeTypeData()
-            {
-                AttributeTypeKey = attribute_type.AttributeTypeKey,
-                AttributeTypeCategory = attribute_type.AttributeTypeCategory,
-                AttributeTypeCode = attribute_type.AttributeTypeCode,
-                AttributeTypeName = attribute_type.AttributeTypeName,
-                AttributeTypeDesc = attribute_type.AttributeTypeDesc,
-                AttributeDataTypeKey = (int)attribute_type.AttributeDataTypeKey,
-                AttributeDefaultFormat = attribute_type.AttributeDefaultFormat
-            };
-
-            return AttributeType_data;
         }
     }
 }

@@ -103,19 +103,31 @@
     <Compile Include="EntityServiceFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AccountEntityService.cs" />
+    <Compile Include="Services\AccountTypeEntityService.cs" />
     <Compile Include="Services\AddressEntityService.cs" />
-    <Compile Include="Services\ChartOfAccountsEntityService.cs" />
+    <Compile Include="Services\AddressPostalEntityService.cs" />
+    <Compile Include="Services\AddressTypeEntityService.cs" />
+    <Compile Include="Services\AttributeEntityService.cs" />
+    <Compile Include="Services\AttributeTypeEntityService.cs" />
+    <Compile Include="Services\AuditLogEntityService.cs" />
+    <Compile Include="Services\ChartOfAccountEntityService.cs" />
     <Compile Include="Services\CommentEntityService.cs" />
+    <Compile Include="Services\CommentTypeEntityService.cs" />
     <Compile Include="Services\CompanyEntityService.cs" />
     <Compile Include="Services\ContactEntityService.cs" />
+    <Compile Include="Services\ContactTypeEntityService.cs" />
     <Compile Include="Services\EntityAttributeEntityService.cs" />
     <Compile Include="Services\EntityProductEntityService.cs" />
     <Compile Include="Services\EntityServices.cs" />
+    <Compile Include="Services\EntityTypeEntityService.cs" />
     <Compile Include="Services\FeeScheduleEntityService.cs" />
     <Compile Include="Services\InvoiceEntityService.cs" />
+    <Compile Include="Services\InvoiceStatusEntityService.cs" />
     <Compile Include="Services\OrderEntityService.cs" />
     <Compile Include="Services\PersonEntityService.cs" />
     <Compile Include="Services\ProductEntityService.cs" />
+    <Compile Include="Services\ProductTypeEntityService.cs" />
+    <Compile Include="Services\VendorEntityService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

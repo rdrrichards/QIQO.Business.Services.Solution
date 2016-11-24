@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 namespace QIQO.Business.Entities
 {
     [DataContract]
-    public class Representative : Employee, IModel
+    public class Representative : Employee
     {
         [DataMember]
         public List<Account> Accounts { get; set; } = new List<Account>();

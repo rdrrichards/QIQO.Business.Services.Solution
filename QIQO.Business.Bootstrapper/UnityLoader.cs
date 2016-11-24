@@ -66,7 +66,7 @@ namespace QIQO.Business.Bootstrapper
             container.RegisterType<IOrderBusinessEngine, OrderBusinessEngine>();
             container.RegisterType<IPersonTypeBusinessEngine, PersonTypeBusinessEngine>();
             container.RegisterType<IProductBusinessEngine, ProductBusinessEngine>();
-            container.RegisterType<IUserSessionBusinessEngine, UserSessionBusinessEngine>();
+            //container.RegisterType<IUserSessionBusinessEngine, UserSessionBusinessEngine>();
             container.RegisterType<IProductTypeBusinessEngine, ProductTypeBusinessEngine>();
             container.RegisterType<IOrderStatusBusinessEngine, OrderStatusBusinessEngine>(new ContainerControlledLifetimeManager());
             container.RegisterType<IOrderItemStatusBusinessEngine, OrderItemStatusBusinessEngine>(new ContainerControlledLifetimeManager());
@@ -190,19 +190,34 @@ namespace QIQO.Business.Bootstrapper
 
         private static void RegisterEntityServices(IUnityContainer container)
         {
+            container.RegisterType<IEntityTypeEntityService, EntityTypeEntityService>();
+            container.RegisterType<IAttributeTypeEntityService, AttributeTypeEntityService>();
             container.RegisterType<IAccountEntityService, AccountEntityService>();
+            container.RegisterType<IAccountTypeEntityService, AccountTypeEntityService>();
+            container.RegisterType<IAuditLogEntityService, AuditLogEntityService>();
             container.RegisterType<ICompanyEntityService, CompanyEntityService>();
             container.RegisterType<IPersonEntityService, PersonEntityService>();
+            //container.RegisterType<IPersonTypeEntityService, PersonTypeEntityService>();
             container.RegisterType<IAddressEntityService, AddressEntityService>();
-            container.RegisterType<IChartOfAccountsEntityService, ChartOfAccountsEntityService>();
+            container.RegisterType<IAddressTypeEntityService, AddressTypeEntityService>();
+            container.RegisterType<IAddressPostalEntityService, AddressPostalEntityService>();
+            container.RegisterType<IChartOfAccountEntityService, ChartOfAccountEntityService>();
             container.RegisterType<ICommentEntityService, CommentEntityService>();
+            container.RegisterType<ICommentTypeEntityService, CommentTypeEntityService>();
             container.RegisterType<IContactEntityService, ContactEntityService>();
+            container.RegisterType<IContactTypeEntityService, ContactTypeEntityService>();
             container.RegisterType<IEntityAttributeEntityService, EntityAttributeEntityService>();
             container.RegisterType<IEntityProductEntityService, EntityProductEntityService>();
             container.RegisterType<IFeeScheduleEntityService, FeeScheduleEntityService>();
             container.RegisterType<IInvoiceEntityService, InvoiceEntityService>();
+            container.RegisterType<IInvoiceStatusEntityService, InvoiceStatusEntityService>();
+            container.RegisterType<IInvoiceItemEntityService, InvoiceItemEntityService>();
             container.RegisterType<IOrderEntityService, OrderEntityService>();
+            container.RegisterType<IOrderItemEntityService, OrderItemEntityService>();
+            container.RegisterType<IOrderStatusEntityService, OrderStatusEntityService>();
+            container.RegisterType<IOrderItemStatusEntityService, OrderItemStatusEntityService>();
             container.RegisterType<IProductEntityService, ProductEntityService>();
+            container.RegisterType<IProductTypeEntityService, ProductTypeEntityService>();
         }
     }
 }

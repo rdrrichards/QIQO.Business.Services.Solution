@@ -4,9 +4,9 @@ using QIQO.Data.Entities;
 
 namespace QIQO.Business.Contracts
 {
-    public interface IPersonEntityService : IEntityService
+    public interface IPersonEntityService : IEntityService<PersonBase, PersonData>
     {
-        Employee Map(PersonData person_data);
+        //Employee Map(PersonData person_data);
         PersonData Map(Employee employee);
         PersonData Map(AccountPerson employee);
         void InitPersonData(AccountPerson person, PersonData emp_data);

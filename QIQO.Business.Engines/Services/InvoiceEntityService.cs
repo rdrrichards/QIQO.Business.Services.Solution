@@ -53,7 +53,9 @@ namespace QIQO.Business.Engines
                 SalesRepKey = invoice.SalesRep.EntityPersonKey
             };
         }
-
+    }
+    public class InvoiceItemEntityService : IInvoiceItemEntityService
+    {
         public InvoiceItem Map(InvoiceItemData invoice_item_data)
         {
             return new InvoiceItem()

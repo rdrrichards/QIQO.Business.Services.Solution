@@ -22,6 +22,7 @@ namespace QIQO.Business.Engines
         private readonly IProductBusinessEngine _product_be;
         private readonly IAccountBusinessEngine _account_be;
         private readonly IOrderEntityService _order_se;
+        private readonly IOrderItemEntityService _order_item_se;
         private readonly IOrderStatusBusinessEngine _order_status_be;
         private readonly IOrderItemStatusBusinessEngine _order_item_status_be;
 
@@ -38,6 +39,7 @@ namespace QIQO.Business.Engines
             _order_status_be = _business_engine_factory.GetBusinessEngine<IOrderStatusBusinessEngine>();
             _order_item_status_be = _business_engine_factory.GetBusinessEngine<IOrderItemStatusBusinessEngine>();
             _order_se = _entity_service_factory.GetEntityService<IOrderEntityService>();
+            _order_item_se = _entity_service_factory.GetEntityService<IOrderItemEntityService>();
         }
         public int OrderSave(Order order_header)
         {
@@ -56,7 +58,7 @@ namespace QIQO.Business.Engines
                 Log.Info($"Order Item start [{order_header.OrderItems.Count}] items to process");
                 foreach (var order_item in order_header.OrderItems)
                 {
-                    var order_item_data = _order_se.Map(order_item);
+                    var order_item_data = _order_item_se.Map(order_item);
                     //Log.Info($"Order Item converted [{order_item_data.ProductName}] sucessfully!");
                     order_item_data.OrderKey = order_header_key;
                     order_item_data.OrderItemKey = order_item.OrderItemKey;
@@ -285,7 +287,7 @@ namespace QIQO.Business.Engines
 
             return ExecuteFaultHandledOperation(() =>
             {
-                var ord_itm = _order_se.Map(order_item);
+                var ord_itm = _order_item_se.Map(order_item);
                 ord_itm.OrderItemKey = order_item.OrderItemKey;
                 _order_item_repo.Delete(ord_itm);
                 return true;
@@ -312,7 +314,7 @@ namespace QIQO.Business.Engines
         {
             return ExecuteFaultHandledOperation(() =>
             {
-                var orderItem = _order_se.Map(order_item_data);
+                var orderItem = _order_item_se.Map(order_item_data);
                 orderItem.OrderItemShipToAddress = _address_be.GetAddressByID(order_item_data.ShiptoAddrKey);
                 orderItem.OrderItemBillToAddress = _address_be.GetAddressByID(order_item_data.BilltoAddrKey);
                 orderItem.OrderItemStatusData = _order_item_status_be.GetStatusByID(order_item_data.OrderItemStatusKey);

@@ -15,13 +15,13 @@ namespace QIQO.Business.Engines
     {
         private readonly ICache _cache;
         private readonly IContactTypeRepository _contact_type_repo;
-        private readonly IContactEntityService _contact_es;
+        private readonly IContactTypeEntityService _contact_es;
         public ContactTypeBusinessEngine(IDataRepositoryFactory data_repo_fact, ICache cache, IEntityServiceFactory ent_serv_fact)
             : base(data_repo_fact, null, ent_serv_fact)
         {
             _cache = cache;
             _contact_type_repo = _data_repository_factory.GetDataRepository<IContactTypeRepository>();
-            _contact_es = _entity_service_factory.GetEntityService<IContactEntityService>();
+            _contact_es = _entity_service_factory.GetEntityService<IContactTypeEntityService>();
         }
 
         public ContactType GetTypeByKey(int type)
@@ -78,8 +78,7 @@ namespace QIQO.Business.Engines
 
             return ExecuteFaultHandledOperation(() =>
             {
-                var contact_type_data = _contact_es.Map(type);
-                return _contact_type_repo.Insert(contact_type_data);
+                return _contact_type_repo.Insert(_contact_es.Map(type));
             });
         }
 
@@ -90,8 +89,7 @@ namespace QIQO.Business.Engines
 
             return ExecuteFaultHandledOperation(() =>
             {
-                var contact_type_data = _contact_es.Map(type);
-                _contact_type_repo.Delete(contact_type_data);
+                _contact_type_repo.Delete(_contact_es.Map(type));
                 return true;
             });
         }
