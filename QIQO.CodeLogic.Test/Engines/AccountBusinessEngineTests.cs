@@ -76,24 +76,28 @@ namespace QIQO.Business.Engines.Tests
             //Arrange
             var test_account = new Account() { AccountKey = 1, AccountCode = "TEST" };
             var test_account_data = new AccountData() { AccountKey = 1, AccountCode = "TEST" };
+            var test_account_type_data = new AccountType();
             Company test_comp = new Company() { CompanyKey = 1, CompanyCode = "TEST" };
-            Mock<IAccountRepository> acct_repo = new Mock<IAccountRepository>();
-            Mock<IAccountBusinessEngine> account_be = new Mock<IAccountBusinessEngine>();
-            Mock<IDataRepositoryFactory> repo_factory = new Mock<IDataRepositoryFactory>();
-            Mock<IBusinessEngineFactory> be_factory = new Mock<IBusinessEngineFactory>();
-            Mock<IEntityServiceFactory> es_factory = new Mock<IEntityServiceFactory>();
-            Mock<IAccountEntityService> account_es = new Mock<IAccountEntityService>();
+            var acct_repo = new Mock<IAccountRepository>();
+            var account_be = new Mock<IAccountBusinessEngine>();
+            var repo_factory = new Mock<IDataRepositoryFactory>();
+            var be_factory = new Mock<IBusinessEngineFactory>();
+            var es_factory = new Mock<IEntityServiceFactory>();
+            var account_es = new Mock<IAccountEntityService>();
+            var account_type_es = new Mock<IAccountTypeEntityService>();
 
-            Mock<IAccountTypeBusinessEngine> at_be = new Mock<IAccountTypeBusinessEngine>();
-            Mock<IAddressBusinessEngine> address_be = new Mock<IAddressBusinessEngine>();
-            Mock<IEntityAttributeBusinessEngine> entity_attribute_be = new Mock<IEntityAttributeBusinessEngine>();
-            Mock<IFeeScheduleBusinessEngine> fee_schedule_be = new Mock<IFeeScheduleBusinessEngine>();
-            Mock<IAccountEmployeeBusinessEngine> account_employee_be = new Mock<IAccountEmployeeBusinessEngine>();
-            Mock<IContactBusinessEngine> contact_be = new Mock<IContactBusinessEngine>();
+            var at_be = new Mock<IAccountTypeBusinessEngine>();
+            var address_be = new Mock<IAddressBusinessEngine>();
+            var entity_attribute_be = new Mock<IEntityAttributeBusinessEngine>();
+            var fee_schedule_be = new Mock<IFeeScheduleBusinessEngine>();
+            var account_employee_be = new Mock<IAccountEmployeeBusinessEngine>();
+            var contact_be = new Mock<IContactBusinessEngine>();
+            var comment_be = new Mock<ICommentBusinessEngine>();
 
             acct_repo.Setup(mock => mock.GetByCode(It.IsAny<string>(), It.IsAny<string>())).Returns(test_account_data);
             account_be.Setup(mock => mock.GetAccountByCode(It.IsAny<string>(), It.IsAny<string>())).Returns(test_account);
             account_es.Setup(mock => mock.Map(It.IsAny<AccountData>())).Returns(test_account);
+            account_type_es.Setup(mock => mock.Map(It.IsAny<AccountTypeData>())).Returns(test_account_type_data);
             repo_factory.Setup(mock => mock.GetDataRepository<IAccountRepository>()).Returns(acct_repo.Object);
             be_factory.Setup(mock => mock.GetBusinessEngine<IAccountBusinessEngine>()).Returns(account_be.Object);
 
@@ -103,7 +107,9 @@ namespace QIQO.Business.Engines.Tests
             be_factory.Setup(mock => mock.GetBusinessEngine<IFeeScheduleBusinessEngine>()).Returns(fee_schedule_be.Object);
             be_factory.Setup(mock => mock.GetBusinessEngine<IAccountEmployeeBusinessEngine>()).Returns(account_employee_be.Object);
             be_factory.Setup(mock => mock.GetBusinessEngine<IContactBusinessEngine>()).Returns(contact_be.Object);
+            be_factory.Setup(mock => mock.GetBusinessEngine<ICommentBusinessEngine>()).Returns(comment_be.Object);
             es_factory.Setup(mock => mock.GetEntityService<IAccountEntityService>()).Returns(account_es.Object);
+            es_factory.Setup(mock => mock.GetEntityService<IAccountTypeEntityService>()).Returns(account_type_es.Object);
 
             AccountBusinessEngine account_business_engine = new AccountBusinessEngine(repo_factory.Object, be_factory.Object, es_factory.Object);
 
