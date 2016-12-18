@@ -158,10 +158,21 @@ namespace QIQO.Data.Repositories
             var pcol = new List<SqlParameter>() { new SqlParameter("@entity_key", account.AccountKey) };
             using (entity_context)
             {
-                if (entity_desc == 2)
-                    return entity_context.ExecuteSqlStatementAsScalar<string>("usp_get_next_order_num", pcol);
-                else
-                    return entity_context.ExecuteSqlStatementAsScalar<string>("usp_get_next_invoice_num", pcol);
+                switch (entity_desc)
+                {
+                    case 2:
+                        return entity_context.ExecuteSqlStatementAsScalar<string>("usp_get_next_order_num", pcol);
+                    case 1:
+                        return entity_context.ExecuteSqlStatementAsScalar<string>("usp_get_next_invoice_num", pcol);
+                    case 6:
+                        return entity_context.ExecuteSqlStatementAsScalar<string>("usp_get_next_contact_num", pcol);
+                    default:
+                        return "";
+                }
+                //if (entity_desc == 2)
+                //    return entity_context.ExecuteSqlStatementAsScalar<string>("usp_get_next_order_num", pcol);
+                //else
+                //    return entity_context.ExecuteSqlStatementAsScalar<string>("usp_get_next_invoice_num", pcol);
             }
         }
     }

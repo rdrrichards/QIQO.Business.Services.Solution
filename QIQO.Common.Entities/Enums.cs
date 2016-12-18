@@ -60,7 +60,9 @@ namespace QIQO.Business.Entities
         [EnumMember]
         AccountNumber = 4,
         [EnumMember]
-        VendorNumber = 5
+        VendorNumber = 5,
+        [EnumMember]
+        ContactNumber = 6
     }
 
     [DataContract]
