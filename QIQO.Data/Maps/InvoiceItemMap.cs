@@ -45,6 +45,42 @@ namespace QIQO.Data.Maps
             }
         } // Map function closer
 
+        public InvoiceItemData Map(IDataReader record)
+        {
+            try
+            {
+                return new InvoiceItemData()
+                {
+                    InvoiceItemKey = NullCheck<int>(record["invoice_item_key"]),
+                    InvoiceKey = NullCheck<int>(record["invoice_key"]),
+                    InvoiceItemSeq = NullCheck<int>(record["invoice_item_seq"]),
+                    ProductKey = NullCheck<int>(record["product_key"]),
+                    ProductName = NullCheck<string>(record["product_name"]),
+                    ProductDesc = NullCheck<string>(record["product_desc"]),
+                    InvoiceItemQuantity = NullCheck<int>(record["invoice_item_quantity"]),
+                    ShiptoAddrKey = NullCheck<int>(record["shipto_addr_key"]),
+                    BilltoAddrKey = NullCheck<int>(record["billto_addr_key"]),
+                    InvoiceItemEntryDate = (DBNull.Value == record["invoice_item_entry_date"]) ? null : record["invoice_item_entry_date"] as DateTime?,
+                    OrderItemShipDate = (DBNull.Value == record["order_item_ship_date"]) ? null : record["order_item_ship_date"] as DateTime?,
+                    InvoiceItemCompleteDate = (DBNull.Value == record["invoice_item_complete_date"]) ? null : record["invoice_item_complete_date"] as DateTime?,
+                    InvoiceItemPricePer = NullCheck<decimal>(record["invoice_item_price_per"]),
+                    InvoiceItemLineSum = NullCheck<decimal>(record["invoice_item_line_sum"]),
+                    InvoiceItemAccountRepKey = NullCheck<int>(record["invoice_item_account_rep_key"]),
+                    InvoiceItemSalesRepKey = NullCheck<int>(record["invoice_item_sales_rep_key"]),
+                    InvoiceItemStatusKey = NullCheck<int>(record["invoice_item_status_key"]),
+                    OrderItemKey = NullCheck<int>(record["order_item_key"]),
+                    AuditAddUserId = NullCheck<string>(record["audit_add_user_id"]),
+                    AuditAddDatetime = NullCheck<DateTime>(record["audit_add_datetime"]),
+                    AuditUpdateUserId = NullCheck<string>(record["audit_update_user_id"]),
+                    AuditUpdateDatetime = NullCheck<DateTime>(record["audit_update_datetime"])
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new MapException($"InvoiceItemMap Exception occured: {ex.Message}", ex);
+            }
+        } // Map function closer
+
         public List<SqlParameter> MapParamsForUpsert(InvoiceItemData entity)
         {
             var sql_params = new List<SqlParameter>();

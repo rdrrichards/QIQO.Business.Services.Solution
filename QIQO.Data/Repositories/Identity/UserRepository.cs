@@ -29,9 +29,7 @@ namespace QIQO.Data.Repositories
         {
             using (entity_context)
             {
-                var ds = entity_context.ExecuteProcedureAsDataSet("usp_user_all");
-                Log.Info("UserRepository GetAll function call successful");
-                return MapRows(ds);
+                return MapRows(entity_context.ExecuteProcedureAsSqlDataReader("usp_user_all"));
             }
         }
 
@@ -43,9 +41,7 @@ namespace QIQO.Data.Repositories
             };
             using (entity_context)
             {
-                var ds = entity_context.ExecuteProcedureAsDataSet("usp_user_all_for_claim", pcol);
-                Log.Info("UserRepository usp_user_all_for_claim function call successful");
-                return MapRows(ds);
+                return MapRows(entity_context.ExecuteProcedureAsSqlDataReader("usp_user_all_for_claim", pcol));
             }
         }
 
@@ -54,9 +50,7 @@ namespace QIQO.Data.Repositories
             var pcol = new List<SqlParameter>() { new SqlParameter("@RoleName", roleName) };
             using (entity_context)
             {
-                var ds = entity_context.ExecuteProcedureAsDataSet("usp_user_all_in_role", pcol);
-                Log.Info("UserRepository usp_user_all_in_role function call successful");
-                return MapRows(ds);
+                return MapRows(entity_context.ExecuteProcedureAsSqlDataReader("usp_user_all_in_role", pcol));
             }
         }
 
@@ -68,9 +62,7 @@ namespace QIQO.Data.Repositories
             };
             using (entity_context)
             {
-                var ds = entity_context.ExecuteProcedureAsDataSet("usp_user_is_in_role", pcol);
-                Log.Info("UserRepository usp_user_is_in_role function call successful");
-                return ds.Tables[0].Rows.Count > 0;
+                return entity_context.ExecuteProcedureAsSqlDataReader("usp_user_is_in_role", pcol).HasRows;
             }
         }
 
@@ -79,9 +71,7 @@ namespace QIQO.Data.Repositories
             var pcol = new List<SqlParameter>() { new SqlParameter("@UserId", id) };
             using (entity_context)
             {
-                var ds = entity_context.ExecuteProcedureAsDataSet("usp_user_get", pcol);
-                Log.Info("UserRepository (GetByID) Passed ExecuteProcedureAsDataSet (usp_user_get_by_id) function");
-                return MapRow(ds);
+                return MapRow(entity_context.ExecuteProcedureAsSqlDataReader("usp_user_get", pcol));
             }
         }
 
@@ -90,9 +80,7 @@ namespace QIQO.Data.Repositories
             var pcol = new List<SqlParameter>() { new SqlParameter("@UserName", name) };
             using (entity_context)
             {
-                var ds = entity_context.ExecuteProcedureAsDataSet("usp_user_get_by_name", pcol);
-                Log.Info("UserRepository (GetByName) Passed ExecuteProcedureAsDataSet (usp_user_get_by_name) function");
-                return MapRow(ds);
+                return MapRow(entity_context.ExecuteProcedureAsSqlDataReader("usp_user_get_by_name", pcol));
             }
         }
 
@@ -101,9 +89,7 @@ namespace QIQO.Data.Repositories
             var pcol = new List<SqlParameter>() { new SqlParameter("@Email", email) };
             using (entity_context)
             {
-                var ds = entity_context.ExecuteProcedureAsDataSet("usp_user_get_by_email", pcol);
-                Log.Info("UserRepository (GetByName) Passed ExecuteProcedureAsDataSet (usp_user_get_by_email) function");
-                return MapRow(ds);
+                return MapRow(entity_context.ExecuteProcedureAsSqlDataReader("usp_user_get_by_email", pcol));
             }
         }
 
@@ -114,9 +100,7 @@ namespace QIQO.Data.Repositories
                   new SqlParameter("@ProviderKey", provider_key) };
             using (entity_context)
             {
-                var ds = entity_context.ExecuteProcedureAsDataSet("usp_user_get_by_login", pcol);
-                Log.Info("UserRepository (GetByName) Passed ExecuteProcedureAsDataSet (usp_user_get_by_login) function");
-                return MapRow(ds);
+                return MapRow(entity_context.ExecuteProcedureAsSqlDataReader("usp_user_get_by_login", pcol));
             }
         }
 

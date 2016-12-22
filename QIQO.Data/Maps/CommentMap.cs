@@ -31,6 +31,29 @@ namespace QIQO.Data.Maps
             }
         } // Map function closer
 
+        public CommentData Map(IDataReader record)
+        {
+            try
+            {
+                return new CommentData()
+                {
+                    CommentKey = NullCheck<int>(record["comment_key"]),
+                    EntityKey = NullCheck<int>(record["entity_key"]),
+                    EntityType = NullCheck<int>(record["entity_type"]),
+                    CommentTypeKey = NullCheck<int>(record["comment_type_key"]),
+                    CommentValue = NullCheck<string>(record["comment_value"]),
+                    AuditAddUserId = NullCheck<string>(record["audit_add_user_id"]),
+                    AuditAddDatetime = NullCheck<DateTime>(record["audit_add_datetime"]),
+                    AuditUpdateUserId = NullCheck<string>(record["audit_update_user_id"]),
+                    AuditUpdateDatetime = NullCheck<DateTime>(record["audit_update_datetime"])
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new MapException($"CommentMap Exception occured: {ex.Message}", ex);
+            }
+        } // Map function closer
+
         public List<SqlParameter> MapParamsForUpsert(CommentData entity)
         {
             var sql_params = new List<SqlParameter>();

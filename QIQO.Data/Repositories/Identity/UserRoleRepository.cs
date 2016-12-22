@@ -30,9 +30,7 @@ namespace QIQO.Data.Repositories
         {
             using (entity_context)
             {
-                var ds = entity_context.ExecuteProcedureAsDataSet("usp_user_role_all");
-                Log.Info("UserLoginRepository GetAll function call successful");
-                return MapRows(ds);
+                return MapRows(entity_context.ExecuteProcedureAsSqlDataReader("usp_user_role_all"));
             }
         }
 
@@ -57,9 +55,7 @@ namespace QIQO.Data.Repositories
             var pcol = new List<SqlParameter>() { new SqlParameter("@UserId", user_id) };
             using (entity_context)
             {
-                var ds = entity_context.ExecuteProcedureAsDataSet("usp_user_role_all_by_user", pcol);
-                Log.Info("UserLoginRepository GetAll by user function call successful");
-                return MapRows(ds);
+                return MapRows(entity_context.ExecuteProcedureAsSqlDataReader("usp_user_role_all_by_user", pcol));
             }
         }
 

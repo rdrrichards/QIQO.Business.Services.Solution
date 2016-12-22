@@ -32,6 +32,29 @@ namespace QIQO.Data.Maps
             }
         } // Map function closer
 
+        public OrderStatusData Map(IDataReader record)
+        {
+            try
+            {
+                return new OrderStatusData()
+                {
+                    OrderStatusKey = NullCheck<int>(record["order_status_key"]),
+                    OrderStatusCode = NullCheck<string>(record["order_status_code"]),
+                    OrderStatusName = NullCheck<string>(record["order_status_name"]),
+                    OrderStatusType = NullCheck<string>(record["order_status_type"]),
+                    OrderStatusDesc = NullCheck<string>(record["order_status_desc"]),
+                    AuditAddUserId = NullCheck<string>(record["audit_add_user_id"]),
+                    AuditAddDatetime = NullCheck<DateTime>(record["audit_add_datetime"]),
+                    AuditUpdateUserId = NullCheck<string>(record["audit_update_user_id"]),
+                    AuditUpdateDatetime = NullCheck<DateTime>(record["audit_update_datetime"])
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new MapException($"OrderStatusMap Exception occured: {ex.Message}", ex);
+            }
+        } // Map function closer
+
         public List<SqlParameter> MapParamsForUpsert(OrderStatusData entity)
         {
             var sql_params = new List<SqlParameter>();

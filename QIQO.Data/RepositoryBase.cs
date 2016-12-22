@@ -1,6 +1,7 @@
 ﻿using QIQO.Common.Contracts;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 
 namespace QIQO.Data
 {
@@ -25,12 +26,10 @@ namespace QIQO.Data
         //          This would entail creating a mapper interface, which shouldn't be difficult
         protected IEnumerable<T> MapRows(DataSet ds)
         {
-            List<T> rows = new List<T>();
+            var rows = new List<T>();
             foreach (DataRow row in ds.Tables[0].Rows)
             {
-                T com = new T();
-                com = Mapper.Map(row);
-                rows.Add(com);
+                rows.Add(Mapper.Map(row));
             }
 
             return rows;
@@ -39,30 +38,32 @@ namespace QIQO.Data
         protected T MapRow(DataSet ds)
         {
             if (ds.Tables[0].Rows.Count > 0)
-            {
-                DataRow row = ds.Tables[0].Rows[0];
-                T com = new T();
-                com = Mapper.Map(row);
-                return com;
-            }
+                return Mapper.Map(ds.Tables[0].Rows[0]);
             else
                 return new T();
         }
 
+        protected IEnumerable<T> MapRows(DbDataReader dr)
+        {
+            var rows = new List<T>();
+            while (dr.Read())
+                rows.Add(MapRow(dr));
+            dr.Close();
+            return rows;
+        }
+
+        protected T MapRow(IDataReader ds)
+        {
+            return Mapper.Map(ds);
+        }
+
         public abstract void Delete(T entity);
-
         public abstract void DeleteByCode(string entity_code);
-
         public abstract void DeleteByID(int entity_key);
-
         public abstract IEnumerable<T> GetAll();
-
         public abstract T GetByCode(string account_code, string entity_code);
-
         public abstract T GetByID(int entity_key);
-
         public abstract int Insert(T entity);
-
         public abstract int Save(T entity);
     }
 }

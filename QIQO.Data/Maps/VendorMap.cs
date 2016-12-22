@@ -31,6 +31,28 @@ namespace QIQO.Data.Maps
             }
         } // Map function closer
 
+        public VendorData Map(IDataReader record)
+        {
+            try
+            {
+                return new VendorData()
+                {
+                    VendorKey = NullCheck<int>(record["vendor_key"]),
+                    VendorCode = NullCheck<string>(record["vendor_code"]),
+                    VendorName = NullCheck<string>(record["vendor_name"]),
+                    VendorDesc = NullCheck<string>(record["vendor_desc"]),
+                    AuditAddUserId = NullCheck<string>(record["audit_add_user_id"]),
+                    AuditAddDatetime = NullCheck<DateTime>(record["audit_add_datetime"]),
+                    AuditUpdateUserId = NullCheck<string>(record["audit_update_user_id"]),
+                    AuditUpdateDatetime = NullCheck<DateTime>(record["audit_update_datetime"])
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new MapException($"VendorMap Exception occured: {ex.Message}", ex);
+            }
+        } // Map function closer
+
         public List<SqlParameter> MapParamsForUpsert(VendorData entity)
         {
             var sql_params = new List<SqlParameter>();

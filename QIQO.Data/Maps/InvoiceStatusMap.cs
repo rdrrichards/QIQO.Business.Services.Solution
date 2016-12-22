@@ -32,6 +32,29 @@ namespace QIQO.Data.Maps
             }
         } // Map function closer
 
+        public InvoiceStatusData Map(IDataReader record)
+        {
+            try
+            {
+                return new InvoiceStatusData()
+                {
+                    InvoiceStatusKey = NullCheck<int>(record["invoice_status_key"]),
+                    InvoiceStatusCode = NullCheck<string>(record["invoice_status_code"]),
+                    InvoiceStatusName = NullCheck<string>(record["invoice_status_name"]),
+                    InvoiceStatusType = NullCheck<string>(record["invoice_status_type"]),
+                    InvoiceStatusDesc = NullCheck<string>(record["invoice_status_desc"]),
+                    AuditAddUserId = NullCheck<string>(record["audit_add_user_id"]),
+                    AuditAddDatetime = NullCheck<DateTime>(record["audit_add_datetime"]),
+                    AuditUpdateUserId = NullCheck<string>(record["audit_update_user_id"]),
+                    AuditUpdateDatetime = NullCheck<DateTime>(record["audit_update_datetime"])
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new MapException($"InvoiceStatusMap Exception occured: {ex.Message}", ex);
+            }
+        } // Map function closer
+
         public List<SqlParameter> MapParamsForUpsert(InvoiceStatusData entity)
         {
             var sql_params = new List<SqlParameter>();

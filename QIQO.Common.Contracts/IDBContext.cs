@@ -28,8 +28,8 @@ namespace QIQO.Common.Contracts
         DataTable ExecuteSqlStatementAsDataTable(string sqlStatement);
         DataTable ExecuteSqlStatementAsDataTable(string sqlStatement, IEnumerable<SqlParameter> parameters);
 
-        //DbDataReader ExecuteSqlStatementAsDbDataReader(string sqlStatement);
-        //DbDataReader ExecuteSqlStatementAsDbDataReader(string sqlStatement, IEnumerable<DbParameter> parameters);
+        SqlDataReader ExecuteProcedureAsSqlDataReader(string sqlStatement);
+        SqlDataReader ExecuteProcedureAsSqlDataReader(string sqlStatement, IEnumerable<SqlParameter> parameters);
 
         T ExecuteSqlStatementAsScalar<T>(string sqlStatement);
         T ExecuteSqlStatementAsScalar<T>(string sqlStatement, IEnumerable<SqlParameter> parameters);

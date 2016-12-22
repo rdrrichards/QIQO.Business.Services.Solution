@@ -43,6 +43,40 @@ namespace QIQO.Data.Maps
             }
         } // Map function closer
 
+        public LedgerTxnData Map(IDataReader record)
+        {
+            try
+            {
+                return new LedgerTxnData()
+                {
+                    LedgerTxnKey = NullCheck<int>(record["ledger_txn_key"]),
+                    LedgerKey = NullCheck<int>(record["ledger_key"]),
+                    TxnComment = NullCheck<string>(record["txn_comment"]),
+                    AcctFrom = NullCheck<string>(record["acct_from"]),
+                    DeptFrom = NullCheck<string>(record["dept_from"]),
+                    LobFrom = NullCheck<string>(record["lob_from"]),
+                    AcctTo = NullCheck<string>(record["acct_to"]),
+                    DeptTo = NullCheck<string>(record["dept_to"]),
+                    LobTo = NullCheck<string>(record["lob_to"]),
+                    TxnNum = NullCheck<int>(record["txn_num"]),
+                    PostDate = (DBNull.Value == record["post_date"]) ? null : record["post_date"] as DateTime?,
+                    EntryDate = NullCheck<DateTime>(record["entry_date"]),
+                    Credit = NullCheck<decimal>(record["credit"]),
+                    Debit = NullCheck<decimal>(record["debit"]),
+                    EntityKey = NullCheck<int>(record["entity_key"]),
+                    EntityTypeKey = NullCheck<int>(record["entity_type_key"]),
+                    AuditAddUserId = NullCheck<string>(record["audit_add_user_id"]),
+                    AuditAddDatetime = NullCheck<DateTime>(record["audit_add_datetime"]),
+                    AuditUpdateUserId = NullCheck<string>(record["audit_update_user_id"]),
+                    AuditUpdateDatetime = NullCheck<DateTime>(record["audit_update_datetime"])
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new MapException($"LedgerTxnMap Exception occured: {ex.Message}", ex);
+            }
+        } // Map function closer
+
         public List<SqlParameter> MapParamsForUpsert(LedgerTxnData entity)
         {
             var sql_params = new List<SqlParameter>();

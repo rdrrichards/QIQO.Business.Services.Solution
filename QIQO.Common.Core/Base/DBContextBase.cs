@@ -259,5 +259,39 @@ namespace QIQO.Common.Core
 
         public string Database => con.Database;
         public string Server => con.DataSource;
+
+        protected SqlParameter BuildParameter(SqlParameter sparam)
+        {
+            return new SqlParameter()
+            {
+                ParameterName = sparam.ParameterName,
+                Value = sparam.Value,
+                DbType = sparam.DbType,
+                Direction = sparam.Direction,
+                TypeName = sparam.TypeName
+            };
+        }
+
+        public SqlDataReader ExecuteProcedureAsSqlDataReader(string procedureName, IEnumerable<SqlParameter> parameters)
+        {
+            var cmd = new SqlCommand(procedureName, con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            foreach (var sparam in parameters)
+            {
+                cmd.Parameters.Add(BuildParameter(sparam));
+            }
+            con.Open();
+            return cmd.ExecuteReader(CommandBehavior.CloseConnection);
+        }
+
+        public SqlDataReader ExecuteProcedureAsSqlDataReader(string procedureName)
+        {
+            var cmd = new SqlCommand(procedureName, con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            con.Open();
+            return cmd.ExecuteReader(CommandBehavior.CloseConnection);
+        }
+
     }
 }

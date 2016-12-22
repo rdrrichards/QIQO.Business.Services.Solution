@@ -26,6 +26,24 @@ namespace QIQO.Data.Maps
             }
         }
 
+        public RoleClaimData Map(IDataReader record)
+        {
+            try
+            {
+                return new RoleClaimData()
+                {
+                    Id = NullCheck<Guid>(record["ClaimId"]),
+                    RoleID = NullCheck<Guid>(record["RoleId"]),
+                    ClaimType = NullCheck<string>(record["ClaimType"]),
+                    ClaimValue = NullCheck<string>(record["ClaimValue"])
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new MapException($"RoleClaimMap Exception occured: {ex.Message}", ex);
+            }
+        }
+
         public List<SqlParameter> MapParamsForUpsert(RoleClaimData entity)
         {
             var sql_params = new List<SqlParameter>();

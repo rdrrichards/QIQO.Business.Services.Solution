@@ -29,6 +29,27 @@ namespace QIQO.Data.Maps
             }
         } // Map function closer
 
+        public AddressPostalData Map(IDataReader record)
+        {
+            try
+            {
+                return new AddressPostalData()
+                {
+                    Country = NullCheck<string>(record["country"]),
+                    PostalCode = NullCheck<string>(record["postal_code"]),
+                    StateCode = NullCheck<string>(record["state_code"]),
+                    StateFullName = NullCheck<string>(record["state_full_name"]),
+                    CityName = NullCheck<string>(record["city_name"]),
+                    CountyName = NullCheck<string>(record["county_name"]),
+                    TimeZone = NullCheck<int>(record["time_zone"])
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new MapException($"AddressPostalMap Exception occured: {ex.Message}", ex);
+            }
+        } // Map function closer
+
         public List<SqlParameter> MapParamsForUpsert(AddressPostalData entity)
         {
             var sql_params = new List<SqlParameter>();

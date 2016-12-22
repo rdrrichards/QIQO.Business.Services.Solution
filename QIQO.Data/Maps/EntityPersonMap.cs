@@ -36,6 +36,33 @@ namespace QIQO.Data.Maps
             }
         } // Map function closer
 
+        public EntityPersonData Map(IDataReader record)
+        {
+            try
+            {
+                return new EntityPersonData()
+                {
+                    EntityPersonKey = NullCheck<int>(record["entity_person_key"]),
+                    PersonKey = NullCheck<int>(record["person_key"]),
+                    PersonTypeKey = NullCheck<int>(record["person_type_key"]),
+                    PersonRole = NullCheck<string>(record["person_role"]),
+                    EntityKey = NullCheck<int>(record["entity_key"]),
+                    EntityTypeKey = NullCheck<int>(record["entity_type_key"]),
+                    Comment = NullCheck<string>(record["comment"]),
+                    StartDate = NullCheck<DateTime>(record["start_date"]),
+                    EndDate = NullCheck<DateTime>(record["end_date"]),
+                    AuditAddUserId = NullCheck<string>(record["audit_add_user_id"]),
+                    AuditAddDatetime = NullCheck<DateTime>(record["audit_add_datetime"]),
+                    AuditUpdateUserId = NullCheck<string>(record["audit_update_user_id"]),
+                    AuditUpdateDatetime = NullCheck<DateTime>(record["audit_update_datetime"])
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new MapException($"EntityPersonMap Exception occured: {ex.Message}", ex);
+            }
+        } // Map function closer
+
         public List<SqlParameter> MapParamsForUpsert(EntityPersonData entity)
         {
             var sql_params = new List<SqlParameter>();

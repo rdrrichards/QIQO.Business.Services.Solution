@@ -32,6 +32,30 @@ namespace QIQO.Data.Maps
                 throw new MapException($"ChartOfAccountsMap Exception occured: {ex.Message}", ex);
             }
         } // Map function closer
+        public ChartOfAccountsData Map(IDataReader record)
+        {
+            try
+            {
+                return new ChartOfAccountsData()
+                {
+                    CoaKey = NullCheck<int>(record["coa_key"]),
+                    CompanyKey = NullCheck<int>(record["company_key"]),
+                    AcctNo = NullCheck<string>(record["acct_no"]),
+                    AcctType = NullCheck<string>(record["acct_type"]),
+                    AcctName = NullCheck<string>(record["acct_name"]),
+                    BalanceType = NullCheck<string>(record["balance_type"]),
+                    BankAcctFlg = NullCheck<string>(record["bank_acct_flg"]),
+                    AuditAddUserId = NullCheck<string>(record["audit_add_user_id"]),
+                    AuditAddDatetime = NullCheck<DateTime>(record["audit_add_datetime"]),
+                    AuditUpdateUserId = NullCheck<string>(record["audit_update_user_id"]),
+                    AuditUpdateDatetime = NullCheck<DateTime>(record["audit_update_datetime"])
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new MapException($"ChartOfAccountsMap Exception occured: {ex.Message}", ex);
+            }
+        } // Map function closer
 
         public List<SqlParameter> MapParamsForUpsert(ChartOfAccountsData entity)
         {

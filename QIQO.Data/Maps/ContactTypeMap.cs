@@ -32,6 +32,29 @@ namespace QIQO.Data.Maps
             }
         } // Map function closer
 
+        public ContactTypeData Map(IDataReader record)
+        {
+            try
+            {
+                return new ContactTypeData()
+                {
+                    ContactTypeKey = NullCheck<int>(record["contact_type_key"]),
+                    ContactTypeCategory = NullCheck<string>(record["contact_type_category"]),
+                    ContactTypeCode = NullCheck<string>(record["contact_type_code"]),
+                    ContactTypeName = NullCheck<string>(record["contact_type_name"]),
+                    ContactTypeDesc = NullCheck<string>(record["contact_type_desc"]),
+                    AuditAddUserId = NullCheck<string>(record["audit_add_user_id"]),
+                    AuditAddDatetime = NullCheck<DateTime>(record["audit_add_datetime"]),
+                    AuditUpdateUserId = NullCheck<string>(record["audit_update_user_id"]),
+                    AuditUpdateDatetime = NullCheck<DateTime>(record["audit_update_datetime"])
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new MapException($"ContactTypeMap Exception occured: {ex.Message}", ex);
+            }
+        } // Map function closer
+
         public List<SqlParameter> MapParamsForUpsert(ContactTypeData entity)
         {
             var sql_params = new List<SqlParameter>();

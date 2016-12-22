@@ -30,6 +30,28 @@ namespace QIQO.Data.Maps
             }
         } // Map function closer
 
+        public AddressTypeData Map(IDataReader record)
+        {
+            try
+            {
+                return new AddressTypeData()
+                {
+                    AddressTypeKey = NullCheck<int>(record["address_type_key"]),
+                    AddressTypeCode = NullCheck<string>(record["address_type_code"]),
+                    AddressTypeName = NullCheck<string>(record["address_type_name"]),
+                    AddressTypeDesc = NullCheck<string>(record["address_type_desc"]),
+                    AuditAddUserId = NullCheck<string>(record["audit_add_user_id"]),
+                    AuditAddDatetime = NullCheck<DateTime>(record["audit_add_datetime"]),
+                    AuditUpdateUserId = NullCheck<string>(record["audit_update_user_id"]),
+                    AuditUpdateDatetime = NullCheck<DateTime>(record["audit_update_datetime"])
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new MapException($"AddressTypeMap Exception occured: {ex.Message}", ex);
+            }
+        } // Map function closer
+
         public List<SqlParameter> MapParamsForUpsert(AddressTypeData entity)
         {
             var sql_params = new List<SqlParameter>();
