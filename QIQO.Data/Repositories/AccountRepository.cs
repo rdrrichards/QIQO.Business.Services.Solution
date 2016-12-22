@@ -24,9 +24,7 @@ namespace QIQO.Data.Repositories
             Log.Info("Accessing AccountRepo GetAll function");
             using (entity_context)
             {
-                var ds = entity_context.ExecuteProcedureAsDataSet("usp_account_all");
-                Log.Info("AccountRepo ExecuteProcedureAsDataSet function call successful");
-                return MapRows(ds);
+                return MapRows(entity_context.ExecuteProcedureAsSqlDataReader("usp_account_all"));
             }
         }
 
@@ -36,36 +34,30 @@ namespace QIQO.Data.Repositories
             using (entity_context)
             {
                 var pcol = new List<SqlParameter>() { Mapper.BuildParam("@company_key", company.CompanyKey) };
-                var ds = entity_context.ExecuteProcedureAsDataSet("usp_account_all_by_company", pcol);
-                Log.Info("AccountRepo ExecuteProcedureAsDataSet function call successful");
-                return MapRows(ds);
+                return MapRows(entity_context.ExecuteProcedureAsSqlDataReader("usp_account_all_by_company", pcol));
             }
         }
 
         public IEnumerable<AccountData> GetAll(PersonData employee)
         {
             Log.Info("Accessing AccountRepo GetAll function");
+            var pcol = new List<SqlParameter>() { Mapper.BuildParam("@person_key", employee.PersonKey) };
             using (entity_context)
             {
-                var pcol = new List<SqlParameter>() { Mapper.BuildParam("@person_key", employee.PersonKey) };
-                var ds = entity_context.ExecuteProcedureAsDataSet("usp_account_all_by_person", pcol);
-                Log.Info("AccountRepo ExecuteProcedureAsDataSet function call successful");
-                return MapRows(ds);
+                return MapRows(entity_context.ExecuteProcedureAsSqlDataReader("usp_account_all_by_person", pcol));
             }
         }
 
         public IEnumerable<AccountData> FindAll(int company_key, string pattern)
         {
             Log.Info("Accessing AccountRepo GetAll function");
+            var pcol = new List<SqlParameter>() {
+                Mapper.BuildParam("@company_key", company_key),
+                Mapper.BuildParam("@account_pattern", pattern)
+            };
             using (entity_context)
             {
-                var pcol = new List<SqlParameter>() {
-                    Mapper.BuildParam("@company_key", company_key),
-                    Mapper.BuildParam("@account_pattern", pattern)
-                };
-                var ds = entity_context.ExecuteProcedureAsDataSet("usp_account_find", pcol);
-                Log.Info("AccountRepo ExecuteProcedureAsDataSet function call successful");
-                return MapRows(ds);
+                return MapRows(entity_context.ExecuteProcedureAsSqlDataReader("usp_account_find", pcol));
             }
         }
 
@@ -75,9 +67,7 @@ namespace QIQO.Data.Repositories
             var pcol = new List<SqlParameter>() { Mapper.BuildParam("@account_key", account_key) };
             using (entity_context)
             {
-                var ds = entity_context.ExecuteProcedureAsDataSet("usp_account_get", pcol);
-                Log.Info("AccountRepo (GetByID) Passed ExecuteProcedureAsDataSet (usp_account_get) function");
-                return MapRow(ds);
+                return MapRow(entity_context.ExecuteProcedureAsSqlDataReader("usp_account_get", pcol));
             }
         }
 
@@ -91,9 +81,7 @@ namespace QIQO.Data.Repositories
 
             using (entity_context)
             {
-                var ds = entity_context.ExecuteProcedureAsDataSet("usp_account_get_c", pcol);
-                Log.Info("AccountRepo (GetByCode) Passed ExecuteProcedureAsDataSet (usp_account_get_c) function");
-                return MapRow(ds);
+                return MapRow(entity_context.ExecuteProcedureAsSqlDataReader("usp_account_get_c", pcol));
             }
         }
 
