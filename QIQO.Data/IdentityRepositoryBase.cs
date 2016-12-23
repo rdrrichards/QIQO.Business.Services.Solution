@@ -39,14 +39,17 @@ namespace QIQO.Data
         {
             var rows = new List<T>();
             while (dr.Read())
-                rows.Add(MapRow(dr));
+                rows.Add(Mapper.Map(dr));
             dr.Close();
             return rows;
         }
 
-        protected T MapRow(IDataReader ds)
+        protected T MapRow(DbDataReader dr)
         {
-            return Mapper.Map(ds);
+            if (dr.Read())
+                return Mapper.Map(dr);
+            else
+                return new T();
         }
 
         public abstract void Delete(T entity);

@@ -4,7 +4,6 @@ using QIQO.Data.Entities;
 using QIQO.Data.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
 
 namespace QIQO.Data.Repositories
@@ -23,9 +22,7 @@ namespace QIQO.Data.Repositories
             Log.Info("Accessing AddressRepo GetAll function");
             using (entity_context)
             {
-                var ds = entity_context.ExecuteProcedureAsDataSet("usp_address_all");
-                Log.Info("AddressRepo ExecuteProcedureAsDataSet function call successful");
-                return MapRows(ds);
+                return MapRows(entity_context.ExecuteProcedureAsSqlDataReader("usp_address_all"));
             }
         }
 
@@ -33,26 +30,22 @@ namespace QIQO.Data.Repositories
         {
             Log.Info("Accessing AddressRepo GetAll by keys function");
             var pcol = new List<SqlParameter>() { 
-                new SqlParameter("@entity_key", entity_key),
-                new SqlParameter("@entity_type_key", entity_type)
+                Mapper.BuildParam("@entity_key", entity_key),
+                Mapper.BuildParam("@entity_type_key", entity_type)
             };
             using (entity_context)
             {
-                var ds = entity_context.ExecuteProcedureAsDataSet("usp_address_all_by_entity", pcol);
-                Log.Info("AddressRepo Passed ExecuteProcedureAsDataSet (usp_address_all_by_entity) function");
-                return MapRows(ds);
+                return MapRows(entity_context.ExecuteProcedureAsSqlDataReader("usp_address_all_by_entity", pcol));
             }
         }
 
         public override AddressData GetByID(int address_key)
         {
             Log.Info("Accessing AddressRepo GetByID function");
-            var pcol = new List<SqlParameter>() { new SqlParameter("@address_key", address_key) };
+            var pcol = new List<SqlParameter>() { Mapper.BuildParam("@address_key", address_key) };
             using (entity_context)
             {
-                var ds = entity_context.ExecuteProcedureAsDataSet("usp_address_get", pcol);
-                Log.Info("AddressRepo (GetByID) Passed ExecuteProcedureAsDataSet (usp_address_get) function");
-                return MapRow(ds);
+                return MapRow(entity_context.ExecuteProcedureAsSqlDataReader("usp_address_get", pcol));
             }
         }
 
@@ -60,14 +53,12 @@ namespace QIQO.Data.Repositories
         {
             Log.Info("Accessing AddressRepo GetByCode function");
             var pcol = new List<SqlParameter>() {
-                new SqlParameter("@address_code", address_code),
-                new SqlParameter("@company_code", entity_code)
+                Mapper.BuildParam("@address_code", address_code),
+                Mapper.BuildParam("@company_code", entity_code)
             };
             using (entity_context)
             {
-                var ds = entity_context.ExecuteProcedureAsDataSet("usp_address_get_c", pcol);
-                Log.Info("AddressRepo (GetByCode) Passed ExecuteProcedureAsDataSet (usp_address_get_c) function");
-                return MapRow(ds);
+                return MapRow(entity_context.ExecuteProcedureAsSqlDataReader("usp_address_get_c", pcol));
             }
         }
 
@@ -101,7 +92,7 @@ namespace QIQO.Data.Repositories
         public override void DeleteByCode(string entity_code)
         {
             Log.Info("Accessing AddressRepo DeleteByCode function");
-            var pcol = new List<SqlParameter>() { new SqlParameter("@address_code", entity_code) };
+            var pcol = new List<SqlParameter>() { Mapper.BuildParam("@address_code", entity_code) };
             pcol.Add(Mapper.GetOutParam());
             using (entity_context)
             {

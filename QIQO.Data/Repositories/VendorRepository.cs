@@ -4,7 +4,6 @@ using QIQO.Data.Entities;
 using QIQO.Data.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
 
 namespace QIQO.Data.Repositories
@@ -23,21 +22,17 @@ namespace QIQO.Data.Repositories
             Log.Info("Accessing VendorRepo GetAll function");
             using (entity_context)
             {
-                var ds = entity_context.ExecuteProcedureAsDataSet("usp_vendor_all");
-                Log.Info("VendorRepo ExecuteProcedureAsDataSet function call successful");
-                return MapRows(ds);
+                return MapRows(entity_context.ExecuteProcedureAsSqlDataReader("usp_vendor_all"));
             }
         }
 
         public override VendorData GetByID(int vendor_key)
         {
             Log.Info("Accessing VendorRepo GetByID function");
-            var pcol = new List<SqlParameter>() { new SqlParameter("@vendor_key", vendor_key) };
+            var pcol = new List<SqlParameter>() { Mapper.BuildParam("@vendor_key", vendor_key) };
             using (entity_context)
             {
-                var ds = entity_context.ExecuteProcedureAsDataSet("usp_vendor_get", pcol);
-                Log.Info("VendorRepo (GetByID) Passed ExecuteProcedureAsDataSet (usp_vendor_get) function");
-                return MapRow(ds);
+                return MapRow(entity_context.ExecuteProcedureAsSqlDataReader("usp_vendor_get", pcol));
             }
         }
 
@@ -45,14 +40,12 @@ namespace QIQO.Data.Repositories
         {
             Log.Info("Accessing VendorRepo GetByCode function");
             var pcol = new List<SqlParameter>() {
-                new SqlParameter("@vendor_code", vendor_code),
-                new SqlParameter("@company_code", entity_code)
+                Mapper.BuildParam("@vendor_code", vendor_code),
+                Mapper.BuildParam("@company_code", entity_code)
             };
             using (entity_context)
             {
-                var ds = entity_context.ExecuteProcedureAsDataSet("usp_vendor_get_c", pcol);
-                Log.Info("VendorRepo (GetByCode) Passed ExecuteProcedureAsDataSet (usp_vendor_get_c) function");
-                return MapRow(ds);
+                return MapRow(entity_context.ExecuteProcedureAsSqlDataReader("usp_vendor_get_c", pcol));
             }
         }
 
@@ -86,7 +79,7 @@ namespace QIQO.Data.Repositories
         public override void DeleteByCode(string entity_code)
         {
             Log.Info("Accessing VendorRepo DeleteByCode function");
-            var pcol = new List<SqlParameter>() { new SqlParameter("@vendor_code", entity_code) };
+            var pcol = new List<SqlParameter>() { Mapper.BuildParam("@vendor_code", entity_code) };
             pcol.Add(Mapper.GetOutParam());
             using (entity_context)
             {

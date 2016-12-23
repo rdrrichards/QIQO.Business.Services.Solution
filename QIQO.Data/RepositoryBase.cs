@@ -52,12 +52,17 @@ namespace QIQO.Data
             return rows;
         }
 
-        protected T MapRow(IDataReader ds)
+        protected T MapRow(DbDataReader dr)
         {
-            if (ds.Read())
-                return Mapper.Map(ds);
+            if (dr.Read())
+                return Mapper.Map(dr);
             else
                 return new T();
+            //var row = new T();
+            //while (dr.Read())
+            //    row = Mapper.Map(dr);
+            //dr.Close();
+            //return row;
         }
 
         public abstract void Delete(T entity);

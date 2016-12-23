@@ -4,7 +4,6 @@ using QIQO.Data.Entities;
 using QIQO.Data.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
 
 namespace QIQO.Data.Repositories
@@ -23,85 +22,69 @@ namespace QIQO.Data.Repositories
             Log.Info("Accessing InvoiceRepo GetAll function");
             using (entity_context)
             {
-                var ds = entity_context.ExecuteProcedureAsDataSet("usp_invoice_all");
-                Log.Info("InvoiceRepo ExecuteProcedureAsDataSet function call successful");
-                return MapRows(ds);
+                return MapRows(entity_context.ExecuteProcedureAsSqlDataReader("usp_invoice_all"));
             }
         }
 
         public IEnumerable<InvoiceData> GetAll(CompanyData company)
         {
             Log.Info("Accessing InvoiceRepo GetAll by CompanyData function");
-            var pcol = new List<SqlParameter>() { new SqlParameter("@company_key", company.CompanyKey) };
+            var pcol = new List<SqlParameter>() { Mapper.BuildParam("@company_key", company.CompanyKey) };
             using (entity_context)
             {
-                var ds = entity_context.ExecuteProcedureAsDataSet("usp_invoice_all_by_company", pcol);
-                Log.Info("InvoiceRepo Passed ExecuteProcedureAsDataSet (usp_invoice_all_by_company) function");
-                return MapRows(ds);
+                return MapRows(entity_context.ExecuteProcedureAsSqlDataReader("usp_invoice_all_by_company", pcol));
             }
         }
 
         public IEnumerable<InvoiceData> GetAll(AccountData account)
         {
             Log.Info("Accessing InvoiceRepo GetAll by AccountData function");
-            var pcol = new List<SqlParameter>() { new SqlParameter("@account_key", account.AccountKey) };
+            var pcol = new List<SqlParameter>() { Mapper.BuildParam("@account_key", account.AccountKey) };
             using (entity_context)
             {
-                var ds = entity_context.ExecuteProcedureAsDataSet("usp_invoice_all_by_account", pcol);
-                Log.Info("InvoiceRepo Passed ExecuteProcedureAsDataSet (usp_invoice_all_by_account) function");
-                return MapRows(ds);
+                return MapRows(entity_context.ExecuteProcedureAsSqlDataReader("usp_invoice_all_by_account", pcol));
             }
         }
         public IEnumerable<InvoiceData> FindAll(int company_key, string pattern)
         {
             Log.Info("Accessing InvoiceRepo GetAll function");
+            var pcol = new List<SqlParameter>() {
+                Mapper.BuildParam("@company_key", company_key),
+                Mapper.BuildParam("@test_pattern", pattern)
+            };
             using (entity_context)
             {
-                var pcol = new List<SqlParameter>() {
-                    new SqlParameter("@company_key", company_key),
-                    new SqlParameter("@test_pattern", pattern)
-                };
-                var ds = entity_context.ExecuteProcedureAsDataSet("usp_invoice_find", pcol);
-                Log.Info("InvoiceRepo ExecuteProcedureAsDataSet function call successful");
-                return MapRows(ds);
+                return MapRows(entity_context.ExecuteProcedureAsSqlDataReader("usp_invoice_find", pcol));
             }
         }
 
         public IEnumerable<InvoiceData> GetAllOpen(CompanyData company)
         {
             Log.Info("Accessing InvoiceRepo GetAllOpen by CompanyData function");
-            var pcol = new List<SqlParameter>() { new SqlParameter("@company_key", company.CompanyKey) };
+            var pcol = new List<SqlParameter>() { Mapper.BuildParam("@company_key", company.CompanyKey) };
             using (entity_context)
             {
-                var ds = entity_context.ExecuteProcedureAsDataSet("usp_invoice_open_by_company", pcol);
-                Log.Info("InvoiceRepo Passed ExecuteProcedureAsDataSet (usp_invoice_open_by_company) function");
-
-                List<InvoiceData> rows = new List<InvoiceData>();
-                return MapRows(ds);
+                return MapRows(entity_context.ExecuteProcedureAsSqlDataReader("usp_invoice_open_by_company", pcol));
             }
         }
 
         public IEnumerable<InvoiceData> GetAllOpen(AccountData account)
         {
             Log.Info("Accessing InvoiceRepo GetAllOpen by AccountData function");
-            var pcol = new List<SqlParameter>() { new SqlParameter("@account_key", account.AccountKey) };
+            var pcol = new List<SqlParameter>() { Mapper.BuildParam("@account_key", account.AccountKey) };
             using (entity_context)
             {
-                var ds = entity_context.ExecuteProcedureAsDataSet("usp_invoice_open_by_account", pcol);
-                Log.Info("InvoiceRepo Passed ExecuteProcedureAsDataSet (usp_invoice_open_by_account) function");
-                return MapRows(ds);
+                return MapRows(entity_context.ExecuteProcedureAsSqlDataReader("usp_invoice_open_by_account", pcol));
             }
         }
 
         public override InvoiceData GetByID(int invoice_key)
         {
             Log.Info("Accessing InvoiceRepo GetByID function");
-            var pcol = new List<SqlParameter>() { new SqlParameter("@invoice_key", invoice_key) };
+            var pcol = new List<SqlParameter>() { Mapper.BuildParam("@invoice_key", invoice_key) };
             using (entity_context)
             {
-                var ds = entity_context.ExecuteProcedureAsDataSet("usp_invoice_get", pcol);
-                Log.Info("InvoiceRepo (GetByID) Passed ExecuteProcedureAsDataSet (usp_invoice_get) function");
-                return MapRow(ds);
+                return MapRow(entity_context.ExecuteProcedureAsSqlDataReader("usp_invoice_get", pcol));
             }
         }
 
@@ -109,14 +92,12 @@ namespace QIQO.Data.Repositories
         {
             Log.Info("Accessing InvoiceRepo GetByCode function");
             var pcol = new List<SqlParameter>() {
-                new SqlParameter("@invoice_code", invoice_code),
-                new SqlParameter("@company_code", entity_code)
+                Mapper.BuildParam("@invoice_code", invoice_code),
+                Mapper.BuildParam("@company_code", entity_code)
             };
             using (entity_context)
             {
-                var ds = entity_context.ExecuteProcedureAsDataSet("usp_invoice_get_c", pcol);
-                Log.Info("InvoiceRepo (GetByCode) Passed ExecuteProcedureAsDataSet (usp_invoice_get_c) function");
-                return MapRow(ds);
+                return MapRow(entity_context.ExecuteProcedureAsSqlDataReader("usp_invoice_get_c", pcol));
             }
         }
 
@@ -150,7 +131,7 @@ namespace QIQO.Data.Repositories
         public override void DeleteByCode(string entity_code)
         {
             Log.Info("Accessing InvoiceRepo DeleteByCode function");
-            var pcol = new List<SqlParameter>() { new SqlParameter("@invoice_code", entity_code) };
+            var pcol = new List<SqlParameter>() { Mapper.BuildParam("@invoice_code", entity_code) };
             pcol.Add(Mapper.GetOutParam());
             using (entity_context)
             {
