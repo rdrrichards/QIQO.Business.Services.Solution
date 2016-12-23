@@ -53,6 +53,7 @@ namespace QIQO.Business.Engines
 
                 order_data.OrderItemCount = order_header.OrderItems.Sum(item => item.OrderItemQuantity);
                 order_data.OrderValueSum = order_header.OrderItems.Sum(item => item.OrderItemLineSum);
+                order_data.OrderShipDate = order_header.OrderItems.Min(item => item.OrderItemShipDate).GetValueOrDefault();
                 order_header_key = _order_header_repo.Save(order_data);
 
                 Log.Info($"Order Item start [{order_header.OrderItems.Count}] items to process");
