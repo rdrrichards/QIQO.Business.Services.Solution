@@ -72,6 +72,7 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\QIQO.Business.Bootstrapper\QIQO.Business.Bootstrapper.csproj">
