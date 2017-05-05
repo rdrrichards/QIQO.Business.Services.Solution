@@ -2,6 +2,6 @@
 {
     public interface IBusinessEngineFactory
     {
-        T GetBusinessEngine<T>() where T : IBusinessEngine;
+        T GetBusinessEngine<T>() where T : class, IBusinessEngine;
     }
 }

@@ -35,7 +35,7 @@ namespace QIQO.Business.Services.Behaviors
             //Console.WriteLine("************************************************************************");
             //Console.WriteLine($"PERFORMING AUDIT ON {operation} FOR OBJECT {obejct_to_audit.ToString()}");
             //Console.WriteLine("************************************************************************");
-            var audit_be = Unity.Container.Resolve<IAuditLogBusinessEngine>();
+            var audit_be = IocContainer.Container.GetInstance<IAuditLogBusinessEngine>();
             audit_be.AuditObject(_service_name, operation, object_to_audit);
             audit_be = null;
         }

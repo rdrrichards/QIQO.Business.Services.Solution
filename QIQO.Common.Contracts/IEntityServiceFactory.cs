@@ -2,6 +2,6 @@
 {
     public interface IEntityServiceFactory
     {
-        T GetEntityService<T>() where T : IEntityService;
+        T GetEntityService<T>() where T : class, IEntityService;
     }
 }

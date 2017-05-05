@@ -1,4 +1,5 @@
 ﻿using System;
+using SimpleInjector.Integration.Wcf;
 using SM = System.ServiceModel;
 using QIQO.Common.Core;
 using QIQO.Business.Bootstrapper;
@@ -34,28 +35,28 @@ namespace QIQO.WindowsServiceHost
         protected override void OnStart(string[] args)
         {
             Log.Info("Starting the application...");
-            Unity.Container = UnityLoader.Init();
+            IocContainer.Container = IocLoader.Init();
 
-            hostAccountService = new UnityServiceHost(Unity.Container, typeof(AccountService));
-            hostAddressService = new UnityServiceHost(Unity.Container, typeof(AddressService));
-            hostAuditService = new UnityServiceHost(Unity.Container, typeof(AuditService));
-            hostCompanyService = new UnityServiceHost(Unity.Container, typeof(CompanyService));
-            hostEmployeeService = new UnityServiceHost(Unity.Container, typeof(EmployeeService));
-            hostEntityProductService = new UnityServiceHost(Unity.Container, typeof(EntityProductService));
-            hostFeeScheduleService = new UnityServiceHost(Unity.Container, typeof(FeeScheduleService));
-            hostInvoiceService = new UnityServiceHost(Unity.Container, typeof(InvoiceService));
-            hostLedgerService = new UnityServiceHost(Unity.Container, typeof(LedgerService));
-            hostOrderService = new UnityServiceHost(Unity.Container, typeof(OrderService));
-            hostProductService = new UnityServiceHost(Unity.Container, typeof(ProductService));
-            hostSessionService = new UnityServiceHost(Unity.Container, typeof(SessionService));
-            hostTypeService = new UnityServiceHost(Unity.Container, typeof(TypeService));
-            hostIdentityUserService = new UnityServiceHost(Unity.Container, typeof(IdentityUserService));
-            hostIdentityRoleService = new UnityServiceHost(Unity.Container, typeof(IdentityRoleService));
+            hostAccountService = new SimpleInjectorServiceHost(IocContainer.Container, typeof(AccountService));
+            hostAddressService = new SimpleInjectorServiceHost(IocContainer.Container, typeof(AddressService));
+            hostAuditService = new SimpleInjectorServiceHost(IocContainer.Container, typeof(AuditService));
+            hostCompanyService = new SimpleInjectorServiceHost(IocContainer.Container, typeof(CompanyService));
+            hostEmployeeService = new SimpleInjectorServiceHost(IocContainer.Container, typeof(EmployeeService));
+            hostEntityProductService = new SimpleInjectorServiceHost(IocContainer.Container, typeof(EntityProductService));
+            hostFeeScheduleService = new SimpleInjectorServiceHost(IocContainer.Container, typeof(FeeScheduleService));
+            hostInvoiceService = new SimpleInjectorServiceHost(IocContainer.Container, typeof(InvoiceService));
+            hostLedgerService = new SimpleInjectorServiceHost(IocContainer.Container, typeof(LedgerService));
+            hostOrderService = new SimpleInjectorServiceHost(IocContainer.Container, typeof(OrderService));
+            hostProductService = new SimpleInjectorServiceHost(IocContainer.Container, typeof(ProductService));
+            hostSessionService = new SimpleInjectorServiceHost(IocContainer.Container, typeof(SessionService));
+            hostTypeService = new SimpleInjectorServiceHost(IocContainer.Container, typeof(TypeService));
+            hostIdentityUserService = new SimpleInjectorServiceHost(IocContainer.Container, typeof(IdentityUserService));
+            hostIdentityRoleService = new SimpleInjectorServiceHost(IocContainer.Container, typeof(IdentityRoleService));
 
-            //using (Unity.Container)
+            //using (IocContainer.Container)
             //{
 
-            Log.Info("Configuring UnityServiceHost...");
+            Log.Info("Configuring SimpleInjectorServiceHost...");
 
             try
             {

@@ -1,4 +1,5 @@
 ﻿using System;
+using SimpleInjector.Integration.Wcf;
 using SM = System.ServiceModel;
 using QIQO.Business.Services;
 using QIQO.Common.Core;
@@ -21,34 +22,34 @@ namespace QIQO.ConsoleHost
 
             //Logger logr = new Logger("QIQO.Common.Core");
             Log.Info("Starting the application...");
-            Unity.Container = UnityLoader.Init();
+            IocContainer.Container = IocLoader.Init();
 
             //using (IUnityContainer container = new UnityContainer())
-            using (Unity.Container)
+            using (IocContainer.Container)
             {
                 //RegisterTypes(container);
-                //Unity.Container = container;
+                //IocContainer.Container = container;
 
                 // Step 1 Create a URI to serve as the base address.
                 //Uri baseAddress = new Uri("net.tcp://localhost:7478/");
 
-                Log.Info("Configuring UnityServiceHost...");
+                Log.Info("Configuring SimpleInjectorServiceHost...");
                 // Step 2 Create a ServiceHost instance
-                SM.ServiceHost hostAccountService = new UnityServiceHost(Unity.Container, typeof(AccountService));
-                SM.ServiceHost hostAddressService = new UnityServiceHost(Unity.Container, typeof(AddressService));
-                SM.ServiceHost hostAuditService = new UnityServiceHost(Unity.Container, typeof(AuditService));
-                SM.ServiceHost hostCompanyService = new UnityServiceHost(Unity.Container, typeof(CompanyService));
-                SM.ServiceHost hostEmployeeService = new UnityServiceHost(Unity.Container, typeof(EmployeeService));
-                SM.ServiceHost hostEntityProductService = new UnityServiceHost(Unity.Container, typeof(EntityProductService));
-                SM.ServiceHost hostFeeScheduleService = new UnityServiceHost(Unity.Container, typeof(FeeScheduleService));
-                SM.ServiceHost hostInvoiceService = new UnityServiceHost(Unity.Container, typeof(InvoiceService));
-                SM.ServiceHost hostLedgerService = new UnityServiceHost(Unity.Container, typeof(LedgerService));
-                SM.ServiceHost hostOrderService = new UnityServiceHost(Unity.Container, typeof(OrderService));
-                SM.ServiceHost hostProductService = new UnityServiceHost(Unity.Container, typeof(ProductService));
-                SM.ServiceHost hostSessionService = new UnityServiceHost(Unity.Container, typeof(SessionService));
-                SM.ServiceHost hostTypeService = new UnityServiceHost(Unity.Container, typeof(TypeService));
-                SM.ServiceHost hostIdentityUserService = new UnityServiceHost(Unity.Container, typeof(IdentityUserService));
-                SM.ServiceHost hostIdentityRoleService = new UnityServiceHost(Unity.Container, typeof(IdentityRoleService));
+                SM.ServiceHost hostAccountService = new SimpleInjectorServiceHost(IocContainer.Container, typeof(AccountService));
+                SM.ServiceHost hostAddressService = new SimpleInjectorServiceHost(IocContainer.Container, typeof(AddressService));
+                SM.ServiceHost hostAuditService = new SimpleInjectorServiceHost(IocContainer.Container, typeof(AuditService));
+                SM.ServiceHost hostCompanyService = new SimpleInjectorServiceHost(IocContainer.Container, typeof(CompanyService));
+                SM.ServiceHost hostEmployeeService = new SimpleInjectorServiceHost(IocContainer.Container, typeof(EmployeeService));
+                SM.ServiceHost hostEntityProductService = new SimpleInjectorServiceHost(IocContainer.Container, typeof(EntityProductService));
+                SM.ServiceHost hostFeeScheduleService = new SimpleInjectorServiceHost(IocContainer.Container, typeof(FeeScheduleService));
+                SM.ServiceHost hostInvoiceService = new SimpleInjectorServiceHost(IocContainer.Container, typeof(InvoiceService));
+                SM.ServiceHost hostLedgerService = new SimpleInjectorServiceHost(IocContainer.Container, typeof(LedgerService));
+                SM.ServiceHost hostOrderService = new SimpleInjectorServiceHost(IocContainer.Container, typeof(OrderService));
+                SM.ServiceHost hostProductService = new SimpleInjectorServiceHost(IocContainer.Container, typeof(ProductService));
+                SM.ServiceHost hostSessionService = new SimpleInjectorServiceHost(IocContainer.Container, typeof(SessionService));
+                SM.ServiceHost hostTypeService = new SimpleInjectorServiceHost(IocContainer.Container, typeof(TypeService));
+                SM.ServiceHost hostIdentityUserService = new SimpleInjectorServiceHost(IocContainer.Container, typeof(IdentityUserService));
+                SM.ServiceHost hostIdentityRoleService = new SimpleInjectorServiceHost(IocContainer.Container, typeof(IdentityRoleService));
 
                 try
                 {
