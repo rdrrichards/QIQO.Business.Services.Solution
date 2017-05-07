@@ -34,8 +34,9 @@ namespace QIQO.Business.Bootstrapper
 
             container.Verify();
             // try { container.Verify(); } catch { }
-            
-;
+
+            SimpleInjectorServiceHostFactory.SetContainer(container);
+
             return container;
         }
 
