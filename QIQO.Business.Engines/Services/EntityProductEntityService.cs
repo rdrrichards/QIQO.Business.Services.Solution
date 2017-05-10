@@ -1,4 +1,5 @@
-﻿using QIQO.Business.Contracts;
+﻿using System;
+using QIQO.Business.Contracts;
 using QIQO.Business.Entities;
 using QIQO.Data.Entities;
 
@@ -6,6 +7,11 @@ namespace QIQO.Business.Engines
 {
     public class EntityProductEntityService : IEntityProductEntityService
     {
+        public EntityProduct Map(EntityProductData ent)
+        {
+            throw new NotImplementedException();
+        }
+
         public EntityProductData Map(EntityProduct entity_product)
         {
             return new EntityProductData()

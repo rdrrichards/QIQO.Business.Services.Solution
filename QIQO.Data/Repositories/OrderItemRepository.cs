@@ -4,7 +4,6 @@ using QIQO.Data.Entities;
 using QIQO.Data.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
 
 namespace QIQO.Data.Repositories
@@ -23,48 +22,40 @@ namespace QIQO.Data.Repositories
             Log.Info("Accessing OrderItemRepo GetAll function");
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_order_item_all");
-                Log.Info("OrderItemRepo ExecuteProcedureAsDataSet function call successful");
-                return MapRows(ds);
+                return MapRows(entity_context.ExecuteProcedureAsSqlDataReader("usp_order_item_all"));
             }
         }
 
         public IEnumerable<OrderItemData> GetAll(OrderHeaderData order)
         {
             Log.Info("Accessing OrderItemRepo GetAll by InvoiceData function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@order_key", order.OrderKey) };
+            var pcol = new List<SqlParameter>() { Mapper.BuildParam("@order_key", order.OrderKey) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_order_item_all", pcol);
-                Log.Info("OrderItemRepo ExecuteProcedureAsDataSet function call successful");
-                return MapRows(ds);
+                return MapRows(entity_context.ExecuteProcedureAsSqlDataReader("usp_order_item_all", pcol));
             }
         }
 
         public override OrderItemData GetByID(int order_item_key)
         {
             Log.Info("Accessing OrderItemRepo GetByID function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@order_item_key", order_item_key) };
+            var pcol = new List<SqlParameter>() { Mapper.BuildParam("@order_item_key", order_item_key) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_order_item_get", pcol);
-                Log.Info("OrderItemRepo (GetByID) Passed ExecuteProcedureAsDataSet (usp_order_item_get) function");
-                return MapRow(ds);
+                return MapRow(entity_context.ExecuteProcedureAsSqlDataReader("usp_order_item_get", pcol));
             }
         }
 
         public override OrderItemData GetByCode(string order_item_code, string entity_code)
         {
             Log.Info("Accessing OrderItemRepo GetByCode function");
-            List<SqlParameter> pcol = new List<SqlParameter>() {
-                new SqlParameter("@order_item_code", order_item_code),
-                new SqlParameter("@company_code", entity_code)
+            var pcol = new List<SqlParameter>() {
+                Mapper.BuildParam("@order_item_code", order_item_code),
+                Mapper.BuildParam("@company_code", entity_code)
             };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_order_item_get_c", pcol);
-                Log.Info("OrderItemRepo (GetByCode) Passed ExecuteProcedureAsDataSet (usp_order_item_get_c) function");
-                return MapRow(ds);
+                return MapRow(entity_context.ExecuteProcedureAsSqlDataReader("usp_order_item_get_c", pcol));
             }
         }
 
@@ -98,7 +89,7 @@ namespace QIQO.Data.Repositories
         public override void DeleteByCode(string entity_code)
         {
             Log.Info("Accessing OrderItemRepo DeleteByCode function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@order_item_code", entity_code) };
+            var pcol = new List<SqlParameter>() { Mapper.BuildParam("@order_item_code", entity_code) };
             pcol.Add(Mapper.GetOutParam());
             using (entity_context)
             {

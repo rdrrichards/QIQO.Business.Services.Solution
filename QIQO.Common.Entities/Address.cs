@@ -1,10 +1,11 @@
-﻿using System;
+﻿using QIQO.Common.Contracts;
+using System;
 using System.Runtime.Serialization;
 
 namespace QIQO.Business.Entities
 {
     [DataContract]
-    public class Address
+    public class Address : IModel
     {
         [DataMember]
         public int AddressKey { get; set; }

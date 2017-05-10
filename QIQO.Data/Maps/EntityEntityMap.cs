@@ -37,6 +37,34 @@ namespace QIQO.Data.Maps
             }
         } // Map function closer
 
+        public EntityEntityData Map(IDataReader record)
+        {
+            try
+            {
+                return new EntityEntityData()
+                {
+                    EntityEntityKey = NullCheck<int>(record["entity_entity_key"]),
+                    PrimaryEntityKey = NullCheck<int>(record["primary_entity_key"]),
+                    PrimaryEntityTypeKey = NullCheck<int>(record["primary_entity_type_key"]),
+                    SecondaryEntityKey = NullCheck<int>(record["secondary_entity_key"]),
+                    SecondaryEntityTypeKey = NullCheck<int>(record["secondary_entity_type_key"]),
+                    EntityEntitySeq = NullCheck<int>(record["entity_entity_seq"]),
+                    EntityEntityRole = NullCheck<string>(record["entity_entity_role"]),
+                    Comment = NullCheck<string>(record["comment"]),
+                    StartDate = NullCheck<DateTime>(record["start_date"]),
+                    EndDate = NullCheck<DateTime>(record["end_date"]),
+                    AuditAddUserId = NullCheck<string>(record["audit_add_user_id"]),
+                    AuditAddDatetime = NullCheck<DateTime>(record["audit_add_datetime"]),
+                    AuditUpdateUserId = NullCheck<string>(record["audit_update_user_id"]),
+                    AuditUpdateDatetime = NullCheck<DateTime>(record["audit_update_datetime"])
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new MapException($"EntityEntityMap Exception occured: {ex.Message}", ex);
+            }
+        } // Map function closer
+
         public List<SqlParameter> MapParamsForUpsert(EntityEntityData entity)
         {
             var sql_params = new List<SqlParameter>();

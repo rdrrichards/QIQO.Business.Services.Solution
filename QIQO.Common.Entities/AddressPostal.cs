@@ -1,9 +1,10 @@
-﻿using System.Runtime.Serialization;
+﻿using QIQO.Common.Contracts;
+using System.Runtime.Serialization;
 
 namespace QIQO.Business.Entities
 {
     [DataContract]
-    public class AddressPostal
+    public class AddressPostal: IModel
     {
         [DataMember]
         public string CountryName { get; set; }

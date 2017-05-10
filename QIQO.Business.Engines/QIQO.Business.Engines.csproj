@@ -51,6 +51,10 @@
       <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="SimpleInjector, Version=4.0.6.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleInjector.4.0.6\lib\net45\SimpleInjector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.ServiceModel" />
@@ -103,21 +107,35 @@
     <Compile Include="EntityServiceFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AccountEntityService.cs" />
+    <Compile Include="Services\AccountTypeEntityService.cs" />
     <Compile Include="Services\AddressEntityService.cs" />
-    <Compile Include="Services\ChartOfAccountsEntityService.cs" />
+    <Compile Include="Services\AddressPostalEntityService.cs" />
+    <Compile Include="Services\AddressTypeEntityService.cs" />
+    <Compile Include="Services\AttributeEntityService.cs" />
+    <Compile Include="Services\AttributeTypeEntityService.cs" />
+    <Compile Include="Services\AuditLogEntityService.cs" />
+    <Compile Include="Services\ChartOfAccountEntityService.cs" />
     <Compile Include="Services\CommentEntityService.cs" />
+    <Compile Include="Services\CommentTypeEntityService.cs" />
     <Compile Include="Services\CompanyEntityService.cs" />
     <Compile Include="Services\ContactEntityService.cs" />
+    <Compile Include="Services\ContactTypeEntityService.cs" />
     <Compile Include="Services\EntityAttributeEntityService.cs" />
     <Compile Include="Services\EntityProductEntityService.cs" />
+    <Compile Include="Services\EntityServices.cs" />
+    <Compile Include="Services\EntityTypeEntityService.cs" />
     <Compile Include="Services\FeeScheduleEntityService.cs" />
     <Compile Include="Services\InvoiceEntityService.cs" />
+    <Compile Include="Services\InvoiceStatusEntityService.cs" />
     <Compile Include="Services\OrderEntityService.cs" />
     <Compile Include="Services\PersonEntityService.cs" />
     <Compile Include="Services\ProductEntityService.cs" />
+    <Compile Include="Services\ProductTypeEntityService.cs" />
+    <Compile Include="Services\VendorEntityService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\QIQO.Business.Contracts\QIQO.Business.Contracts.csproj">

@@ -32,6 +32,29 @@ namespace QIQO.Data.Maps
             }
         } // Map function closer
 
+        public ProductTypeData Map(IDataReader record)
+        {
+            try
+            {
+                return new ProductTypeData()
+                {
+                    ProductTypeKey = NullCheck<int>(record["product_type_key"]),
+                    ProductTypeCategory = NullCheck<string>(record["product_type_category"]),
+                    ProductTypeCode = NullCheck<string>(record["product_type_code"]),
+                    ProductTypeName = NullCheck<string>(record["product_type_name"]),
+                    ProductTypeDesc = NullCheck<string>(record["product_type_desc"]),
+                    AuditAddUserId = NullCheck<string>(record["audit_add_user_id"]),
+                    AuditAddDatetime = NullCheck<DateTime>(record["audit_add_datetime"]),
+                    AuditUpdateUserId = NullCheck<string>(record["audit_update_user_id"]),
+                    AuditUpdateDatetime = NullCheck<DateTime>(record["audit_update_datetime"])
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new MapException("ProductTypeMap Exception occured", ex);
+            }
+        } // Map function closer
+
         public List<SqlParameter> MapParamsForUpsert(ProductTypeData entity)
         {
             var sql_params = new List<SqlParameter>();

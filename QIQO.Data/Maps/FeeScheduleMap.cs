@@ -39,6 +39,36 @@ namespace QIQO.Data.Maps
             }
         } // Map function closer
 
+        public FeeScheduleData Map(IDataReader record)
+        {
+            try
+            {
+                return new FeeScheduleData()
+                {
+                    FeeScheduleKey = NullCheck<int>(record["fee_schedule_key"]),
+                    CompanyKey = NullCheck<int>(record["company_key"]),
+                    AccountKey = NullCheck<int>(record["account_key"]),
+                    ProductKey = NullCheck<int>(record["product_key"]),
+                    FeeScheduleStartDate = NullCheck<DateTime>(record["fee_schedule_start_date"]),
+                    FeeScheduleEndDate = NullCheck<DateTime>(record["fee_schedule_end_date"]),
+                    FeeScheduleType = NullCheck<string>(record["fee_schedule_type"]),
+                    FeeScheduleValue = NullCheck<decimal>(record["fee_schedule_value"]),
+                    AuditAddUserId = NullCheck<string>(record["audit_add_user_id"]),
+                    AuditAddDatetime = NullCheck<DateTime>(record["audit_add_datetime"]),
+                    AuditUpdateUserId = NullCheck<string>(record["audit_update_user_id"]),
+                    AuditUpdateDatetime = NullCheck<DateTime>(record["audit_update_datetime"]),
+                    ProductDesc = NullCheck<string>(record["product_desc"]),
+                    ProductCode = NullCheck<string>(record["product_code"]),
+                    AccountCode = NullCheck<string>(record["account_code"]),
+                    AccountName = NullCheck<string>(record["account_name"])
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new MapException($"FeeScheduleMap Exception occured: {ex.Message}", ex);
+            }
+        } // Map function closer
+
         public List<SqlParameter> MapParamsForUpsert(FeeScheduleData entity)
         {
             var sql_params = new List<SqlParameter>();

@@ -15,14 +15,14 @@ namespace QIQO.Business.Engines
     {
         private readonly ICache _cache;
         private readonly ICommentTypeRepository _repo_comment_type;
-        private readonly ICommentEntityService _comment_es;
+        private readonly ICommentTypeEntityService _comment_es;
 
         public CommentTypeBusinessEngine(IDataRepositoryFactory data_repo_fact, ICache cache, IEntityServiceFactory ent_serv_fact)
             : base(data_repo_fact, null, ent_serv_fact)
         {
             _cache = cache;
             _repo_comment_type = _data_repository_factory.GetDataRepository<ICommentTypeRepository>();
-            _comment_es = _entity_service_factory.GetEntityService<ICommentEntityService>();
+            _comment_es = _entity_service_factory.GetEntityService<ICommentTypeEntityService>();
         }
 
         public CommentType GetTypeByKey(int type)
@@ -79,10 +79,7 @@ namespace QIQO.Business.Engines
 
             return ExecuteFaultHandledOperation(() =>
             {
-                ICommentTypeRepository repoCommentType = _data_repository_factory.GetDataRepository<ICommentTypeRepository>();
-                CommentTypeData comment_type_data = _comment_es.Map(type);
-
-                return repoCommentType.Insert(comment_type_data);
+                return _repo_comment_type.Insert(_comment_es.Map(type));
             });
         }
 
@@ -93,10 +90,7 @@ namespace QIQO.Business.Engines
 
             return ExecuteFaultHandledOperation(() =>
             {
-                ICommentTypeRepository repoCommentType = _data_repository_factory.GetDataRepository<ICommentTypeRepository>();
-                CommentTypeData comment_type_data = _comment_es.Map(type);
-
-                repoCommentType.Delete(comment_type_data);
+                _repo_comment_type.Delete(_comment_es.Map(type));
                 return true;
             });
         }

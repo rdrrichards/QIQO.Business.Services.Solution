@@ -51,7 +51,9 @@ namespace QIQO.Business.Engines
                 SalesRepKey = order.SalesRep.EntityPersonKey
             };
         }
-
+    }
+    public class OrderItemEntityService : IOrderItemEntityService
+    {
         public OrderItem Map(OrderItemData order_item_data)
         {
             return new OrderItem()
@@ -96,10 +98,12 @@ namespace QIQO.Business.Engines
                 OrderItemSalesRepKey = order_item.SalesRep.EntityPersonKey
             };
         }
-
+    }
+    public class OrderItemStatusEntityService : IOrderItemStatusEntityService
+    {
         public OrderItemStatus Map(OrderStatusData order_status_data)
         {
-            OrderItemStatus order_item_status = new OrderItemStatus()
+            return new OrderItemStatus()
             {
                 OrderItemStatusKey = order_status_data.OrderStatusKey,
                 OrderItemStatusType = order_status_data.OrderStatusType,
@@ -111,13 +115,11 @@ namespace QIQO.Business.Engines
                 UpdateUserID = order_status_data.AuditUpdateUserId,
                 UpdateDateTime = order_status_data.AuditUpdateDatetime
             };
-
-            return order_item_status;
         }
 
         public OrderStatusData Map(OrderItemStatus order_status)
         {
-            OrderStatusData OrderStatus_data = new OrderStatusData()
+            return new OrderStatusData()
             {
                 OrderStatusKey = order_status.OrderItemStatusKey,
                 OrderStatusType = order_status.OrderItemStatusType,
@@ -125,13 +127,13 @@ namespace QIQO.Business.Engines
                 OrderStatusName = order_status.OrderItemStatusName,
                 OrderStatusDesc = order_status.OrderItemStatusDesc
             };
-
-            return OrderStatus_data;
         }
-
-        public OrderStatus Map2(OrderStatusData order_status_data)
+    }
+    public class OrderStatusEntityService : IOrderStatusEntityService
+    {
+        public OrderStatus Map(OrderStatusData order_status_data)
         {
-            OrderStatus OrderStatus = new OrderStatus()
+            return new OrderStatus()
             {
                 OrderStatusKey = order_status_data.OrderStatusKey,
                 OrderStatusType = order_status_data.OrderStatusType,
@@ -143,13 +145,11 @@ namespace QIQO.Business.Engines
                 UpdateUserID = order_status_data.AuditUpdateUserId,
                 UpdateDateTime = order_status_data.AuditUpdateDatetime
             };
-
-            return OrderStatus;
         }
 
         public OrderStatusData Map(OrderStatus order_status)
         {
-            OrderStatusData OrderStatus_data = new OrderStatusData()
+            return new OrderStatusData()
             {
                 OrderStatusKey = order_status.OrderStatusKey,
                 OrderStatusType = order_status.OrderStatusType,
@@ -157,8 +157,6 @@ namespace QIQO.Business.Engines
                 OrderStatusName = order_status.OrderStatusName,
                 OrderStatusDesc = order_status.OrderStatusDesc
             };
-
-            return OrderStatus_data;
         }
     }
 }

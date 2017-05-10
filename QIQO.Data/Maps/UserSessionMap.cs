@@ -39,6 +39,36 @@ namespace QIQO.Data.Maps
             }
         } // Map function closer
 
+
+        public UserSessionData Map(IDataReader record)
+        {
+            try
+            {
+                UserSessionData obj = new UserSessionData();
+
+                obj.SessionKey = (DBNull.Value == record["session_key"]) ? 0 : (int)record["session_key"];
+                obj.SessionCode = (DBNull.Value == record["session_code"]) ? string.Empty : (string)record["session_code"];
+                obj.HostName = (DBNull.Value == record["host_name"]) ? string.Empty : (string)record["host_name"];
+                obj.UserDomain = (DBNull.Value == record["user_domain"]) ? string.Empty : (string)record["user_domain"];
+                obj.UserName = (DBNull.Value == record["user_name"]) ? string.Empty : (string)record["user_name"];
+                obj.ProcessId = (DBNull.Value == record["process_id"]) ? 0 : (int)record["process_id"];
+                obj.CompanyKey = (DBNull.Value == record["company_key"]) ? 0 : (int)record["company_key"];
+                obj.StartDate = (DBNull.Value == record["start_date"]) ? DateTime.MinValue : (DateTime)record["start_date"];
+                obj.EndDate = (DBNull.Value == record["end_date"]) ? null : record["end_date"] as DateTime?;
+                obj.ActiveFlg = (DBNull.Value == record["active_flg"]) ? 0 : (int)record["active_flg"];
+                obj.AuditAddUserId = (DBNull.Value == record["audit_add_user_id"]) ? string.Empty : (string)record["audit_add_user_id"];
+                obj.AuditAddDatetime = (DBNull.Value == record["audit_add_datetime"]) ? DateTime.MinValue : (DateTime)record["audit_add_datetime"];
+                obj.AuditUpdateUserId = (DBNull.Value == record["audit_update_user_id"]) ? string.Empty : (string)record["audit_update_user_id"];
+                obj.AuditUpdateDatetime = (DBNull.Value == record["audit_update_datetime"]) ? DateTime.MinValue : (DateTime)record["audit_update_datetime"];
+
+                return obj;
+            }
+            catch (Exception ex)
+            {
+                throw new MapException("UserSessionMap Exception occured", ex);
+            }
+        } // Map function closer
+
         public List<SqlParameter> MapParamsForUpsert(UserSessionData entity)
         {
             List<SqlParameter> sql_params = new List<SqlParameter>();

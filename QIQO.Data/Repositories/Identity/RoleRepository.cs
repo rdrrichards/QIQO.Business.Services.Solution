@@ -1,10 +1,8 @@
 using QIQO.Common.Contracts;
-using QIQO.Common.Core.Logging;
 using QIQO.Data.Entities.Identity;
 using QIQO.Data.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
 
 namespace QIQO.Data.Repositories
@@ -30,31 +28,25 @@ namespace QIQO.Data.Repositories
         {
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_role_all");
-                Log.Info("RoleRepository GetAll function call successful");
-                return MapRows(ds);
+                return MapRows(entity_context.ExecuteProcedureAsSqlDataReader("usp_role_all"));
             }
         }
 
         public override RoleData GetByID(Guid id)
         {
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@RoleId", id) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@RoleId", id) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_role_get_by_id", pcol);
-                Log.Info("RoleRepository (GetByID) Passed ExecuteProcedureAsDataSet (usp_role_get) function");
-                return MapRow(ds);
+                return MapRow(entity_context.ExecuteProcedureAsSqlDataReader("usp_role_get_by_id", pcol));
             }
         }
 
         public override RoleData GetByName(string name)
         {
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@Name", name) };
+            var pcol = new List<SqlParameter>() { new SqlParameter("@Name", name) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_role_get_by_name", pcol);
-                Log.Info("RoleRepository (GetByName) Passed ExecuteProcedureAsDataSet (usp_role_get_by_name) function");
-                return MapRow(ds);
+                return MapRow(entity_context.ExecuteProcedureAsSqlDataReader("usp_role_get_by_name", pcol));
             }
         }
 

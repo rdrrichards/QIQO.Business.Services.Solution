@@ -22,6 +22,7 @@ namespace QIQO.Business.Engines
         private readonly IProductBusinessEngine _product_be;
         private readonly IAccountBusinessEngine _account_be;
         private readonly IInvoiceEntityService _invoice_se;
+        private readonly IInvoiceItemEntityService _invoice_item_se;
         public InvoiceBusinessEngine(IDataRepositoryFactory data_repo_fact, IBusinessEngineFactory bus_eng_fact, IEntityServiceFactory ent_serv_fact)
             : base(data_repo_fact, bus_eng_fact, ent_serv_fact)
         {
@@ -33,6 +34,7 @@ namespace QIQO.Business.Engines
             _product_be = _business_engine_factory.GetBusinessEngine<IProductBusinessEngine>();
             _account_be = _business_engine_factory.GetBusinessEngine<IAccountBusinessEngine>();
             _invoice_se = _entity_service_factory.GetEntityService<IInvoiceEntityService>();
+            _invoice_item_se = _entity_service_factory.GetEntityService<IInvoiceItemEntityService>();
         }
 
         public int InvoiceSave(Invoice invoice)
@@ -51,7 +53,7 @@ namespace QIQO.Business.Engines
                 Log.Info($"Invoice Item start [{invoice.InvoiceItems.Count}] items to process");
                 foreach (var inv_item in invoice.InvoiceItems)
                 {
-                    var inv_item_data = _invoice_se.Map(inv_item);
+                    var inv_item_data = _invoice_item_se.Map(inv_item);
                     //Log.Info($"Order Item converted [{order_item_data.ProductName}] sucessfully!");
                     inv_item_data.InvoiceKey = invoice_key;
                     inv_item_data.InvoiceItemKey = inv_item.InvoiceItemKey;
@@ -268,7 +270,7 @@ namespace QIQO.Business.Engines
 
             return ExecuteFaultHandledOperation(() =>
             {
-                var inv_itm = _invoice_se.Map(invoice_item);
+                var inv_itm = _invoice_item_se.Map(invoice_item);
                 inv_itm.OrderItemKey = invoice_item.InvoiceItemKey;
                 _invoice_item_repo.Delete(inv_itm);
                 return true;
@@ -286,7 +288,7 @@ namespace QIQO.Business.Engines
 
         private InvoiceItem Map(InvoiceItemData invoice_item_data)
         {
-            var invoiceItem = _invoice_se.Map(invoice_item_data);
+            var invoiceItem = _invoice_item_se.Map(invoice_item_data);
             invoiceItem.OrderItemShipToAddress = _address_be.GetAddressByID(invoice_item_data.ShiptoAddrKey);
             invoiceItem.OrderItemBillToAddress = _address_be.GetAddressByID(invoice_item_data.BilltoAddrKey);
             invoiceItem.InvoiceItemProduct = _product_be.GetProductByID(invoice_item_data.ProductKey);

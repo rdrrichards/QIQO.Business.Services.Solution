@@ -4,7 +4,6 @@ using QIQO.Data.Entities;
 using QIQO.Data.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
 
 namespace QIQO.Data.Repositories
@@ -23,36 +22,30 @@ namespace QIQO.Data.Repositories
             Log.Info("Accessing EntityTypeRepo GetAll function");
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_entity_type_all");
-                Log.Info("EntityTypeRepo ExecuteProcedureAsDataSet function call successful");
-                return MapRows(ds);
+                return MapRows(entity_context.ExecuteProcedureAsSqlDataReader("usp_entity_type_all"));
             }
         }
 
         public override EntityTypeData GetByID(int entity_type_key)
         {
             Log.Info("Accessing EntityTypeRepo GetByID function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@entity_type_key", entity_type_key) };
+            var pcol = new List<SqlParameter>() { Mapper.BuildParam("@entity_type_key", entity_type_key) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_entity_type_get", pcol);
-                Log.Info("EntityTypeRepo (GetByID) Passed ExecuteProcedureAsDataSet (usp_entity_type_get) function");
-                return MapRow(ds);
+                return MapRow(entity_context.ExecuteProcedureAsSqlDataReader("usp_entity_type_get", pcol));
             }
         }
 
         public override EntityTypeData GetByCode(string entity_type_code, string entity_code)
         {
             Log.Info("Accessing EntityTypeRepo GetByCode function");
-            List<SqlParameter> pcol = new List<SqlParameter>() {
-                new SqlParameter("@entity_type_code", entity_type_code),
-                new SqlParameter("@company_code", entity_code)
+            var pcol = new List<SqlParameter>() {
+                Mapper.BuildParam("@entity_type_code", entity_type_code),
+                Mapper.BuildParam("@company_code", entity_code)
             };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_entity_type_get_c", pcol);
-                Log.Info("EntityTypeRepo (GetByCode) Passed ExecuteProcedureAsDataSet (usp_entity_type_get_c) function");
-                return MapRow(ds);
+                return MapRow(entity_context.ExecuteProcedureAsSqlDataReader("usp_entity_type_get_c", pcol));
             }
         }
 
@@ -86,7 +79,7 @@ namespace QIQO.Data.Repositories
         public override void DeleteByCode(string entity_code)
         {
             Log.Info("Accessing EntityTypeRepo DeleteByCode function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@entity_type_code", entity_code) };
+            var pcol = new List<SqlParameter>() { Mapper.BuildParam("@entity_type_code", entity_code) };
             pcol.Add(Mapper.GetOutParam());
             using (entity_context)
             {

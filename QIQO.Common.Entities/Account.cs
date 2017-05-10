@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 namespace QIQO.Business.Entities
 {
     [DataContract]
-    public class Account : IAccountOwnedEntity
+    public class Account : IAccountOwnedEntity, IModel
     {
         [DataMember]
         public int AccountKey { get; set; }

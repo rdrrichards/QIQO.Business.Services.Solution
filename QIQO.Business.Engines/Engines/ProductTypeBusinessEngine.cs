@@ -15,13 +15,13 @@ namespace QIQO.Business.Engines
     {
         private readonly ICache _cache;
         private readonly IProductTypeRepository _report_prod_type;
-        private readonly IProductEntityService _prod_es;
+        private readonly IProductTypeEntityService _prod_es;
         public ProductTypeBusinessEngine(IDataRepositoryFactory data_repo_fact, ICache cache, IEntityServiceFactory ent_serv_fact)
             : base(data_repo_fact, null, ent_serv_fact)
         {
             _cache = cache;
             _report_prod_type = _data_repository_factory.GetDataRepository<IProductTypeRepository>();
-            _prod_es = _entity_service_factory.GetEntityService<IProductEntityService>();
+            _prod_es = _entity_service_factory.GetEntityService<IProductTypeEntityService>();
         }
 
         public ProductType GetTypeByKey(int type)
@@ -75,8 +75,7 @@ namespace QIQO.Business.Engines
 
             return ExecuteFaultHandledOperation(() =>
             {
-                var product_type_data = _prod_es.Map(type);
-                return _report_prod_type.Insert(product_type_data);
+                return _report_prod_type.Insert(_prod_es.Map(type));
             });
         }
 
@@ -87,8 +86,7 @@ namespace QIQO.Business.Engines
 
             return ExecuteFaultHandledOperation(() =>
             {
-                var product_type_data = _prod_es.Map(type);
-                _report_prod_type.Delete(product_type_data);
+                _report_prod_type.Delete(_prod_es.Map(type));
                 return true;
             });
         }

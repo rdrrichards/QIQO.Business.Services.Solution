@@ -1,3 +1,4 @@
+using QIQO.Common.Contracts;
 using System;
 using System.Runtime.Serialization;
 

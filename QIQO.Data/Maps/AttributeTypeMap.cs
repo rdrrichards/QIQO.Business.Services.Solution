@@ -33,6 +33,31 @@ namespace QIQO.Data.Maps
             }
         } // Map function closer
 
+        public AttributeTypeData Map(IDataReader record)
+        {
+            try
+            {
+                return new AttributeTypeData()
+                {
+                    AttributeTypeKey = NullCheck<int>(record["attribute_type_key"]),
+                    AttributeTypeCategory = NullCheck<string>(record["attribute_type_category"]),
+                    AttributeTypeCode = NullCheck<string>(record["attribute_type_code"]),
+                    AttributeTypeName = NullCheck<string>(record["attribute_type_name"]),
+                    AttributeTypeDesc = NullCheck<string>(record["attribute_type_desc"]),
+                    AttributeDataTypeKey = NullCheck<int>(record["attribute_data_type_key"]),
+                    AttributeDefaultFormat = NullCheck<string>(record["attribute_default_format"]),
+                    AuditAddUserId = NullCheck<string>(record["audit_add_user_id"]),
+                    AuditAddDatetime = NullCheck<DateTime>(record["audit_add_datetime"]),
+                    AuditUpdateUserId = NullCheck<string>(record["audit_update_user_id"]),
+                    AuditUpdateDatetime = NullCheck<DateTime>(record["audit_update_datetime"])
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new MapException($"AttributeTypeMap Exception occured: {ex.Message}", ex);
+            }
+        } // Map function closer
+
         public List<SqlParameter> MapParamsForUpsert(AttributeTypeData entity)
         {
             var sql_params = new List<SqlParameter>();

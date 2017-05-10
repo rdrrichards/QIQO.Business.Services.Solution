@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 namespace QIQO.Business.Entities
 {
     [DataContract]
-    public class ProductType : IType
+    public class ProductType : IType, IModel
     {
         [DataMember]
         public int ProductTypeKey { get; set; }

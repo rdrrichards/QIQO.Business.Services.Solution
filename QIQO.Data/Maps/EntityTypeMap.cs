@@ -30,6 +30,27 @@ namespace QIQO.Data.Maps
             }
         } // Map function closer
 
+        public EntityTypeData Map(IDataReader record)
+        {
+            try
+            {
+                return new EntityTypeData()
+                {
+                    EntityTypeKey = NullCheck<int>(record["entity_type_key"]),
+                    EntityTypeCode = NullCheck<string>(record["entity_type_code"]),
+                    EntityTypeName = NullCheck<string>(record["entity_type_name"]),
+                    AuditAddUserId = NullCheck<string>(record["audit_add_user_id"]),
+                    AuditAddDatetime = NullCheck<DateTime>(record["audit_add_datetime"]),
+                    AuditUpdateUserId = NullCheck<string>(record["audit_update_user_id"]),
+                    AuditUpdateDatetime = NullCheck<DateTime>(record["audit_update_datetime"])
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new MapException($"EntityTypeMap Exception occured: {ex.Message}", ex);
+            }
+        } // Map function closer
+
         public List<SqlParameter> MapParamsForUpsert(EntityTypeData entity)
         {
             var sql_params = new List<SqlParameter>();

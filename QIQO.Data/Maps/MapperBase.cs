@@ -26,6 +26,11 @@ namespace QIQO.Data.Maps
             return outParam;
         }
 
+        public SqlParameter BuildParam(string parameterName, object value)
+        {
+            return new SqlParameter(parameterName, value);
+        }
+
         protected T NullCheck<T>(object checkValue)
         {
             T outValue;

@@ -30,6 +30,28 @@ namespace QIQO.Data.Maps
             }
         } // Map function closer
 
+        public AccountTypeData Map(IDataReader record)
+        {
+            try
+            {
+                return new AccountTypeData()
+                {
+                    AccountTypeKey = NullCheck<int>(record["account_type_key"]),
+                    AccountTypeCode = NullCheck<string>(record["account_type_code"]),
+                    AccountTypeName = NullCheck<string>(record["account_type_name"]),
+                    AccountTypeDesc = NullCheck<string>(record["account_type_desc"]),
+                    AuditAddUserId = NullCheck<string>(record["audit_add_user_id"]),
+                    AuditAddDatetime = NullCheck<DateTime>(record["audit_add_datetime"]),
+                    AuditUpdateUserId = NullCheck<string>(record["audit_update_user_id"]),
+                    AuditUpdateDatetime = NullCheck<DateTime>(record["audit_update_datetime"])
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new MapException($"AccountTypeMap Exception occured: {ex.Message}", ex);
+            }
+        } // Map function closer
+
         public List<SqlParameter> MapParamsForUpsert(AccountTypeData entity)
         {
             var sql_params = new List<SqlParameter>();

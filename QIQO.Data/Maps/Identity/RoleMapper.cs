@@ -25,6 +25,23 @@ namespace QIQO.Data.Maps
             }
         }
 
+        public RoleData Map(IDataReader record)
+        {
+            try
+            {
+                return new RoleData()
+                {
+                    RoleId = NullCheck<Guid>(record["RoleId"]),
+                    Name = NullCheck<string>(record["Name"]),
+                    NormalizedName = NullCheck<string>(record["NormalizedName"])
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new MapException($"RoleMap Exception occured: {ex.Message}", ex);
+            }
+        }
+
         public List<SqlParameter> MapParamsForUpsert(RoleData entity)
         {
             var sql_params = new List<SqlParameter>();

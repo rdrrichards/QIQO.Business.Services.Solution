@@ -32,6 +32,29 @@ namespace QIQO.Data.Maps
             }
         } // Map function closer
 
+        public LedgerData Map(IDataReader record)
+        {
+            try
+            {
+                return new LedgerData()
+                {
+                    LedgerKey = NullCheck<int>(record["ledger_key"]),
+                    CompanyKey = NullCheck<int>(record["company_key"]),
+                    LedgerCode = NullCheck<string>(record["ledger_code"]),
+                    LedgerName = NullCheck<string>(record["ledger_name"]),
+                    LedgerDesc = NullCheck<string>(record["ledger_desc"]),
+                    AuditAddUserId = NullCheck<string>(record["audit_add_user_id"]),
+                    AuditAddDatetime = NullCheck<DateTime>(record["audit_add_datetime"]),
+                    AuditUpdateUserId = NullCheck<string>(record["audit_update_user_id"]),
+                    AuditUpdateDatetime = NullCheck<DateTime>(record["audit_update_datetime"])
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new MapException($"LedgerMap Exception occured: {ex.Message}", ex);
+            }
+        } // Map function closer
+
         public List<SqlParameter> MapParamsForUpsert(LedgerData entity)
         {
             var sql_params = new List<SqlParameter>();

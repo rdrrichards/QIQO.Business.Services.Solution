@@ -1,10 +1,11 @@
-﻿using System;
+﻿using QIQO.Common.Contracts;
+using System;
 using System.Runtime.Serialization;
 
 namespace QIQO.Business.Entities
 {
     [DataContract]
-    public class LedgerTxn
+    public class LedgerTxn: IModel
     {
         [DataMember]
         public int LedgerTxnKey { get; set; }

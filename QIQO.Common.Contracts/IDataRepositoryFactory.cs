@@ -2,7 +2,7 @@
 {
     public interface IDataRepositoryFactory
     {
-        T GetDataRepository<T>() where T : IRepository;
-        T GetIdentityDataRepository<T>() where T : IIdentityRepository;
+        T GetDataRepository<T>() where T : class, IRepository;
+        T GetIdentityDataRepository<T>() where T : class, IIdentityRepository;
     }
 }

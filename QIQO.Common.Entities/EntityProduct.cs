@@ -1,9 +1,10 @@
-﻿using System.Runtime.Serialization;
+﻿using QIQO.Common.Contracts;
+using System.Runtime.Serialization;
 
 namespace QIQO.Business.Entities
 {
     [DataContract]
-    public class EntityProduct : Product
+    public class EntityProduct : Product, IModel
     {
         //public int EntityProductKey { get; set; }
 

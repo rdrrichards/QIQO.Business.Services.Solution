@@ -26,6 +26,24 @@ namespace QIQO.Data.Maps
             }
         }
 
+        public UserLoginData Map(IDataReader record)
+        {
+            try
+            {
+                return new UserLoginData()
+                {
+                    LoginProvider = NullCheck<string>(record["LoginProvider"]),
+                    UserID = NullCheck<Guid>(record["UserID"]),
+                    ProviderKey = NullCheck<string>(record["ProviderKey"]),
+                    ProviderDisplayName = NullCheck<string>(record["ProviderDisplayName"])
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new MapException("UserLoginMap Exception occured", ex);
+            }
+        }
+
         public List<SqlParameter> MapParamsForUpsert(UserLoginData entity)
         {
             var sql_params = new List<SqlParameter>();

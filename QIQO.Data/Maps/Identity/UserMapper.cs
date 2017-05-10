@@ -39,6 +39,35 @@ namespace QIQO.Data.Maps
             }
         }
 
+        public UserData Map(IDataReader record)
+        {
+            try
+            {
+                return new UserData()
+                {
+                    Id = NullCheck<Guid>(record["UserId"]),
+                    Email = NullCheck<string>(record["Email"]),
+                    NormalizedEmail = NullCheck<string>(record["NormalizedEmail"]),
+                    EmailConfirmed = NullCheck<bool>(record["EmailConfirmed"]),
+                    PasswordHash = NullCheck<string>(record["PasswordHash"]),
+                    SecurityStamp = NullCheck<string>(record["SecurityStamp"]),
+                    PhoneNumber = NullCheck<string>(record["PhoneNumber"]),
+                    PhoneNumberConfirmed = NullCheck<bool>(record["PhoneNumberConfirmed"]),
+                    TwoFactorEnabled = NullCheck<bool>(record["TwoFactorEnabled"]),
+                    LockoutEnd = NullCheck<DateTimeOffset>(record["LockoutEnd"]),
+                    LockoutEnabled = NullCheck<bool>(record["LockoutEnabled"]),
+                    AccessFailedCount = NullCheck<int>(record["AccessFailedCount"]),
+                    UserName = NullCheck<string>(record["UserName"]),
+                    NormalizedUserName = NullCheck<string>(record["NormalizedUserName"])
+                };
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"UserMap Exception occured: {ex.Message}", ex);
+                throw new MapException($"UserMap Exception occured: {ex.Message}", ex);
+            }
+        }
+
         public List<SqlParameter> MapParamsForUpsert(UserData entity)
         {
             var sql_params = new List<SqlParameter>();

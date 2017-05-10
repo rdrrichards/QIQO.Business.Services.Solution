@@ -32,6 +32,29 @@ namespace QIQO.Data.Maps
             }
         } // Map function closer
 
+        public PersonTypeData Map(IDataReader record)
+        {
+            try
+            {
+                return new PersonTypeData()
+                {
+                    PersonTypeKey = NullCheck<int>(record["person_type_key"]),
+                    PersonTypeCategory = NullCheck<string>(record["person_type_category"]),
+                    PersonTypeCode = NullCheck<string>(record["person_type_code"]),
+                    PersonTypeName = NullCheck<string>(record["person_type_name"]),
+                    PersonTypeDesc = NullCheck<string>(record["person_type_desc"]),
+                    AuditAddUserId = NullCheck<string>(record["audit_add_user_id"]),
+                    AuditAddDatetime = NullCheck<DateTime>(record["audit_add_datetime"]),
+                    AuditUpdateUserId = NullCheck<string>(record["audit_update_user_id"]),
+                    AuditUpdateDatetime = NullCheck<DateTime>(record["audit_update_datetime"])
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new MapException($"PersonTypeMap Exception occured: {ex.Message}", ex);
+            }
+        } // Map function closer
+
         public List<SqlParameter> MapParamsForUpsert(PersonTypeData entity)
         {
             var sql_params = new List<SqlParameter>();

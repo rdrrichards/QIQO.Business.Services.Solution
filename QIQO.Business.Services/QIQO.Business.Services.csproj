@@ -57,6 +57,10 @@
       <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="SimpleInjector, Version=4.0.6.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleInjector.4.0.6\lib\net45\SimpleInjector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -86,8 +90,6 @@
     <Compile Include="Services\IdentityRoleService.cs" />
     <Compile Include="Services\SessionService.cs" />
     <Compile Include="Services\TypeService.cs" />
-    <Compile Include="Container\UnityInstanceProvider.cs" />
-    <Compile Include="Container\UnityServiceHost.cs" />
     <Compile Include="Services\IdentityUserService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +120,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

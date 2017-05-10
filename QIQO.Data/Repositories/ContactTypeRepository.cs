@@ -4,7 +4,6 @@ using QIQO.Data.Entities;
 using QIQO.Data.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
 
 namespace QIQO.Data.Repositories
@@ -23,48 +22,40 @@ namespace QIQO.Data.Repositories
             Log.Info("Accessing ContactTypeRepo GetAll function");
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_contact_type_all");
-                Log.Info("ContactTypeRepo ExecuteProcedureAsDataSet function call successful");
-                return MapRows(ds);
+                return MapRows(entity_context.ExecuteProcedureAsSqlDataReader("usp_contact_type_all"));
             }
         }
 
         public IEnumerable<ContactTypeData> GetAllByCategory(string category)
         {
             Log.Info("Accessing ContactTypeRepo GetAllByCategory function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@contact_type_category", category) };
+            var pcol = new List<SqlParameter>() { Mapper.BuildParam("@contact_type_category", category) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_contact_type_get_cat", pcol);
-                Log.Info("ContactTypeRepo (GetByID) Passed ExecuteProcedureAsDataSet (usp_contact_type_get_cat) function");
-                return MapRows(ds);
+                return MapRows(entity_context.ExecuteProcedureAsSqlDataReader("usp_contact_type_get_cat", pcol));
             }
         }
 
         public override ContactTypeData GetByID(int contact_type_key)
         {
             Log.Info("Accessing ContactTypeRepo GetByID function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@contact_type_key", contact_type_key) };
+            var pcol = new List<SqlParameter>() { Mapper.BuildParam("@contact_type_key", contact_type_key) };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_contact_type_get", pcol);
-                Log.Info("ContactTypeRepo (GetByID) Passed ExecuteProcedureAsDataSet (usp_contact_type_get) function");
-                return MapRow(ds);
+                return MapRow(entity_context.ExecuteProcedureAsSqlDataReader("usp_contact_type_get", pcol));
             }
         }
 
         public override ContactTypeData GetByCode(string contact_type_code, string entity_code)
         {
             Log.Info("Accessing ContactTypeRepo GetByCode function");
-            List<SqlParameter> pcol = new List<SqlParameter>() {
-                new SqlParameter("@contact_type_code", contact_type_code),
-                new SqlParameter("@company_code", entity_code)
+            var pcol = new List<SqlParameter>() {
+                Mapper.BuildParam("@contact_type_code", contact_type_code),
+                Mapper.BuildParam("@company_code", entity_code)
             };
             using (entity_context)
             {
-                DataSet ds = entity_context.ExecuteProcedureAsDataSet("usp_contact_type_get_c", pcol);
-                Log.Info("ContactTypeRepo (GetByCode) Passed ExecuteProcedureAsDataSet (usp_contact_type_get_c) function");
-                return MapRow(ds);
+                return MapRow(entity_context.ExecuteProcedureAsSqlDataReader("usp_contact_type_get_c", pcol));
             }
         }
 
@@ -98,7 +89,7 @@ namespace QIQO.Data.Repositories
         public override void DeleteByCode(string entity_code)
         {
             Log.Info("Accessing ContactTypeRepo DeleteByCode function");
-            List<SqlParameter> pcol = new List<SqlParameter>() { new SqlParameter("@contact_type_code", entity_code) };
+            var pcol = new List<SqlParameter>() { Mapper.BuildParam("@contact_type_code", entity_code) };
             pcol.Add(Mapper.GetOutParam());
             using (entity_context)
             {
