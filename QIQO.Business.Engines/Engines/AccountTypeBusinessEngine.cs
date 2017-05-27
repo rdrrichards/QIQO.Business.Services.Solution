@@ -23,6 +23,7 @@ namespace QIQO.Business.Engines
             _cache = cache;
             _repo_acct_type = _data_repository_factory.GetDataRepository<IAccountTypeRepository>();
             _acct_es = _entity_service_factory.GetEntityService<IAccountTypeEntityService>();
+            GetTypes();
         }
 
 

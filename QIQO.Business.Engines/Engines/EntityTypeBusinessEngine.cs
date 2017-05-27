@@ -21,6 +21,7 @@ namespace QIQO.Business.Engines
         {
             _cache = cache;
             _repo_ent_type = _data_repository_factory.GetDataRepository<IEntityTypeRepository>();
+            GetTypes();
         }
 
         public EntityType GetTypeByKey(int type)

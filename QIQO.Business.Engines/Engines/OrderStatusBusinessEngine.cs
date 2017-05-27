@@ -22,6 +22,7 @@ namespace QIQO.Business.Engines
             _cache = cache;
             _order_status_repo = _data_repository_factory.GetDataRepository<IOrderStatusRepository>();
             _order_status_es = _entity_service_factory.GetEntityService<IOrderStatusEntityService>();
+            GetStatuses();
         }
 
         public bool DeleteStatus(OrderStatus status)

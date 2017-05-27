@@ -23,6 +23,7 @@ namespace QIQO.Business.Engines
             _cache = cache;
             _repo_attr_type = _data_repository_factory.GetDataRepository<IAttributeTypeRepository>();
             _attr_type_es = _entity_service_factory.GetEntityService<IAttributeTypeEntityService>();
+            GetTypes();
         }
 
         public AttributeType GetTypeByKey(int type)
