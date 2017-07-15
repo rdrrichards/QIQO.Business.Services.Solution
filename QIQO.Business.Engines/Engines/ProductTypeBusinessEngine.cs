@@ -22,6 +22,7 @@ namespace QIQO.Business.Engines
             _cache = cache;
             _report_prod_type = _data_repository_factory.GetDataRepository<IProductTypeRepository>();
             _prod_es = _entity_service_factory.GetEntityService<IProductTypeEntityService>();
+            GetTypes();
         }
 
         public ProductType GetTypeByKey(int type)

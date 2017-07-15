@@ -23,6 +23,7 @@ namespace QIQO.Business.Engines
             _cache = cache;
             _repo_addr_type = _data_repository_factory.GetDataRepository<IAddressTypeRepository>();
             _addr_es = _entity_service_factory.GetEntityService<IAddressTypeEntityService>();
+            GetTypes();
         }
 
         public AddressType GetTypeByKey(int type)
