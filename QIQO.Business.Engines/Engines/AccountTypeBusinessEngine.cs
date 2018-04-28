@@ -4,7 +4,6 @@ using QIQO.Business.Entities;
 using QIQO.Data.Interfaces;
 using QIQO.Common.Contracts;
 using System.Collections.Generic;
-using QIQO.Data.Entities;
 using QIQO.Business.Contracts;
 using QIQO.Common.Core.Caching;
 using QIQO.Common.Core.Logging;

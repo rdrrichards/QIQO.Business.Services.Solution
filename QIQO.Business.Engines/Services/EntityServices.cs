@@ -1,8 +1,4 @@
-﻿using QIQO.Business.Contracts;
-using QIQO.Business.Entities;
-using QIQO.Data.Entities;
-
-namespace QIQO.Business.Engines.Services
+﻿namespace QIQO.Business.Engines.Services
 {
     //public class LedgerEntityService : ILedgerEntityService, IEntityService<Ledger, LedgerData>
     //{
