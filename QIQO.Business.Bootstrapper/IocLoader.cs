@@ -19,7 +19,7 @@ namespace QIQO.Business.Bootstrapper
         public static Container Init()
         {
             var container = IocContainer.Container; // new Container();
-            container.Options.DefaultScopedLifestyle = new WcfOperationLifestyle();
+            container.Options.DefaultScopedLifestyle = new SimpleInjector.Lifestyles.AsyncScopedLifestyle();
 
             RegisterDBContexts(container);
 
